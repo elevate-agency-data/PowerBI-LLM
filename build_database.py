@@ -1,12 +1,8 @@
 import json
+import pandas as pd
 
-instructions = "Please add a bar chart of the number of users by country."
-json_path_before_change = "jsons/rapport_original.json"
-json_path_after_change = "jsons/bar_chart_nb_userid_by_country.json"
-
-
-def template_bdd(instructions, json_path_before_change, json_path_after_change):
-
+def template_json(instructions, json_path_before_change, json_path_after_change):
+# Fonction pour mettre en forme le prompt avec le json PBI
     with open(json_path_before_change, 'r') as json_data :
         data_before_change = json.load(json_data)
     with open(json_path_after_change, 'r') as json_data :
@@ -24,7 +20,23 @@ def template_bdd(instructions, json_path_before_change, json_path_after_change):
 
     return final_json
 
-
-
-processed_json = template_bdd(instructions, json_path_before_change, json_path_after_change)
+# Test sur un rapport
+instructions = "Please add a bar chart of the number of users by country."
+json_path_before_change = "jsons/rapport_original.json"
+json_path_after_change = "jsons/bar_chart_nb_userid_by_country.json"
+processed_json = template_json(instructions, json_path_before_change, json_path_after_change)
 print(processed_json)
+
+# Application sur plusieurs rapports
+bdd = pd.read_excel("bdd.xlsx")
+
+bdd['json_resultat'] = bdd.apply(lambda row: template_json(row['instructions'], row['json_path_before_change'], row['json_path_after_change']), axis=1)
+
+# On ajoute tous les jsons à un fichier jsonl
+with open('bdd_fr.jsonl', 'w') as file:
+    for item in bdd['json_resultat']:
+        print(item)
+        json_obj = json.loads(item)
+        print(json_obj)
+        json.dump(json_obj, file)
+        file.write('\n')
