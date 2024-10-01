@@ -37,5 +37,3 @@ with open('bdd_fr.jsonl', 'w') as file:
         json.dump(json_obj, file)
         file.write('\n')
 
-
-
