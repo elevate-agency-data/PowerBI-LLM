@@ -42,8 +42,8 @@ def compare_json_structure(json_reponse_path, json_reference_path):
     return schema_reference_str == schema_reponse_str
 
 
-json_reference_path = "jsons/rapport_original.json"
-json_reponse_path = "jsons/titre_rapport_it.json"
+json_reference_path = "jsons_test/IT__web.json"
+json_reponse_path = "jsons_test/IT__web_TEST.json"
 compare_json_structure(json_reponse_path, json_reference_path)
 
 
