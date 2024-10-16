@@ -1,0 +1,69 @@
+{
+  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU08\",\"version\":\"5.57\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU08",
+            "path": "BaseThemes/CY24SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "330aa7a94eee278efff3",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3aed92926512263693cb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":146.85271317829458,\"y\":220.27906976744185,\"z\":0,\"width\":613.2093023255813,\"height\":279.8139534883721,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Airbnb_Open_Data.Construction year\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(Airbnb_Open_Data.price)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Construction year\"},\"Name\":\"Airbnb_Open_Data.Construction year\",\"NativeReferenceName\":\"Somme de Construction year\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"price\"}},\"Function\":1},\"Name\":\"CountNonNull(Airbnb_Open_Data.price)\",\"NativeReferenceName\":\"Moyenne de price\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"price\"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[{\"name\":\"8d48a79462e6c0178907\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Airbnb_Open_Data\"}},\"Property\":\"neighbourhood group\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"neighbourhood group\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"''\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 279.81,
+          "width": 613.21,
+          "x": 146.85,
+          "y": 220.28,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"92684f9774b0267331b4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":522.3100303951368,\"y\":46.68693009118541,\"z\":3001,\"width\":237.32522796352583,\"height\":119.63525835866263,\"tabOrder\":3001}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Airbnb_Open_Data.cancellation_policy\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"cancellation_policy\"},\"Name\":\"Airbnb_Open_Data.cancellation_policy\",\"NativeReferenceName\":\"cancellation_policy\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Cancellation'\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.4}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 119.64,
+          "width": 237.33,
+          "x": 522.31,
+          "y": 46.69,
+          "z": 3001.00
+        },
+        {
+          "config": "{\"name\":\"9e59b8bb9304c23407e5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":822.8571428571429,\"y\":46.68693009118541,\"z\":3000,\"width\":237.32522796352583,\"height\":120.60790273556232,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Airbnb_Open_Data.room type\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"room type\"},\"Name\":\"Airbnb_Open_Data.room type\",\"NativeReferenceName\":\"room type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.4}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 120.61,
+          "width": 237.33,
+          "x": 822.86,
+          "y": 46.69,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"be9b1d7fb8c8ae330904\",\"layouts\":[{\"id\":0,\"position\":{\"x\":230.51671732522797,\"y\":46.68693009118541,\"z\":3002,\"width\":237.32522796352583,\"height\":120.60790273556232,\"tabOrder\":3002}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Airbnb_Open_Data.neighbourhood group\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"neighbourhood group\"},\"Name\":\"Airbnb_Open_Data.neighbourhood group\",\"NativeReferenceName\":\"neighbourhood group\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Quartier'\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.4}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 120.61,
+          "width": 237.33,
+          "x": 230.52,
+          "y": 46.69,
+          "z": 3002.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
