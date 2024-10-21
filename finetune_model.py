@@ -5,6 +5,8 @@ from tqdm import tqdm
 import time
 import pandas as pd
 
+###### Finetune du modèle ######
+
 # Define a function to open a file and return its contents as a string
 def open_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as infile:
@@ -51,6 +53,7 @@ status = check_fine_tune_status(job_id)
 print(status)
 
 
+##### Utilisation du modèle finetuné ######
 
 prompt = """Tu es un data analyst expert en Power BI qui a l'habitude de travailler avec des rapports Power BI et leur fichier JSON. 
 Ton role est de modifier le fichier JSON du rapport fourni selon les instructions fournies par l'utilisateur.
