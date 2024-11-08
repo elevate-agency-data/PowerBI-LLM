@@ -128,3 +128,45 @@ def build_bdd(bdd_excel, prompt, jsonl_path):
             file.write('\n')
 
 build_bdd(bdd_excel, prompt, jsonl_path)
+
+############# Function Calling ######################
+
+#### Fonction pour extraire éléments json #####
+import json
+with open("jsons_train/mode_interaction/IT__web_bis.json", 'r') as json_data :
+        data = json.load(json_data)
+
+def extract_relevant_elements(json_data):
+    extracted_data = {
+        "config": json_data.get("config", {}),
+        "sections": []
+    }
+    for section in json_data.get("sections", []):
+        # Store displayName to know the section/page name
+        section_summary = {
+            "displayName": section.get("displayName", ""),
+            "visualContainers": []
+        }
+        # Process each visual container in the section
+        for visual in section.get("visualContainers", []):
+            # Parse config if it's a string
+            config_data = visual.get("config", {})
+            if isinstance(config_data, str):
+                config_data = json.loads(config_data)
+            # Extract relevant visual properties
+            visual_summary = {
+                "visualType": config_data.get("singleVisual", {}).get("visualType", ""),
+                "projections": config_data.get("singleVisual", {}).get("projections", []),
+                "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
+                "objects": config_data.get("singleVisual", {}).get("objects", {}),
+                "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
+            }
+            # Add visual summary if it has useful data
+            if any(visual_summary.values()):
+                section_summary["visualContainers"].append(visual_summary)
+        # Add section summary if it has relevant visual containers
+        if section_summary["visualContainers"]:
+            extracted_data["sections"].append(section_summary)
+    return extracted_data
+
+test = extract_relevant_elements(data)
