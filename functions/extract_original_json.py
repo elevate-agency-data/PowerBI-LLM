@@ -1,6 +1,6 @@
 import json
 
-def extract_relevant_elements(json_data):
+def extract_relevant_elements_dashboard_summary(json_data):
     extracted_data = {
         "config": json_data.get("config", {}),
         "sections": []
@@ -39,3 +39,50 @@ def extract_relevant_elements(json_data):
             extracted_data["sections"].append(section_summary)
 
     return extracted_data
+
+def extract_relevant_parts_dataset(data):
+    # Initialize a dictionary to hold extracted information
+    relevant_parts = {
+        "DataSources": [],
+        "DAXCalculations": [],
+        "Relationships": []
+    }
+
+    # Extract data sources
+    if "expressions" in data.get("model", {}):
+        for expression in data["model"]["expressions"]:
+            relevant_parts["DataSources"].append({
+                "Name": expression.get("name"),
+                "Expression": expression.get("expression"),
+                "QueryGroup": expression.get("queryGroup")
+            })
+
+    # Extract DAX calculations (calculated columns and measures)
+    if "tables" in data.get("model", {}):
+        for table in data["model"]["tables"]:
+            # for column in table.get("columns", []):
+            #     if column.get("type") == "calculated":
+            #         relevant_parts["DAXCalculations"].append({
+            #             "Table": table.get("name"),
+            #             "Column": column.get("name"),
+            #             "Expression": column.get("expression")
+            #         })
+            for measure in table.get("measures", []):
+                relevant_parts["DAXCalculations"].append({
+                    "Table": table.get("name"),
+                    "Measure": measure.get("name"),
+                    "Expression": measure.get("expression")
+                })
+
+    # Extract relationships between tables
+    if "relationships" in data.get("model", {}):
+        for relationship in data["model"]["relationships"]:
+            relevant_parts["Relationships"].append({
+                "FromTable": relationship.get("fromTable"),
+                "FromColumn": relationship.get("fromColumn"),
+                "ToTable": relationship.get("toTable"),
+                "ToColumn": relationship.get("toColumn"),
+                "JoinBehavior": relationship.get("joinOnDateBehavior", "standard")
+            })
+
+    return relevant_parts

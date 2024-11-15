@@ -1,5 +1,5 @@
 
-from functions.modify_report_json import *
+from functions.openai_connector import *
 from functions.integrate_json_back import *
 from functions.main_function import *
 from functions.extract_original_json import *
@@ -34,13 +34,14 @@ if submitted:
     elif zip_file is None:
         st.warning('Please upload the PBIP folder as a .zip file!', icon='⚠')
     else:
-        # Extract report.json from the uploaded PBIP folder
-        report_json_content, folder_path, report_json_path = extract_report_json(zip_file)
+        # Extract report.json and model.bim from the uploaded PBIP folder
+        report_json_content, model_bim_content, inner_folder_path, report_json_path, model_bim_path = extract_report_and_model(zip_file)
+        print("model", model_bim_content)
         output = generate_completion(text)
         print(output.get("function_call", {}).get("name"))
         if output.get("function_call", {}).get("name") == "add_read_me":
             # If "add_read_me" is called, extract the relevant KPI part
-            kpis = extract_relevant_elements(report_json_content)
+            kpis = extract_relevant_elements_dashboard_summary(report_json_content)
             
             # Run the function call with the extracted KPI data
             add_read_me_output = openai.ChatCompletion.create(
@@ -60,6 +61,11 @@ if submitted:
             updated_report = add_read_me(**arguments_dict)
             report_json_content['sections'].insert(0, updated_report["sections"][0])
             modified_json = json.dumps(report_json_content, indent=4)
+        elif output.get("function_call", {}).get("name") == "summary_in_confluence":
+            extracted_report = extract_relevant_parts_dataset(model_bim_content)
+            destination_platform = "confluence"
+            result = summarize_dashboard(destination_platform, extracted_report)
+            st.write(result)
         else:
             # Call the function to modify the JSON file based on user input
             report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string
