@@ -8,9 +8,12 @@ from functions.upload_powerbi_files import *
 import streamlit as st
 import openai
 import json
+# from dotenv import find_dotenv, load_dotenv
 import zipfile
 import io
 import os
+
+# load_dotenv(find_dotenv())
 
 st.title('🦜🔗 PBIP Folder Modifier')
 # Sidebar for API key input
