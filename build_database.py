@@ -156,8 +156,6 @@ def extract_relevant_elements(json_data):
             # Extract relevant visual properties
             visual_summary = {
                 "visualType": config_data.get("singleVisual", {}).get("visualType", ""),
-                "projections": config_data.get("singleVisual", {}).get("projections", []),
-                "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
                 "objects": config_data.get("singleVisual", {}).get("objects", {}),
                 "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
             }
