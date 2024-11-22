@@ -170,7 +170,7 @@ print(status)
 
 fine_tuned_model = status['fine_tuned_model']
 json_input_path = "jsons_test/users_app.json"
-instructions = "Uniformise le format de tous les filtres en te basant sur le format du filtre Gender"
+instructions = "Uniformise le format de tous les filtres en te basant sur le format du filtre Device Model"
 
 
 def get_answer(json_input_path, fine_tuned_model, prompt, instructions) :
@@ -211,12 +211,15 @@ def update_json(original_json_path, modified_parts, json_output_path, keys_to_up
 
                 # Parcourir les visualContainers modifiés
                 for modified_container in modified_visual_containers:
-                    modified_name = modified_container.get('name')
+                    #modified_name = modified_container.get('name')
+                    modified_name = modified_container["prototypeQuery"]["Select"][0]["NativeReferenceName"]
 
                     # Mettre à jour le conteneur correspondant dans l'original
                     for original_container in original_visual_containers:
                         original_config = json.loads(original_container.get('config', '{}'))
-                        if original_config.get('name') == modified_name:
+                        #original_name = original_config.get('name')
+                        original_name = original_config["singleVisual"]["prototypeQuery"]["Select"][0]["NativeReferenceName"]
+                        if original_name == modified_name:
                             # Mettre à jour uniquement les parties spécifiées
                             for key in keys_to_update :
                                 original_config['singleVisual'][key] = modified_container[key]
@@ -242,3 +245,7 @@ update_json(original_json_path, modified_parts, json_output_path, keys_to_update
 # original_config['singleVisual']['visualType']
 # original_config['prototypeQuery']
 # modified_container['objects']
+
+modified_container["prototypeQuery"]["Select"][0]["NativeReferenceName"]
+
+original_config["singleVisual"]["prototypeQuery"]["Select"][0]["NativeReferenceName"]
