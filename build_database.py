@@ -129,16 +129,25 @@ def build_bdd(bdd_excel, prompt, jsonl_path):
 
 build_bdd(bdd_excel, prompt, jsonl_path)
 
-############# Function Calling ######################
+#####################################################################
+# Construction de la bdd avec les relevant parts (function calling) #
+#####################################################################
+
+############## Cas d'usage : uniformisation des filtres ################
+
+prompt = """Tu es un data analyst expert en Power BI qui a l'habitude de travailler avec des rapports Power BI et leur fichier JSON. 
+Je vais te fournir une liste de morceaux de fichiers jsons qui decrivent la configuration des filtres dans un dashboard power bi. 
+Ton role est de modifier les arguments dans les morceaux de fichiers jsons du rapport fourni selon les instructions fournies par l'utilisateur.
+L'objectif final est d'uniformiser les filtres du rapport en se basant sur le format du filtre precise par l'utilisateur.
+Tu ne dois absolument pas faire d'autres modifications que celles precisees par l'utilisateur.
+Si tu ne sais pas comment faire les bonnes modifications, reponds 'Modification impossible'""".replace('\n', '')
 
 #### Fonction pour extraire éléments json #####
-import json
-with open("jsons_train/mode_interaction/IT__web_bis.json", 'r') as json_data :
-        data = json.load(json_data)
-
-def extract_relevant_elements(json_data):
+def extract_relevant_elements(json_path):
+    with open(json_path, 'r') as j_data :
+        json_data = json.load(j_data)
     extracted_data = {
-        "config": json_data.get("config", {}),
+        #"config": json_data.get("config", {}),
         "sections": []
     }
     for section in json_data.get("sections", []):
@@ -154,17 +163,50 @@ def extract_relevant_elements(json_data):
             if isinstance(config_data, str):
                 config_data = json.loads(config_data)
             # Extract relevant visual properties
-            visual_summary = {
-                "visualType": config_data.get("singleVisual", {}).get("visualType", ""),
-                "objects": config_data.get("singleVisual", {}).get("objects", {}),
-                "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
-            }
-            # Add visual summary if it has useful data
-            if any(visual_summary.values()):
+            visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+            if visual_type in ["slicer", "advancedSlicerVisual"]:
+                visual_summary = {
+                    "name": config_data.get("name", ""),
+                    "visualType": visual_type,
+                    "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
+                    "objects": config_data.get("singleVisual", {}).get("objects", {}),
+                    "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
+                }
+                # Add visual summary if it has useful data
                 section_summary["visualContainers"].append(visual_summary)
         # Add section summary if it has relevant visual containers
         if section_summary["visualContainers"]:
             extracted_data["sections"].append(section_summary)
     return extracted_data
 
-test = extract_relevant_elements(data)
+####### Construire le template pour chaque exemple de la base ########
+
+def template_json(instructions, json_path_before_change, json_path_after_change, prompt):
+    json_before_change = extract_relevant_elements(json_path_before_change)
+    json_after_change = extract_relevant_elements(json_path_after_change)
+
+    template = {"messages": [
+        {"role": "system", "content": f"{prompt}"}, 
+        {"role": "user", "content": f"{instructions} en modifiant les extraits du fichier JSON du rapport power BI fourni. Extraits du fichier JSON = {json_before_change}."}, 
+        {"role": "assistant", "content": f"{json_after_change}"}]}
+
+    final_json = json.dumps(template, indent=4)
+
+    return final_json
+
+####### Construction de la base de données #######
+
+bdd_excel = pd.read_excel("bdd/bdd_train_unif_filtres.xlsx")
+jsonl_path = 'bdd/bdd_jsons_train_unif_filtres.jsonl'
+
+def build_bdd(bdd_excel, prompt, jsonl_path):
+    bdd_excel['json_resultat'] = bdd_excel.apply(lambda row: template_json(row['instructions'], row['json_path_before_change'], row['json_path_after_change'], prompt), axis=1)
+
+    # On ajoute tous les jsons à un fichier jsonl
+    with open(jsonl_path, 'w') as file:
+        for item in bdd_excel['json_resultat']:
+            json_obj = json.loads(item)
+            json.dump(json_obj, file)
+            file.write('\n')
+
+build_bdd(bdd_excel, prompt, jsonl_path)

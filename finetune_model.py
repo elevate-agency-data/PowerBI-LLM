@@ -3,7 +3,7 @@ import json
 import ast
 import time
 import pandas as pd
-from build_database import extraire_configs
+from build_database import extraire_configs, extract_relevant_elements
 
 ###### Finetune du modèle ######
 
@@ -154,3 +154,91 @@ bdd_test = pd.read_excel("bdd/bdd_test.xlsx")
 bdd_test['json_resultat'] = bdd_test.apply(lambda row: get_answer(row['json_path_before_change'], fine_tuned_model, prompt, row['instructions']), axis=1)
 
 bdd_test.to_excel("bdd_test_output.xlsx", index=False)
+
+##############################################################
+######## Utilisation du modèle avec relevant parts ###########
+
+prompt = """Tu es un data analyst expert en Power BI qui a l'habitude de travailler avec des rapports Power BI et leur fichier JSON. 
+Je vais te fournir une liste de morceaux de fichiers jsons qui decrivent la configuration des filtres dans un dashboard power bi. 
+Ton role est de modifier les arguments dans les morceaux de fichiers jsons du rapport fourni selon les instructions fournies par l'utilisateur.
+L'objectif final est d'uniformiser les filtres du rapport en se basant sur le format du filtre precise par l'utilisateur.
+Tu ne dois absolument pas faire d'autres modifications que celles precisees par l'utilisateur.
+Si tu ne sais pas comment faire les bonnes modifications, reponds 'Modification impossible'""".replace('\n', '')
+
+status = check_fine_tune_status(job_id)
+print(status)
+
+fine_tuned_model = status['fine_tuned_model']
+json_input_path = "jsons_test/users_app.json"
+instructions = "Uniformise le format de tous les filtres en te basant sur le format du filtre Gender"
+
+
+def get_answer(json_input_path, fine_tuned_model, prompt, instructions) :
+
+    json_input = extract_relevant_elements(json_input_path)
+
+    response = openai.ChatCompletion.create(
+    model=fine_tuned_model,
+    messages=[
+        {"role": "system", "content": f"{prompt}"},
+        {"role": "user", "content": f"{instructions} en modifiant les extraits du fichier JSON du rapport power BI fourni. Extraits du fichier JSON ={json_input}"}
+    ]
+    )
+    json_reponse = response['choices'][0]['message']['content']
+    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse))
+
+    return json_reponse_clean
+
+reponse = get_answer(json_input_path, fine_tuned_model, prompt, instructions)
+
+original_json_path = "jsons_test/users_app.json"
+json_output_path = "test.json"
+modified_parts = json.loads(reponse)
+keys_to_update = ['visualType', 'prototypeQuery', 'objects', 'vcObjects']
+
+def update_json(original_json_path, modified_parts, json_output_path, keys_to_update):
+    with open(original_json_path, 'r') as file:
+        updated_json = json.load(file)
+
+    # Parcourir les sections modifiées
+    for section in modified_parts.get('sections', []):
+        modified_visual_containers = section.get('visualContainers', [])
+
+        # Rechercher la section correspondante dans l'original
+        for original_section in updated_json.get('sections', []):
+            if section.get('displayName') == original_section.get('displayName'):
+                original_visual_containers = original_section.get('visualContainers', [])
+
+                # Parcourir les visualContainers modifiés
+                for modified_container in modified_visual_containers:
+                    modified_name = modified_container.get('name')
+
+                    # Mettre à jour le conteneur correspondant dans l'original
+                    for original_container in original_visual_containers:
+                        original_config = json.loads(original_container.get('config', '{}'))
+                        if original_config.get('name') == modified_name:
+                            # Mettre à jour uniquement les parties spécifiées
+                            for key in keys_to_update :
+                                original_config['singleVisual'][key] = modified_container[key]
+                            # Réécrire la configuration mise à jour
+                            original_container['config'] = json.dumps(original_config)
+
+    # Sauvegarder les modifications dans un nouveau fichier JSON
+    with open(json_output_path, 'w', encoding='utf-8') as fichier_sortie:
+        json.dump(updated_json, fichier_sortie, ensure_ascii=False, indent=4)
+
+    print(f"Modifications réinsérées dans le fichier {json_output_path}")
+
+update_json(original_json_path, modified_parts, json_output_path, keys_to_update)
+
+# section = modified_parts.get('sections', [])[0]
+# original_section = updated_json.get('sections', [])[0]
+
+# modified_container = modified_visual_containers[1]
+# original_container = original_visual_containers[2]
+
+# key='objects'
+
+# original_config['singleVisual']['visualType']
+# original_config['prototypeQuery']
+# modified_container['objects']

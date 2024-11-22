@@ -1,0 +1,87 @@
+{
+  "config": "{\"version\":\"5.60\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU08\",\"version\":\"5.57\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU08",
+            "path": "BaseThemes/CY24SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "4d2fcd1aa63fbcb1a39b",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"76a1884e0be75f5d346d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":746.4624328127524,\"y\":200.3165009573462,\"z\":1000,\"width\":410.08189346928424,\"height\":264.56896352857046,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"google_play_store_dataset.Type\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(google_play_store_dataset.App)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"google_play_store_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Type\"},\"Name\":\"google_play_store_dataset.Type\",\"NativeReferenceName\":\"Type\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"App\"}},\"Function\":5},\"Name\":\"CountNonNull(google_play_store_dataset.App)\",\"NativeReferenceName\":\"Nombre de App\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"App\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 264.57,
+          "width": 410.08,
+          "x": 746.46,
+          "y": 200.32,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"7e4ba5f6d122fe4cd419\",\"layouts\":[{\"id\":0,\"position\":{\"x\":226.14350965420184,\"y\":51.65395972225428,\"z\":3000,\"width\":204.09605757918294,\"height\":79.37068905857114,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"google_play_store_dataset.Genres\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"google_play_store_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Genres\"},\"Name\":\"google_play_store_dataset.Genres\",\"NativeReferenceName\":\"Genres\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.6}}}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 79.37,
+          "width": 204.10,
+          "x": 226.14,
+          "y": 51.65,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"bc9e68c89a9092f06cb6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":470.55479941867173,\"y\":51.024014394795735,\"z\":4000,\"width\":204.09605757918294,\"height\":79.37068905857114,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"google_play_store_dataset.Content Rating\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"google_play_store_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Content Rating\"},\"Name\":\"google_play_store_dataset.Content Rating\",\"NativeReferenceName\":\"Content Rating\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.6}}}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 79.37,
+          "width": 204.10,
+          "x": 470.55,
+          "y": 51.02,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"cf9a201376c6aa116dd3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":733.2339846363238,\"y\":491.34236083877374,\"z\":2000,\"width\":253.2302936630603,\"height\":185.19827446999932,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Min(google_play_store_dataset.Installs)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"google_play_store_dataset\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Installs\"}},\"Function\":5},\"Name\":\"Min(google_play_store_dataset.Installs)\",\"NativeReferenceName\":\"Nombre de Installs\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Installs\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 185.20,
+          "width": 253.23,
+          "x": 733.23,
+          "y": 491.34,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"e075403ec87f531b812c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":51.024014394795735,\"y\":241.89162379755012,\"z\":0,\"width\":548.0357101663245,\"height\":370.39654893999864,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"google_play_store_dataset.Category\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(google_play_store_dataset.Reviews)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"google_play_store_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Category\"},\"Name\":\"google_play_store_dataset.Category\",\"NativeReferenceName\":\"Nombre de Category\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Reviews\"}},\"Function\":0},\"Name\":\"Sum(google_play_store_dataset.Reviews)\",\"NativeReferenceName\":\"Reviews\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Reviews\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 370.40,
+          "width": 548.04,
+          "x": 51.02,
+          "y": 241.89,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"e2179f5d1b727978b449\",\"layouts\":[{\"id\":0,\"position\":{\"x\":718.115758148977,\"y\":51.024014394795735,\"z\":5000,\"width\":204.09605757918294,\"height\":79.37068905857114,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"google_play_store_dataset.Type\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"g\",\"Entity\":\"google_play_store_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"g\"}},\"Property\":\"Type\"},\"Name\":\"google_play_store_dataset.Type\",\"NativeReferenceName\":\"Type\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.6}}}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 79.37,
+          "width": 204.10,
+          "x": 718.12,
+          "y": 51.02,
+          "z": 5000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

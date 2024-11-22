@@ -1,0 +1,108 @@
+{
+    "config": {
+      "name": "3d0fd8f66b5c0c05f122",
+      "layouts": [
+        {
+          "id": 0,
+          "position": {
+            "x": 188.97783109183604,
+            "y": 35.90578790744885,
+            "z": 2,
+            "width": 187.08805278091768,
+            "height": 103.93780710050983,
+            "tabOrder": 2
+          }
+        }
+      ],
+      "singleVisual": {
+        "visualType": "slicer",
+        "projections": {
+          "Values": [
+            {
+              "queryRef": "user_behavior_dataset.Gender",
+              "active": true
+            }
+          ]
+        },
+        "prototypeQuery": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "u",
+              "Entity": "user_behavior_dataset",
+              "Type": 0
+            }
+          ],
+          "Select": [
+            {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "u"
+                  }
+                },
+                "Property": "Gender"
+              },
+              "Name": "user_behavior_dataset.Gender",
+              "NativeReferenceName": "Gender"
+            }
+          ]
+        },
+        "drillFilterOtherVisuals": true,
+        "objects": {
+          "data": [
+            {
+              "properties": {
+                "mode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'Basic'"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "header": [
+            {
+              "properties": {
+                "background": {
+                  "solid": {
+                    "color": {
+                      "expr": {
+                        "ThemeDataColor": {
+                          "ColorId": 4,
+                          "Percent": 0.2
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "vcObjects": {
+          "background": [
+            {
+              "properties": {
+                "color": {
+                  "solid": {
+                    "color": {
+                      "expr": {
+                        "ThemeDataColor": {
+                          "ColorId": 4,
+                          "Percent": 0.6
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+  

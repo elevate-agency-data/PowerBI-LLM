@@ -1,0 +1,78 @@
+{
+  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU08\",\"version\":\"5.57\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU08",
+            "path": "BaseThemes/CY24SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "53199b37589bd8edf2e9",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1853795ce1b3018c57e8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":73.70135412581605,\"y\":245.67118041938687,\"z\":0,\"width\":444.0979030658147,\"height\":308.0338646796927,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"user_behavior_dataset.Device Model\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(user_behavior_dataset.User ID)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"u\",\"Entity\":\"user_behavior_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"Device Model\"},\"Name\":\"user_behavior_dataset.Device Model\",\"NativeReferenceName\":\"Nombre de Device Model\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"User ID\"}},\"Function\":5},\"Name\":\"CountNonNull(user_behavior_dataset.User ID)\",\"NativeReferenceName\":\"Nombre de User ID\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"User ID\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 308.03,
+          "width": 444.10,
+          "x": 73.70,
+          "y": 245.67,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"3d0fd8f66b5c0c05f122\",\"layouts\":[{\"id\":0,\"position\":{\"x\":188.97783109183604,\"y\":35.90578790744885,\"z\":2,\"width\":187.08805278091768,\"height\":103.93780710050983,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"user_behavior_dataset.Gender\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"u\",\"Entity\":\"user_behavior_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"Gender\"},\"Name\":\"user_behavior_dataset.Gender\",\"NativeReferenceName\":\"Gender\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"header\":[{\"properties\":{\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.2}}}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 103.94,
+          "width": 187.09,
+          "x": 188.98,
+          "y": 35.91,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"6a54fe07e75485245210\",\"layouts\":[{\"id\":0,\"position\":{\"x\":857.9593531569357,\"y\":58.58312763846917,\"z\":4,\"width\":183.30849615908096,\"height\":73.70135412581605,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"user_behavior_dataset.Device Model\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"u\",\"Entity\":\"user_behavior_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"Device Model\"},\"Name\":\"user_behavior_dataset.Device Model\",\"NativeReferenceName\":\"Device Model\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":7,\"Percent\":0.4}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 73.70,
+          "width": 183.31,
+          "x": 857.96,
+          "y": 58.58,
+          "z": 4.00
+        },
+        {
+          "config": "{\"name\":\"735912f473885a75cc01\",\"layouts\":[{\"id\":0,\"position\":{\"x\":557.4846017209163,\"y\":245.67118041938687,\"z\":1,\"width\":680.3201919306098,\"height\":270.23829846132554,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"user_behavior_dataset.Age\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(user_behavior_dataset.App Usage Time (min/day))\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"u\",\"Entity\":\"user_behavior_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"Age\"},\"Name\":\"user_behavior_dataset.Age\",\"NativeReferenceName\":\"Somme de Age\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"App Usage Time (min/day)\"}},\"Function\":1},\"Name\":\"Sum(user_behavior_dataset.App Usage Time (min/day))\",\"NativeReferenceName\":\"Moyenne de App Usage Time (min/day)\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"App Usage Time (min/day)\"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 270.24,
+          "width": 680.32,
+          "x": 557.48,
+          "y": 245.67,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"d27c48db3df24a5a5f9e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":470.55479941867173,\"y\":32.12623128561213,\"z\":3,\"width\":325.041869477958,\"height\":124.7253685206118,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"user_behavior_dataset.Operating System\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"u\",\"Entity\":\"user_behavior_dataset\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"u\"}},\"Property\":\"Operating System\"},\"Name\":\"user_behavior_dataset.Operating System\",\"NativeReferenceName\":\"Operating System\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 124.73,
+          "width": 325.04,
+          "x": 470.55,
+          "y": 32.13,
+          "z": 3.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
