@@ -44,52 +44,29 @@ def extract_relevant_elements_dashboard_summary(json_data):
 
     return extracted_data
 
-def extract_relevant_parts_dataset(data):
-    # Initialize a dictionary to hold extracted information
-    relevant_parts = {
-        "DataSources": [],
-        "DAXCalculations": [],
-        "Relationships": []
+def extract_relevant_parts_dataset(json_dataset):
+    model = json_dataset['model']
+    # Initialize the extracted dataset
+    extracted_json_dataset = {
+        "expressions": model.get("expressions", []),
+        "tables": []
     }
-
-    # Extract data sources
-    if "expressions" in data.get("model", {}):
-        for expression in data["model"]["expressions"]:
-            relevant_parts["DataSources"].append({
-                "Name": expression.get("name"),
-                "Expression": expression.get("expression"),
-                "QueryGroup": expression.get("queryGroup")
-            })
-
-    # Extract DAX calculations (calculated columns and measures)
-    if "tables" in data.get("model", {}):
-        for table in data["model"]["tables"]:
-            # for column in table.get("columns", []):
-            #     if column.get("type") == "calculated":
-            #         relevant_parts["DAXCalculations"].append({
-            #             "Table": table.get("name"),
-            #             "Column": column.get("name"),
-            #             "Expression": column.get("expression")
-            #         })
-            for measure in table.get("measures", []):
-                relevant_parts["DAXCalculations"].append({
-                    "Table": table.get("name"),
-                    "Measure": measure.get("name"),
-                    "Expression": measure.get("expression")
-                })
-
-    # Extract relationships between tables
-    if "relationships" in data.get("model", {}):
-        for relationship in data["model"]["relationships"]:
-            relevant_parts["Relationships"].append({
-                "FromTable": relationship.get("fromTable"),
-                "FromColumn": relationship.get("fromColumn"),
-                "ToTable": relationship.get("toTable"),
-                "ToColumn": relationship.get("toColumn"),
-                "JoinBehavior": relationship.get("joinOnDateBehavior", "standard")
-            })
-
-    return relevant_parts
+    
+    # Define the keywords to exclude
+    excluded_keywords = ["LocalDateTable", "DateTableTemplate"]
+    
+    # Filter tables to exclude ones containing the excluded keywords
+    for table in model.get("tables", []):
+        if not any(keyword in table['name'] for keyword in excluded_keywords):
+            # Remove the 'annotations' attribute from columns if it exists
+            if 'columns' in table:
+                for column in table['columns']:
+                    if 'annotations' in column:
+                        del column['annotations']
+            
+            extracted_json_dataset["tables"].append(table)
+    
+    return extracted_json_dataset
 
 def extract_dashboard_by_page(json_data):
     sections_list = []

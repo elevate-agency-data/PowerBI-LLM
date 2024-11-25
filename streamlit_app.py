@@ -64,6 +64,7 @@ if submitted:
             extracted_report = extract_dashboard_by_page(report_json_content)
             extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
             result = summarize_dashboard_by_page(extracted_report)
+            # result = summarize_dataset(extracted_dataset)
             # destination_platform = "confluence"
             # result = summarize_dashboard(destination_platform, extracted_report)
             st.write(result)
