@@ -36,7 +36,6 @@ if submitted:
     else:
         # Extract report.json and model.bim from the uploaded PBIP folder
         report_json_content, model_bim_content, inner_folder_path, report_json_path, model_bim_path = extract_report_and_model(zip_file)
-        print("model", model_bim_content)
         output = generate_completion(text)
         print(output.get("function_call", {}).get("name"))
         if output.get("function_call", {}).get("name") == "add_read_me":
@@ -62,9 +61,11 @@ if submitted:
             report_json_content['sections'].insert(0, updated_report["sections"][0])
             modified_json = json.dumps(report_json_content, indent=4)
         elif output.get("function_call", {}).get("name") == "summary_in_confluence":
-            extracted_report = extract_relevant_parts_dataset(model_bim_content)
-            destination_platform = "confluence"
-            result = summarize_dashboard(destination_platform, extracted_report)
+            extracted_report = extract_dashboard_by_page(report_json_content)
+            extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
+            result = summarize_dashboard_by_page(extracted_report)
+            # destination_platform = "confluence"
+            # result = summarize_dashboard(destination_platform, extracted_report)
             st.write(result)
         else:
             # Call the function to modify the JSON file based on user input
