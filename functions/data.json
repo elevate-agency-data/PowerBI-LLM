@@ -1,0 +1,3440 @@
+{
+    "compatibilityLevel": 1567,
+    "model": {
+        "annotations": [
+            {
+                "name": "PBI_QueryOrder",
+                "value": "[\"project_id\",\"dataset_id\",\"bigquery_connection_management\",\"data_IT_web\",\"Measure\"]"
+            },
+            {
+                "name": "__PBI_TimeIntelligenceEnabled",
+                "value": "1"
+            },
+            {
+                "name": "PBIDesktopVersion",
+                "value": "2.138.782.0 (24.11)"
+            },
+            {
+                "name": "PBI_ProTooling",
+                "value": "[\"DevMode\"]"
+            }
+        ],
+        "culture": "fr-FR",
+        "cultures": [
+            {
+                "name": "fr-FR",
+                "linguisticMetadata": {
+                    "content": {
+                        "Entities": {
+                            "bigquery_connection_management": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "bigquery_connection_management"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "bigquery connection management": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "bigquery_connection_management": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection organization": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.508
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection administration": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.508
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection supervision": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.508
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection running": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection managing": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection controlling": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection board": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.468
+                                        }
+                                    },
+                                    {
+                                        "bigquery connection executive": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.468
+                                        }
+                                    }
+                                ],
+                                "Visibility": {
+                                    "Value": "Hidden"
+                                }
+                            },
+                            "bigquery_connection_management.description": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "bigquery_connection_management",
+                                        "ConceptualProperty": "Description"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "description": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "appearance": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    },
+                                    {
+                                        "descriptor": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    },
+                                    {
+                                        "explanation": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    },
+                                    {
+                                        "specification": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    },
+                                    {
+                                        "account": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    },
+                                    {
+                                        "overview": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    },
+                                    {
+                                        "report": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    }
+                                ],
+                                "Visibility": {
+                                    "Value": "Hidden"
+                                }
+                            },
+                            "bigquery_connection_management.kind": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "bigquery_connection_management",
+                                        "ConceptualProperty": "Kind"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "kind": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "caring": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "gentle": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "humanitarian": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "variety": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.466
+                                        }
+                                    },
+                                    {
+                                        "manner": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.466
+                                        }
+                                    },
+                                    {
+                                        "nature": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.466
+                                        }
+                                    },
+                                    {
+                                        "hue": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.466
+                                        }
+                                    },
+                                    {
+                                        "caste": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.466
+                                        }
+                                    },
+                                    {
+                                        "genre": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.466
+                                        }
+                                    },
+                                    {
+                                        "type": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.452
+                                        }
+                                    }
+                                ],
+                                "Visibility": {
+                                    "Value": "Hidden"
+                                }
+                            },
+                            "bigquery_connection_management.name": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "bigquery_connection_management",
+                                        "ConceptualProperty": "Name"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "name": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "title": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    },
+                                    {
+                                        "label": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    },
+                                    {
+                                        "tag": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    }
+                                ],
+                                "Visibility": {
+                                    "Value": "Hidden"
+                                }
+                            },
+                            "data_IT_web": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "data IT web": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "data_IT_web": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "web": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "IT web": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "information it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.762
+                                        }
+                                    },
+                                    {
+                                        "fact it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.762
+                                        }
+                                    },
+                                    {
+                                        "info it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.762
+                                        }
+                                    },
+                                    {
+                                        "statistic it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.762
+                                        }
+                                    },
+                                    {
+                                        "document it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "figure it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "record it web": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "it mesh": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "it net": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "it netting": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.browser": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "browser"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "browser": {
+                                            "State": "Generated"
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.browser_version": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "browser_version"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "browser version": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "browser_version": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "version": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "browser variety": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "variety": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "browser form": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "browser type": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "browser kind": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "browser sort": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "browser style": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "form": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "type": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "style": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.category": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "category"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "category": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "classification": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    },
+                                    {
+                                        "class": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    },
+                                    {
+                                        "type": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    },
+                                    {
+                                        "grouping": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.714
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.country": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "country"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "country": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "nation": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    },
+                                    {
+                                        "location": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.736
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.event_date": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "event_date"
+                                    }
+                                },
+                                "SemanticType": "Time",
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "event date": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event_date": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "date": {
+                                            "State": "Generated",
+                                            "Weight": 0.7
+                                        }
+                                    },
+                                    {
+                                        "event moment": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.75
+                                        }
+                                    },
+                                    {
+                                        "event period": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.727
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "Hierarchy": "Hi\u00e9rarchie de dates",
+                                        "VariationSet": "Variation",
+                                        "VariationSource": "event_date"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "hi\u00e9rarchie de date": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "hi\u00e9rarchie de moment": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.762
+                                        }
+                                    },
+                                    {
+                                        "hi\u00e9rarchie de period": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "Hierarchy": "Hi\u00e9rarchie de dates",
+                                        "HierarchyLevel": "Ann\u00e9e",
+                                        "VariationSet": "Variation",
+                                        "VariationSource": "event_date"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "ann\u00e9e": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event date ann\u00e9e": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event moment ann\u00e9e": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.609
+                                        }
+                                    },
+                                    {
+                                        "event period ann\u00e9e": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.591
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "Hierarchy": "Hi\u00e9rarchie de dates",
+                                        "HierarchyLevel": "Jour",
+                                        "VariationSet": "Variation",
+                                        "VariationSource": "event_date"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "jour": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event date jour": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event moment jour": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.609
+                                        }
+                                    },
+                                    {
+                                        "event period jour": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.591
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "Hierarchy": "Hi\u00e9rarchie de dates",
+                                        "HierarchyLevel": "Mois",
+                                        "VariationSet": "Variation",
+                                        "VariationSource": "event_date"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "mois": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event date mois": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event moment mois": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.609
+                                        }
+                                    },
+                                    {
+                                        "event period mois": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.591
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "Hierarchy": "Hi\u00e9rarchie de dates",
+                                        "HierarchyLevel": "Trimestre",
+                                        "VariationSet": "Variation",
+                                        "VariationSource": "event_date"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "trimestre": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event date trimestre": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "event moment trimestre": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.609
+                                        }
+                                    },
+                                    {
+                                        "event period trimestre": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.591
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.mobile_model_name": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "mobile_model_name"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "mobile model name": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "mobile_model_name": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "model": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "mobile model": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "model name": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "mobile model nickname": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "mobile model title": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "mobile model label": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "mobile model tag": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.739
+                                        }
+                                    },
+                                    {
+                                        "model nickname": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.727
+                                        }
+                                    },
+                                    {
+                                        "model title": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.727
+                                        }
+                                    },
+                                    {
+                                        "model label": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.727
+                                        }
+                                    },
+                                    {
+                                        "model tag": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.727
+                                        }
+                                    },
+                                    {
+                                        "perfect": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "classic": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "iPhone Model": {
+                                            "Source": {
+                                                "Agent": "PowerBI.VisualColumnRename",
+                                                "Type": "External"
+                                            },
+                                            "State": "Suggested",
+                                            "Weight": 0.9
+                                        }
+                                    },
+                                    {
+                                        "iPhone Model Name": {
+                                            "Source": {
+                                                "Agent": "PowerBI.VisualColumnRename",
+                                                "Type": "External"
+                                            },
+                                            "State": "Suggested",
+                                            "Weight": 0.9
+                                        }
+                                    },
+                                    {
+                                        "Android Device": {
+                                            "Source": {
+                                                "Agent": "PowerBI.VisualColumnRename",
+                                                "Type": "External"
+                                            },
+                                            "State": "Suggested",
+                                            "Weight": 0.9
+                                        }
+                                    },
+                                    {
+                                        "Android Device Name": {
+                                            "Source": {
+                                                "Agent": "PowerBI.VisualColumnRename",
+                                                "Type": "External"
+                                            },
+                                            "State": "Suggested",
+                                            "Weight": 0.9
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.operating_system": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "operating_system"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "operating system": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "operating_system": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "system": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "operating organization": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "operating arrangement": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "operating classification": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "operating coordination": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "operating organism": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "organization": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "arrangement": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "classification": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "coordination": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "organism": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    }
+                                ]
+                            },
+                            "data_IT_web.operating_system_version": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "data_IT_web",
+                                        "ConceptualProperty": "operating_system_version"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "operating system version": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "operating_system_version": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "version": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "system version": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "operating system variety": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.508
+                                        }
+                                    },
+                                    {
+                                        "system variety": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "operating system form": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "operating system type": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "operating system kind": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "operating system sort": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "operating system style": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "variety": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "system form": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "system type": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "OS Version": {
+                                            "Source": {
+                                                "Agent": "PowerBI.VisualColumnRename",
+                                                "Type": "External"
+                                            },
+                                            "State": "Suggested",
+                                            "Weight": 0.9
+                                        }
+                                    }
+                                ]
+                            },
+                            "measure": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "Measure"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "measure": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "degree": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "quota": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "extent": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "portion": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "ration": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "size": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    }
+                                ]
+                            },
+                            "measure.percentage_mobile_visits": {
+                                "Definition": {
+                                    "Binding": {
+                                        "ConceptualEntity": "Measure",
+                                        "ConceptualProperty": "percentage_mobile_visits"
+                                    }
+                                },
+                                "State": "Generated",
+                                "Terms": [
+                                    {
+                                        "percentage mobile visits": {
+                                            "State": "Generated"
+                                        }
+                                    },
+                                    {
+                                        "percentage_mobile_visits": {
+                                            "State": "Generated",
+                                            "Type": "Noun",
+                                            "Weight": 0.99
+                                        }
+                                    },
+                                    {
+                                        "visits": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "mobile visits": {
+                                            "State": "Generated",
+                                            "Weight": 0.97
+                                        }
+                                    },
+                                    {
+                                        "percentage mobile appointment": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.508
+                                        }
+                                    },
+                                    {
+                                        "mobile appointment": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.5
+                                        }
+                                    },
+                                    {
+                                        "percentage mobile call": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.492
+                                        }
+                                    },
+                                    {
+                                        "appointment": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.491
+                                        }
+                                    },
+                                    {
+                                        "mobile call": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.485
+                                        }
+                                    },
+                                    {
+                                        "percentage mobile stopover": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.482
+                                        }
+                                    },
+                                    {
+                                        "call": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.476
+                                        }
+                                    },
+                                    {
+                                        "mobile stopover": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.475
+                                        }
+                                    },
+                                    {
+                                        "percentage mobile stay": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.468
+                                        }
+                                    },
+                                    {
+                                        "percentage mobile holiday": {
+                                            "Source": {
+                                                "Agent": "Thesaurus"
+                                            },
+                                            "State": "Suggested",
+                                            "Type": "Noun",
+                                            "Weight": 0.468
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "Language": "en-US",
+                        "Relationships": {
+                            "data_IT_web_browser_browse_data_IT_web": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "ID": "browsers_browse_data_IT_web",
+                                        "State": "Generated",
+                                        "Verb": {
+                                            "Object": {
+                                                "Role": "data_IT_web"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.browser"
+                                            },
+                                            "Verbs": [
+                                                {
+                                                    "browse": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "Weight": 0.75
+                                    },
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.browser"
+                                            }
+                                        },
+                                        "ID": "browsers_have_data_IT_web",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.browser"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_browsers",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.browser": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.browser"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_has_variation_hi\u00e9rarchie_de_date": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date"
+                                            }
+                                        },
+                                        "ID": "event_dates_have_hi\u00e9rarchie_de_dates",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_ann\u00e9e_has_data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_trimestre": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e"
+                                            }
+                                        },
+                                        "ID": "ann\u00e9es_have_trimestres",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            }
+                                        },
+                                        "ID": "trimestres_have_ann\u00e9es",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "ID": "trimestres_are_in_ann\u00e9es",
+                                        "Preposition": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e"
+                                            },
+                                            "Prepositions": [
+                                                {
+                                                    "in": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ],
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            }
+                                        },
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_has_ann\u00e9e": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                            }
+                                        },
+                                        "ID": "hi\u00e9rarchie_de_dates_have_ann\u00e9es",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.ann\u00e9e"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_has_jour": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                            }
+                                        },
+                                        "ID": "hi\u00e9rarchie_de_dates_have_jour",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_has_mois": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                            }
+                                        },
+                                        "ID": "hi\u00e9rarchie_de_dates_have_moises",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_has_trimestre": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                            }
+                                        },
+                                        "ID": "hi\u00e9rarchie_de_dates_have_trimestres",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_mois_has_data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_jour": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            }
+                                        },
+                                        "ID": "moises_have_jour",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour"
+                                            }
+                                        },
+                                        "ID": "jour_have_moises",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "ID": "jour_are_in_moises",
+                                        "Preposition": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            },
+                                            "Prepositions": [
+                                                {
+                                                    "in": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ],
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour"
+                                            }
+                                        },
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.jour"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_trimestre_has_data_IT_web_event_date_variation_hi\u00e9rarchie_de_date_mois": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            }
+                                        },
+                                        "ID": "trimestres_have_moises",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            }
+                                        },
+                                        "ID": "moises_have_trimestres",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "ID": "moises_are_in_trimestres",
+                                        "Preposition": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                            },
+                                            "Prepositions": [
+                                                {
+                                                    "in": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ],
+                                            "Subject": {
+                                                "Role": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                            }
+                                        },
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.mois"
+                                        }
+                                    },
+                                    "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date.variation.hi\u00e9rarchie_de_date.trimestre"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_browser_version": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.browser_version"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_browser_versions",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.browser_version": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.browser_version"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_category": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.category"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_categories",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.category": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.category"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_country": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.country"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_countries",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.country": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.country"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_event_date": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.event_date"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_event_dates",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.event_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_measure_percentage_mobile_visits": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "measure.percentage_mobile_visits"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_percentage_mobile_visits",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "measure.percentage_mobile_visits": {
+                                        "Target": {
+                                            "Entity": "measure.percentage_mobile_visits"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_mobile_model_name": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.mobile_model_name"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_mobile_model_names",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.mobile_model_name": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.mobile_model_name"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_operating_system": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.operating_system"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_operating_systems",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.operating_system": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.operating_system"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_operating_system_version": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.operating_system_version"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_operating_system_versions",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.operating_system_version": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.operating_system_version"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_session_id": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.session_id"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_session_ids",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.session_id": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.session_id"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_unique_event_id_modified": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.unique_event_id_modified"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_unique_event_id_modified",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.unique_event_id_modified": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.unique_event_id_modified"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_has_user_id": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web.user_id"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "ID": "data_IT_web_have_user_ids",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    },
+                                    {
+                                        "ID": "user_ids_use_data_IT_web",
+                                        "State": "Generated",
+                                        "Verb": {
+                                            "Object": {
+                                                "Role": "data_IT_web"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.user_id"
+                                            },
+                                            "Verbs": [
+                                                {
+                                                    "use": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "Weight": 0.75
+                                    },
+                                    {
+                                        "Attribute": {
+                                            "Object": {
+                                                "Role": "data_IT_web"
+                                            },
+                                            "Subject": {
+                                                "Role": "data_IT_web.user_id"
+                                            }
+                                        },
+                                        "ID": "user_ids_have_data_IT_web",
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.user_id": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.user_id"
+                                        }
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_in_country": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "ID": "data_IT_web_are_in_countries",
+                                        "Preposition": {
+                                            "Object": {
+                                                "Role": "data_IT_web.country"
+                                            },
+                                            "Prepositions": [
+                                                {
+                                                    "in": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ],
+                                            "Subject": {
+                                                "Role": "data_IT_web"
+                                            }
+                                        },
+                                        "State": "Generated",
+                                        "Weight": 0.99
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.country": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.country"
+                                        }
+                                    }
+                                },
+                                "SemanticSlots": {
+                                    "Where": {
+                                        "Role": "data_IT_web.country"
+                                    }
+                                },
+                                "State": "Generated"
+                            },
+                            "data_IT_web_is_evented_on_event_date": {
+                                "Binding": {
+                                    "ConceptualEntity": "data_IT_web"
+                                },
+                                "Phrasings": [
+                                    {
+                                        "ID": "data_IT_web_are_evented_on_event_dates",
+                                        "State": "Generated",
+                                        "Verb": {
+                                            "Object": {
+                                                "Role": "data_IT_web"
+                                            },
+                                            "Verbs": [
+                                                {
+                                                    "event": {
+                                                        "State": "Generated"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "Weight": 0.9
+                                    }
+                                ],
+                                "Roles": {
+                                    "data_IT_web": {
+                                        "Target": {
+                                            "Entity": "data_IT_web"
+                                        }
+                                    },
+                                    "data_IT_web.event_date": {
+                                        "Target": {
+                                            "Entity": "data_IT_web.event_date"
+                                        }
+                                    }
+                                },
+                                "SemanticSlots": {
+                                    "When": {
+                                        "Role": "data_IT_web.event_date"
+                                    }
+                                },
+                                "State": "Generated"
+                            }
+                        },
+                        "Version": "3.5.0"
+                    },
+                    "contentType": "json"
+                }
+            }
+        ],
+        "dataAccessOptions": {
+            "legacyRedirects": true,
+            "returnErrorValuesAsNull": true
+        },
+        "defaultPowerBIDataSourceVersion": "powerBI_V3",
+        "expressions": [
+            {
+                "name": "project_id",
+                "annotations": [
+                    {
+                        "name": "PBI_ResultType",
+                        "value": "Text"
+                    },
+                    {
+                        "name": "PBI_NavigationStepName",
+                        "value": "Navigation"
+                    }
+                ],
+                "expression": "\"fsh-digital-dashboard-prd\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+                "kind": "m",
+                "lineageTag": "6d8cac6a-d23b-4930-abd0-e9eec4849eca",
+                "queryGroup": "parameters"
+            },
+            {
+                "name": "dataset_id",
+                "annotations": [
+                    {
+                        "name": "PBI_ResultType",
+                        "value": "Text"
+                    },
+                    {
+                        "name": "PBI_NavigationStepName",
+                        "value": "Navigation"
+                    }
+                ],
+                "expression": "\"output\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]",
+                "kind": "m",
+                "lineageTag": "6e1ea93c-f7b5-49fc-a7fe-5dea5aba3b09",
+                "queryGroup": "parameters"
+            }
+        ],
+        "queryGroups": [
+            {
+                "annotations": [
+                    {
+                        "name": "PBI_QueryGroupOrder",
+                        "value": "0"
+                    }
+                ],
+                "folder": "parameters"
+            }
+        ],
+        "relationships": [
+            {
+                "name": "11b18e57-e761-4ad9-8010-49da1ba269a6",
+                "fromColumn": "event_date",
+                "fromTable": "data_IT_web",
+                "joinOnDateBehavior": "datePartOnly",
+                "toColumn": "Date",
+                "toTable": "LocalDateTable_9c2fe519-cde9-4459-9ab7-c88c5373e558"
+            }
+        ],
+        "sourceQueryCulture": "fr-FR",
+        "tables": [
+            {
+                "name": "DateTableTemplate_2e52c496-5b74-4d3e-ba95-30929bd26b33",
+                "annotations": [
+                    {
+                        "name": "__PBI_TemplateDateTable",
+                        "value": "true"
+                    },
+                    {
+                        "name": "DefaultItem",
+                        "value": "DateHierarchy"
+                    }
+                ],
+                "columns": [
+                    {
+                        "name": "Date",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            }
+                        ],
+                        "dataCategory": "PaddedDateTableDates",
+                        "dataType": "dateTime",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "isNameInferred": true,
+                        "lineageTag": "071198ff-1d2e-4b72-adec-32fa3bbafd1a",
+                        "sourceColumn": "[Date]",
+                        "summarizeBy": "none",
+                        "type": "calculatedTableColumn"
+                    },
+                    {
+                        "name": "Ann\u00e9e",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Year"
+                            }
+                        ],
+                        "dataCategory": "Years",
+                        "dataType": "int64",
+                        "expression": "YEAR([Date])",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "lineageTag": "daa77c2d-7389-4612-bcd3-d0312af71735",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "NoMois",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "MonthNumber"
+                            }
+                        ],
+                        "dataCategory": "MonthOfYear",
+                        "dataType": "int64",
+                        "expression": "MONTH([Date])",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "lineageTag": "4eca5d99-816a-4e21-8bc9-618558d21e4d",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "Mois",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Month"
+                            }
+                        ],
+                        "dataCategory": "Months",
+                        "dataType": "string",
+                        "expression": "FORMAT([Date], \"MMMM\")",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "lineageTag": "5c518672-063d-45ff-b5f7-466c178cd356",
+                        "sortByColumn": "NoMois",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "NoTrimestre",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "QuarterNumber"
+                            }
+                        ],
+                        "dataCategory": "QuarterOfYear",
+                        "dataType": "int64",
+                        "expression": "INT(([NoMois] + 2) / 3)",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "lineageTag": "dcf3d3b7-a077-44a2-b1b7-536eb86bdf19",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "Trimestre",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Quarter"
+                            }
+                        ],
+                        "dataCategory": "Quarters",
+                        "dataType": "string",
+                        "expression": "\"Trim \" & [NoTrimestre]",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "lineageTag": "4c4ac028-3bd1-443b-95e0-3e9b4195c141",
+                        "sortByColumn": "NoTrimestre",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "Jour",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Day"
+                            }
+                        ],
+                        "dataCategory": "DayOfMonth",
+                        "dataType": "int64",
+                        "expression": "DAY([Date])",
+                        "isDataTypeInferred": true,
+                        "isHidden": true,
+                        "lineageTag": "077bfa08-8927-4832-9a71-b67cb1c35ed9",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    }
+                ],
+                "hierarchies": [
+                    {
+                        "name": "Hi\u00e9rarchie de dates",
+                        "annotations": [
+                            {
+                                "name": "TemplateId",
+                                "value": "DateHierarchy"
+                            }
+                        ],
+                        "levels": [
+                            {
+                                "name": "Ann\u00e9e",
+                                "column": "Ann\u00e9e",
+                                "lineageTag": "b833a438-a516-4a30-a8fa-b2edfa290ad9",
+                                "ordinal": 0
+                            },
+                            {
+                                "name": "Trimestre",
+                                "column": "Trimestre",
+                                "lineageTag": "fd1b09af-b2ae-40e4-ba97-0605243edad1",
+                                "ordinal": 1
+                            },
+                            {
+                                "name": "Mois",
+                                "column": "Mois",
+                                "lineageTag": "56b46424-76e0-45fb-9c76-5f9c68796d62",
+                                "ordinal": 2
+                            },
+                            {
+                                "name": "Jour",
+                                "column": "Jour",
+                                "lineageTag": "dc0497f3-ee68-4f87-91fd-6fc4ab2e90e2",
+                                "ordinal": 3
+                            }
+                        ],
+                        "lineageTag": "0dc10b6d-0a9a-4cb4-afc7-3d89477b2b26"
+                    }
+                ],
+                "isHidden": true,
+                "isPrivate": true,
+                "lineageTag": "84086d5e-72a1-4dc7-b628-39707d3d307e",
+                "partitions": [
+                    {
+                        "name": "DateTableTemplate_2e52c496-5b74-4d3e-ba95-30929bd26b33-b0123137-aa60-4fd4-8473-a27a3c92fd32",
+                        "mode": "import",
+                        "source": {
+                            "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+                            "type": "calculated"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "bigquery_connection_management",
+                "annotations": [
+                    {
+                        "name": "PBI_ResultType",
+                        "value": "Table"
+                    }
+                ],
+                "changedProperties": [
+                    {
+                        "property": "IsHidden"
+                    }
+                ],
+                "columns": [
+                    {
+                        "name": "Name",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "changedProperties": [
+                            {
+                                "property": "IsHidden"
+                            }
+                        ],
+                        "dataType": "string",
+                        "isHidden": true,
+                        "lineageTag": "fb3a6c46-01a7-4a5e-b701-995575d3d63d",
+                        "sourceColumn": "Name",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "Description",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "changedProperties": [
+                            {
+                                "property": "IsHidden"
+                            }
+                        ],
+                        "dataType": "string",
+                        "isHidden": true,
+                        "lineageTag": "b8a8ce56-35d1-45ad-bd75-0e0d511c0dd9",
+                        "sourceColumn": "Description",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "Kind",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "changedProperties": [
+                            {
+                                "property": "IsHidden"
+                            }
+                        ],
+                        "dataType": "string",
+                        "isHidden": true,
+                        "lineageTag": "1066110c-6c8c-4117-ae39-1ea3a37b514f",
+                        "sourceColumn": "Kind",
+                        "summarizeBy": "none"
+                    }
+                ],
+                "isHidden": true,
+                "lineageTag": "404f8752-17c9-4d6e-8042-1a52b257d716",
+                "partitions": [
+                    {
+                        "name": "bigquery_connection_management",
+                        "mode": "import",
+                        "queryGroup": "parameters",
+                        "source": {
+                            "expression": [
+                                "let",
+                                "    Source = GoogleBigQuery.Database([BillingProject=project_id, CommandTimeout=#duration(0,0,15,0)]),",
+                                "    #\"fsh-digital-dashboard-prd\" = Source{[Name=project_id]}[Data],",
+                                "    G4_DASHBOARD_RSE_Schema = #\"fsh-digital-dashboard-prd\"{[Name=dataset_id,Kind=\"Schema\"]}[Data]",
+                                "in",
+                                "    G4_DASHBOARD_RSE_Schema"
+                            ],
+                            "type": "m"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "data_IT_web",
+                "annotations": [
+                    {
+                        "name": "PBI_ResultType",
+                        "value": "Table"
+                    },
+                    {
+                        "name": "PBI_NavigationStepName",
+                        "value": "Navigation"
+                    }
+                ],
+                "columns": [
+                    {
+                        "name": "category",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "106ac5ed-ece5-4d73-8eef-7bd358781d62",
+                        "sourceColumn": "category",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "mobile_model_name",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "41636ce0-8ee4-4a8f-9ec7-5d95813f024c",
+                        "sourceColumn": "mobile_model_name",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "operating_system",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "628a7690-ca85-490e-a957-991bf68b1a29",
+                        "sourceColumn": "operating_system",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "operating_system_version",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "9a572db9-b0f5-407d-8333-e226f7290ad0",
+                        "sourceColumn": "operating_system_version",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "browser",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "c3b84587-954d-48a9-ba42-5bfdfe3aeff5",
+                        "sourceColumn": "browser",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "browser_version",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "fcc7263d-35e8-4769-b0ad-f44a7152ec94",
+                        "sourceColumn": "browser_version",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "event_date",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            },
+                            {
+                                "name": "UnderlyingDateTimeDataType",
+                                "value": "Date"
+                            }
+                        ],
+                        "dataType": "dateTime",
+                        "formatString": "Long Date",
+                        "lineageTag": "3c595bb0-34bf-42c4-9447-bdc6a5e87a4b",
+                        "sourceColumn": "event_date",
+                        "summarizeBy": "none",
+                        "variations": [
+                            {
+                                "name": "Variation",
+                                "defaultHierarchy": {
+                                    "hierarchy": "Hi\u00e9rarchie de dates",
+                                    "table": "LocalDateTable_9c2fe519-cde9-4459-9ab7-c88c5373e558"
+                                },
+                                "isDefault": true,
+                                "relationship": "11b18e57-e761-4ad9-8010-49da1ba269a6"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "country",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "b75dd389-a727-441b-b8c2-59bd77d0e2f8",
+                        "sourceColumn": "country",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "region",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "c5de374d-607a-4fcf-b47c-3cb78b5f69c2",
+                        "sourceColumn": "region",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "locale",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "string",
+                        "lineageTag": "63bff51f-b1b9-4457-a357-659c610e4b90",
+                        "sourceColumn": "locale",
+                        "summarizeBy": "none"
+                    },
+                    {
+                        "name": "user_id",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "int64",
+                        "formatString": "#,0",
+                        "lineageTag": "501ff5ad-0536-4f4a-8789-2c7704d1d6f1",
+                        "sourceColumn": "user_id",
+                        "summarizeBy": "sum"
+                    },
+                    {
+                        "name": "total_distinct_sessions",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "Automatic"
+                            }
+                        ],
+                        "dataType": "int64",
+                        "formatString": "#,0",
+                        "lineageTag": "1775c021-2893-49dd-a150-f2ad8bbd9f7c",
+                        "sourceColumn": "total_distinct_sessions",
+                        "summarizeBy": "sum"
+                    }
+                ],
+                "lineageTag": "d7da51bf-99e4-42be-904f-271ba06427cd",
+                "partitions": [
+                    {
+                        "name": "data_IT_web",
+                        "mode": "import",
+                        "source": {
+                            "expression": [
+                                "let",
+                                "    Source = bigquery_connection_management,",
+                                "    FSH_WEB_DASHBOARD_DIGITAL_Table = Source{[Name=\"agg__web__IT\",Kind=\"Table\"]}[Data]",
+                                "in",
+                                "    FSH_WEB_DASHBOARD_DIGITAL_Table"
+                            ],
+                            "type": "m"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "LocalDateTable_9c2fe519-cde9-4459-9ab7-c88c5373e558",
+                "annotations": [
+                    {
+                        "name": "__PBI_LocalDateTable",
+                        "value": "true"
+                    }
+                ],
+                "columns": [
+                    {
+                        "name": "Date",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            }
+                        ],
+                        "dataCategory": "PaddedDateTableDates",
+                        "dataType": "dateTime",
+                        "isHidden": true,
+                        "isNameInferred": true,
+                        "lineageTag": "9d1134cf-9072-4156-96ba-969886f89c8b",
+                        "sourceColumn": "[Date]",
+                        "summarizeBy": "none",
+                        "type": "calculatedTableColumn"
+                    },
+                    {
+                        "name": "Ann\u00e9e",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Year"
+                            }
+                        ],
+                        "dataCategory": "Years",
+                        "dataType": "int64",
+                        "expression": "YEAR([Date])",
+                        "isHidden": true,
+                        "lineageTag": "d19b4047-8aa2-4a36-a703-d18660a72749",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "NoMois",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "MonthNumber"
+                            }
+                        ],
+                        "dataCategory": "MonthOfYear",
+                        "dataType": "int64",
+                        "expression": "MONTH([Date])",
+                        "isHidden": true,
+                        "lineageTag": "7b32890a-710b-4ab7-aaa9-62b05333a72b",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "Mois",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Month"
+                            }
+                        ],
+                        "dataCategory": "Months",
+                        "dataType": "string",
+                        "expression": "FORMAT([Date], \"MMMM\")",
+                        "isHidden": true,
+                        "lineageTag": "ad3b95c8-c389-4d57-9005-ee2a13791309",
+                        "sortByColumn": "NoMois",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "NoTrimestre",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "QuarterNumber"
+                            }
+                        ],
+                        "dataCategory": "QuarterOfYear",
+                        "dataType": "int64",
+                        "expression": "INT(([NoMois] + 2) / 3)",
+                        "isHidden": true,
+                        "lineageTag": "ada675ed-47eb-4ea7-a13d-04875b9467d4",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "Trimestre",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Quarter"
+                            }
+                        ],
+                        "dataCategory": "Quarters",
+                        "dataType": "string",
+                        "expression": "\"Trim \" & [NoTrimestre]",
+                        "isHidden": true,
+                        "lineageTag": "9533babc-5593-47e5-a21a-50742d191161",
+                        "sortByColumn": "NoTrimestre",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    },
+                    {
+                        "name": "Jour",
+                        "annotations": [
+                            {
+                                "name": "SummarizationSetBy",
+                                "value": "User"
+                            },
+                            {
+                                "name": "TemplateId",
+                                "value": "Day"
+                            }
+                        ],
+                        "dataCategory": "DayOfMonth",
+                        "dataType": "int64",
+                        "expression": "DAY([Date])",
+                        "isHidden": true,
+                        "lineageTag": "82a6456a-4715-4af3-86d0-ee3a102c0e7b",
+                        "summarizeBy": "none",
+                        "type": "calculated"
+                    }
+                ],
+                "hierarchies": [
+                    {
+                        "name": "Hi\u00e9rarchie de dates",
+                        "annotations": [
+                            {
+                                "name": "TemplateId",
+                                "value": "DateHierarchy"
+                            }
+                        ],
+                        "levels": [
+                            {
+                                "name": "Ann\u00e9e",
+                                "column": "Ann\u00e9e",
+                                "lineageTag": "f14dcbcd-acce-4db2-8014-5d974e5aa3f0",
+                                "ordinal": 0
+                            },
+                            {
+                                "name": "Trimestre",
+                                "column": "Trimestre",
+                                "lineageTag": "5bff3af9-b56b-402e-b6a7-268087767d65",
+                                "ordinal": 1
+                            },
+                            {
+                                "name": "Mois",
+                                "column": "Mois",
+                                "lineageTag": "a3865b88-f012-48e8-a6b6-ad6af83881d5",
+                                "ordinal": 2
+                            },
+                            {
+                                "name": "Jour",
+                                "column": "Jour",
+                                "lineageTag": "0863a0cf-6a27-46e4-9852-d788c9051ffa",
+                                "ordinal": 3
+                            }
+                        ],
+                        "lineageTag": "ebbad755-e6a6-413a-b7c2-ea0703fc0950"
+                    }
+                ],
+                "isHidden": true,
+                "lineageTag": "2668183c-a399-408f-8c24-83ced5582ed5",
+                "partitions": [
+                    {
+                        "name": "LocalDateTable_9c2fe519-cde9-4459-9ab7-c88c5373e558",
+                        "mode": "import",
+                        "source": {
+                            "expression": "Calendar(Date(Year(MIN('data_IT_web'[event_date])), 1, 1), Date(Year(MAX('data_IT_web'[event_date])), 12, 31))",
+                            "type": "calculated"
+                        }
+                    }
+                ],
+                "showAsVariationsOnly": true
+            },
+            {
+                "name": "Measure",
+                "annotations": [
+                    {
+                        "name": "PBI_ResultType",
+                        "value": "Table"
+                    }
+                ],
+                "lineageTag": "a3f9a582-22aa-4a51-b813-ad6c291d18c0",
+                "measures": [
+                    {
+                        "name": "percentage_mobile_visits",
+                        "expression": [
+                            "",
+                            "VAR mobile_visits = ",
+                            "CALCULATE(",
+                            "    [total_distinct_sesseion],",
+                            "    FILTER(data_IT_web, data_IT_web[category]=\"mobile\")",
+                            ")",
+                            "",
+                            "RETURN DIVIDE(mobile_visits, [total_distinct_sesseion])"
+                        ],
+                        "formatString": "0.0\\ %;-0.0\\ %;0.0\\ %",
+                        "lineageTag": "e8bfda02-6969-4eaa-8763-7d5677615957"
+                    },
+                    {
+                        "name": "total_distinct_sesseion",
+                        "expression": "SUM(data_IT_web[total_distinct_sessions])",
+                        "formatString": "#,0",
+                        "lineageTag": "32373854-a509-4af9-932a-c37f430ca511"
+                    }
+                ],
+                "partitions": [
+                    {
+                        "name": "Measure",
+                        "mode": "import",
+                        "source": {
+                            "expression": [
+                                "let",
+                                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#\"Colonne 1\" = _t]),",
+                                "    #\"Colonnes supprim\u00e9es\" = Table.RemoveColumns(Source,{\"Colonne 1\"})",
+                                "in",
+                                "    #\"Colonnes supprim\u00e9es\""
+                            ],
+                            "type": "m"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
