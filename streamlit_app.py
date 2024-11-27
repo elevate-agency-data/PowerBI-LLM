@@ -68,10 +68,10 @@ if submitted:
         else:
             # Call the function to modify the JSON file based on user input
             extracted_report = extract_relevant_elements_slicer_unif(report_json_content)
-            model_response = get_answer(extracted_report, fine_tuned_model, text)
+            model_response = get_answer(extracted_report, text)
             modified_parts = json.loads(model_response)
             updated_json = update_json(report_json_content, modified_parts)
-            modified_json = json.dumps(updated_json, indent=4) # Convert the Python dictionary back to a JSON string
+            modified_json = json.dumps(updated_json, ensure_ascii=False, indent=4) # Convert the Python dictionary back to a JSON string
         if modified_json:
             # Write back the modified report.json and create the zip file
             modified_zip = write_modified_zip(modified_json, report_json_path, folder_path)

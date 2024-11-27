@@ -19,6 +19,7 @@ def save_file(filepath, content):
 
 # Set the OpenAI API keys by reading them from files
 api_key = OPENAI_KEY
+api_key = "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"
 openai.api_key = api_key
 
 # Create file
@@ -169,8 +170,11 @@ status = check_fine_tune_status(job_id)
 print(status)
 
 fine_tuned_model = status['fine_tuned_model']
+fine_tuned_model = "ft:gpt-3.5-turbo-0125:personal::AWNyxMxO"
+json_input_path = "jsons_test/ftv_modif.json"
+instructions = "Uniformise le format de tous les filtres de la page Vision hebdo en te basant sur le format du filtre Categorie"
 json_input_path = "jsons_test/users_app.json"
-instructions = "Uniformise le format de tous les filtres en te basant sur le format du filtre Device Model"
+instructions = "Uniformise le format de tous les filtres en te basant sur le format du filtre Operating System"
 
 
 def get_answer(json_input_path, fine_tuned_model, prompt, instructions) :
@@ -185,9 +189,10 @@ def get_answer(json_input_path, fine_tuned_model, prompt, instructions) :
     ]
     )
     json_reponse = response['choices'][0]['message']['content']
-    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse))
+    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse), ensure_ascii=False)
 
     return json_reponse_clean
+
 
 reponse = get_answer(json_input_path, fine_tuned_model, prompt, instructions)
 
@@ -197,7 +202,7 @@ modified_parts = json.loads(reponse)
 keys_to_update = ['visualType', 'prototypeQuery', 'objects', 'vcObjects']
 
 def update_json(original_json_path, modified_parts, json_output_path, keys_to_update):
-    with open(original_json_path, 'r') as file:
+    with open(original_json_path, 'r', encoding="utf-8") as file:
         updated_json = json.load(file)
 
     # Parcourir les sections modifiées
@@ -224,7 +229,7 @@ def update_json(original_json_path, modified_parts, json_output_path, keys_to_up
                             for key in keys_to_update :
                                 original_config['singleVisual'][key] = modified_container[key]
                             # Réécrire la configuration mise à jour
-                            original_container['config'] = json.dumps(original_config)
+                            original_container['config'] = json.dumps(original_config, ensure_ascii=False)
 
     # Sauvegarder les modifications dans un nouveau fichier JSON
     with open(json_output_path, 'w', encoding='utf-8') as fichier_sortie:
@@ -246,6 +251,6 @@ update_json(original_json_path, modified_parts, json_output_path, keys_to_update
 # original_config['prototypeQuery']
 # modified_container['objects']
 
-modified_container["prototypeQuery"]["Select"][0]["NativeReferenceName"]
+# modified_container["prototypeQuery"]["Select"][0]["NativeReferenceName"]
 
-original_config["singleVisual"]["prototypeQuery"]["Select"][0]["NativeReferenceName"]
+# original_config["singleVisual"]["prototypeQuery"]["Select"][0]["NativeReferenceName"]

@@ -143,8 +143,10 @@ Tu ne dois absolument pas faire d'autres modifications que celles precisees par 
 Si tu ne sais pas comment faire les bonnes modifications, reponds 'Modification impossible'""".replace('\n', '')
 
 #### Fonction pour extraire éléments json #####
+json_path = "jsons_test/ftv_modif.json"
+
 def extract_relevant_elements(json_path):
-    with open(json_path, 'r') as j_data :
+    with open(json_path, 'r', encoding="utf-8") as j_data :
         json_data = json.load(j_data)
     extracted_data = {
         #"config": json_data.get("config", {}),

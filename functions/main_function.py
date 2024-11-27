@@ -55,7 +55,25 @@ function_descriptions = [
         "name": "summary_in_confluence",
         "description": "Summarize key details and metrics in Confluence.",
         "parameters": {}
-    }
+    },
+    {
+        "name": "slicer_uniformisation_in_report",
+        "description": "Modify the JSON file of the report to uniformize the slicers format based on the user's instructions",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "report_json": {
+                    "type": "string",
+                    "description": "The content of the JSON file of the Power BI report"
+                },
+                "instructions": {
+                    "type": "string",
+                    "description" : "The user's intructions that specify how to modify the report"
+                }
+            },
+            "required": ["report_json", "instructions"]
+        }
+    },
 ]
 
 def generate_completion(user_input):

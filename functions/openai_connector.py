@@ -81,7 +81,7 @@ def get_answer(extracted_report, instructions) :
     ]
     )
     json_reponse = response['choices'][0]['message']['content']
-    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse))
+    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse), ensure_ascii=False)
 
     return json_reponse_clean
 
@@ -114,6 +114,6 @@ def update_json(json_to_update, modified_parts):
                             for key in keys_to_update :
                                 original_config['singleVisual'][key] = modified_container[key]
                             # Réécrire la configuration mise à jour
-                            original_container['config'] = json.dumps(original_config)
+                            original_container['config'] = json.dumps(original_config, ensure_ascii=False)
 
     return json_to_update
