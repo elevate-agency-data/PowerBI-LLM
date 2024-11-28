@@ -19,7 +19,6 @@ def save_file(filepath, content):
 
 # Set the OpenAI API keys by reading them from files
 api_key = OPENAI_KEY
-api_key = "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"
 openai.api_key = api_key
 
 # Create file
