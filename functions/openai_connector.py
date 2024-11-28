@@ -134,46 +134,56 @@ def summarize_dataset(extracted_dataset_json_content):
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def summarize_dashboard(target_platform, json_content):
+def summarize_in_target_platform(summary_dashboard, summary_dataset, target_platform):
     try:
         # Combine the user prompt with the JSON content
         combined_prompt = (
-            f"Make documentation based on the content of the JSON file for {target_platform}. "
-            "In the documentation, you should include:\n"
-            '"Overview" Related Info\n'
-            "- Dashboard Name\n"
-            "- Dashboard Purpose: Business objective/problem the dashboard addresses\n"
-            "- Primary Users: List the roles/audience for the dashboard (e.g., Sales Team, Media Team, Top Management)\n"
-            "- Update Frequency: Daily, Weekly, etc.\n"
-            "- Key Features: Main features of the dashboard (e.g., online & offline data to monitor media investment)\n\n"
-            "Front-end Documentation / Visualizations\n"
-            "a. Page Overview\n"
-            "- List all pages in the dashboard and their purpose (e.g., 'Sales Overview' – Provides a summary of total revenue, sales margin, and top-performing regions)\n\n"
-            "b. KPIs and Metrics\n"
-            "- KPI Definitions: Name of the KPI, DAX formula (ideally a phrase describing the calculation), data source, and threshold if needed "
-            "(e.g., if <100K, colored red)\n\n"
-            "c. Visualizations\n"
-            "- Charts, Graphs, Cards: Name, what it represents, and how to interpret it (e.g., 'Sales by Region' – A bar chart showing total sales per region. "
-            "Hovering over a bar reveals the exact revenue value.)\n\n"
-            "d. Filtering\n"
-            "- Explain slicers, filters, and date pickers (e.g., Use the date picker to select a custom period)\n\n"
-            "e. Scenarios for Interpretation\n"
-            "- Provide examples to guide users on how to interpret the dashboard.\n\n"
-            "f. Admin & Last Update\n"
-            "- Contact email and last update date\n\n"
-            "Backend Documentation\n"
-            "a. Data Sources: List all data sources by table or information category (e.g., Sales data comes from Snowflake 'SalesDB' database; special marketing events from Excel files uploaded to SharePoint + Scheduled refresh times\n"
-            "b. Data Model: Table Descriptions: Name of the table, purpose of the table (e.g., Table 'Sales_Fact' stores transaction-level data with granularity at the order level)\n"
-            "c. Data Volumes: Size of each table and record count\n"
-            "d. Quality Measures: Sum checks, etc.\n\n"
-            f"Here is the JSON content:\n{json_content}"
+            f"Create comprehensive documentation for a Power BI report using the extracted information below. "
+            f"The dashboard information is organized in a dictionary where each key represents the name of a page in the dashboard. "
+            f"Ensure the documentation is formatted appropriately for {target_platform} and structured to be professional and user-friendly. "
+            f"Note: All provided information pertains to a single dashboard. You may adjust the structure to enhance its presentation. "
+            f"\n\nDashboard Information (organized by page):\n{summary_dashboard}"
+            f"\n\nDataset Information:\n{summary_dataset}"
+            f"\n\nInclude the following elements in the final documentation:"
+            f"\n\n**Overview**"
+            f"\n- Dashboard Name:"
+            f"\n- Dashboard Purpose: Business objective or problem the dashboard addresses."
+            f"\n- Key Features (aligned with the dashboard purpose): Highlight the main features, e.g., integration of online & offline data for monitoring media investment."
+            f"\n\n**Front-End Documentation / Visualizations**"
+            f"\n1. **Page Overview**"
+            f"\n   - List all pages in the dashboard and their purpose."
+            f"     Example: 'Sales Overview': Provides a summary of total revenue, sales margin, and top-performing regions."
+            f"\n2. **KPIs and Metrics**"
+            f"\n   - Define each KPI, including:"
+            f"     - Name"
+            f"     - DAX formula (or a brief explanation of the calculation)"
+            f"     - Data source"
+            f"\n3. **Visualizations**"
+            f"\n   - Detail charts, graphs, and cards, explaining their purpose and interpretation."
+            f"     Example: 'Sales by Region': A bar chart showing total sales per region, with hover-over details for exact values."
+            f"\n4. **Filtering**"
+            f"\n   - Explain slicers, filters, and date pickers."
+            f"     Example: Date Picker: Allows custom period selection."
+            f"\n5. **Scenarios for Interpretation**"
+            f"\n   - Provide examples to guide users in understanding the dashboard."
+            f"\n\n**Back-End Documentation**"
+            f"\n1. **Data Sources**"
+            f"\n   - List all data sources categorized by table or information type."
+            f"     Example: Sales Data: From Snowflake's 'SalesDB' database."
+            f"     Special Marketing Events: From Excel files on SharePoint."
+            f"\n2. **Data Model**"
+            f"\n   - Describe the tables, including:"
+            f"     - Table Name"
+            f"     - Relationships between tables"
+            f"     - Table Purpose"
+            f"     Example: 'Sales_Fact': Contains transaction-level data at the order level."
         )
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
             model = "gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an assistant that summarizes JSON files of powerBI reports to different documentation platforms."},
+                {"role": "system", "content": "You are an assistant that writes documentation for Power BI reports based on the extracted key information from the dashboard and dataset, then transforms it into the format required by different platforms."},
                 {"role": "user", "content": combined_prompt}
             ]
         )

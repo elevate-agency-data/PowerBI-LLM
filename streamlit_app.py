@@ -63,10 +63,10 @@ if submitted:
         elif output.get("function_call", {}).get("name") == "summary_in_confluence":
             extracted_report = extract_dashboard_by_page(report_json_content)
             extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
-            result = summarize_dashboard_by_page(extracted_report)
-            # result = summarize_dataset(extracted_dataset)
-            # destination_platform = "confluence"
-            # result = summarize_dashboard(destination_platform, extracted_report)
+            summary_dashboard = summarize_dashboard_by_page(extracted_report)
+            summary_dataset = summarize_dataset(extracted_dataset)
+            target_platform = "confluence"
+            result = summarize_in_target_platform(summary_dashboard, summary_dataset, target_platform)
             st.write(result)
         else:
             # Call the function to modify the JSON file based on user input
