@@ -66,8 +66,9 @@ if submitted:
             summary_dashboard = summarize_dashboard_by_page(extracted_report)
             summary_dataset = summarize_dataset(extracted_dataset)
             target_platform = "confluence"
-            result = summarize_in_target_platform(summary_dashboard, summary_dataset, target_platform)
-            st.write(result)
+            # result_in_confluence = summarize_in_confluence(summary_dashboard, target_platform)
+            # result = summarize_in_target_platform(summary_dashboard, summary_dataset, target_platform)
+            st.write(summary_dataset)
         else:
             # Call the function to modify the JSON file based on user input
             report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string

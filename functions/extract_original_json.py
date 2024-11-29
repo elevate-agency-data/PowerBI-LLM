@@ -45,26 +45,31 @@ def extract_relevant_elements_dashboard_summary(json_data):
     return extracted_data
 
 def extract_relevant_parts_dataset(json_dataset):
-    model = json_dataset['model']
+    model = json_dataset.get('model', {})
     # Initialize the extracted dataset
-    extracted_json_dataset = {
-        "expressions": model.get("expressions", []),
-        "tables": []
+    extracted_json_dataset = {       
+        "tables": {
+            "expressions": model.get("expressions", []),
+            "table_partitions": []
+        },
+        "measures": []
     }
-    
+
     # Define the keywords to exclude
     excluded_keywords = ["LocalDateTable", "DateTableTemplate"]
-    
+
     # Filter tables to exclude ones containing the excluded keywords
     for table in model.get("tables", []):
-        if not any(keyword in table['name'] for keyword in excluded_keywords):
-            # Remove the 'annotations' attribute from columns if it exists
-            if 'columns' in table:
-                for column in table['columns']:
-                    if 'annotations' in column:
-                        del column['annotations']
-            
-            extracted_json_dataset["tables"].append(table)
+        if not any(keyword in table.get('name', '') for keyword in excluded_keywords):
+            # Add table partitions if they exist
+            partitions = table.get('partitions', [])
+            if partitions:
+                extracted_json_dataset["tables"]["table_partitions"].extend(partitions)
+
+            # Add measures if they exist
+            if "measures" in table:
+                print(f"The table '{table['name']}' contains measures.")
+                extracted_json_dataset["measures"].extend(table["measures"])
     
     return extracted_json_dataset
 

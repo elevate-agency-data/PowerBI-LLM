@@ -53,7 +53,7 @@ def summarize_dashboard_by_page(extracted_json_by_page):
                 "   • Explain slicers, filters, date pickers.\n"
                 "     Example:\n"
                 '     o Date Picker: Use the date picker to select a custom period.\n'
-                "e. Scenarios for Interpretation\n"
+                "d. Scenarios for Interpretation\n"
                 "	• Provide examples to guide users on how to interpret the dashboard.\n"
                 f"Here is the JSON content:\n{extracted_json_of_the_page}\n\n"
                 "If certain information cannot be found in the provided JSON file, you may ignore it and continue with the rest. Do not invent any information."
@@ -78,45 +78,21 @@ def summarize_dashboard_by_page(extracted_json_by_page):
 
     return dashboard_summary_by_page
 
-def summarize_dataset(extracted_dataset_json_content):
+def summarize_dataset(extracted_dataset):
+    tables = extracted_dataset['tables']
+    measures = extracted_dataset['measures']
+
     try:
         # Combine the user prompt with the JSON content
         prompt = (
-    "I will provide you with a JSON file, and your task is to extract and organize the requested information as comprehensively as possible. Pay close attention to details and ensure no relevant data is omitted. Structure the output into the following sections:\n\n"
-    "### 1. Front-End Documentation / Visualizations\n"
-    "- **KPIs and Metrics**: Extract and organize information about Key Performance Indicators (KPIs) and Metrics. For each KPI, provide:\n"
-    "  - **KPI Name**\n"
-    "  - **DAX Formula**: Include a short description of the calculation if available.\n"
-    "  - **Data Source**: Mention the specific data source used for the KPI.\n"
-    "  - **Visualization Details**: Describe any visual representation of the KPI (if mentioned).\n\n"
-    "### 2. Backend Documentation\n"
-    "#### a. Data Sources\n"
-    "- List all available data sources, categorized by table or information category. Provide the following details:\n"
-    "  - **Data Source Name**: Clearly mention the name or type of data source.\n"
-    "  - **Location/Origin**: For example, 'Sales Data: From Snowflake's \"SalesDB\" database' or 'Marketing Events: Excel files from SharePoint.'\n"
-    "  - **Scheduled Refresh Times** (if available): Indicate the refresh frequency or schedule.\n\n"
-    "#### b. Data Model\n"
-    "- Provide a detailed description of each table or dataset within the JSON, including:\n"
-    "  - **Table Name**\n"
-    "  - **Relationships**: Describe connections between tables, if specified.\n"
-    "  - **Purpose**: Explain the function or purpose of each table.\n"
-    "  - Example:\n"
-    "    - **Table Name**: 'Sales_Fact'\n"
-    "    - **Relationships**: Links to 'Product_Dim' on ProductID and 'Time_Dim' on DateID.\n"
-    "    - **Purpose**: Stores transaction-level data with granularity at the order level.\n\n"
-    "#### c. Any Additional Technical Information\n"
-    "- Extract any additional backend or technical documentation details, such as:\n"
-    "  - Data transformation steps\n"
-    "  - Aggregation levels\n"
-    "  - API endpoints (if any are mentioned)\n\n"
-    "### Instructions\n"
-    "- **Do not invent any information.** If certain details are missing from the JSON file, clearly state 'Information not available' in the corresponding section.\n"
-    "- **Preserve JSON structure context.** Ensure your response aligns with the logical organization and hierarchy of the JSON file.\n\n"
-    "### JSON Content\n"
-    f"{extracted_dataset_json_content}\n\n"
-    "Process the content and provide the requested documentation in a structured and detailed manner."
-)
-
+            "1. List all table names in the dataset along with their sources based on the TABLE Content.\n"
+            "2. Identify all measures in the MEASURE Content and list their formulas in code format. "
+            "Provide a clear explanation of the KPIs, ensuring that every measure and its formula present in the MEASURE Content is included.\n\n"
+            "### TABLE Content\n"
+            f"{tables}\n\n"
+            "### MEASURE Content\n"
+            f"{measures}\n"
+        )
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
@@ -194,3 +170,35 @@ def summarize_in_target_platform(summary_dashboard, summary_dataset, target_plat
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
+    
+def summarize_in_confluence(text, target_platform):
+    try:
+        # Combine the user prompt with the JSON content
+        combined_prompt = (
+            f"Transform the provided text into a format suitable for {target_platform}. "
+            f"\n\nHere is the text:\n{text}"
+        )
+
+        # Call OpenAI API
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are an assistant specializing in writing documentation for Power BI reports. "
+                        "You use the extracted key information from dashboards and datasets to create professional documentation. "
+                        "Additionally, you adapt the documentation to the format required by different platforms."
+                    ),
+                },
+                {"role": "user", "content": combined_prompt},
+            ]
+        )
+
+        # Extract and return the summary
+        summary = response['choices'][0]['message']['content']
+        return summary
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+    
