@@ -70,8 +70,20 @@ if submitted:
             summary_dashboard = summarize_dashboard_by_page(extracted_report, target_platform)
             summary_table = summarize_table_source(extracted_dataset['tables'], target_platform)
             summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform)
-            summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)       
-            text_list = [overall_summary, summary_dashboard, summary_table, summary_measure_overview, summary_measure_detailed]
+            summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)          
+            text_list = [
+                "h1. Dashboard Overview",
+                f"{overall_summary}\n\n",
+                "h1. Detailed Information By Page",
+                f"{summary_dashboard}\n\n",
+                "h1. Dataset Key Information",
+                "h2. Table Source",
+                f"{summary_table}\n\n"
+                "h2. Measures Summary",
+                f"{summary_measure_overview}\n\n"
+                "h2. Detailed Measure Information By Column",
+                f"{summary_measure_detailed}\n\n"
+            ]
             # Combine all summaries into a single file content
             file_content = "\n\n".join(text_list)
             # Convert the content to bytes
@@ -80,10 +92,10 @@ if submitted:
             st.download_button(
                 label="Download Generated Documentation",
                 data=file_bytes,
-                file_name="documentation.txt",
+                file_name="Documentation.txt",
                 mime="text/plain"
             )
-            # st.write(text)
+            # st.write(summary_dashboard)
         else:
             # Call the function to modify the JSON file based on user input
             report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string

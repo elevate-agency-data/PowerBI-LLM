@@ -35,11 +35,17 @@ def global_summary_dashboard(extracted_json_by_page, target_platform):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
-            "Write a summary of a Power BI report in approximately 150 words based on the provided dashboard summary:\n{dashboard_summary}.\n\n"
-            "The summary should be clear, engaging, and formatted appropriately for {target_platform}.\n\n"
-            "Example Output:\n"
-            "This dashboard provides a high-level overview of key performance indicators, showcasing recent trends, achievements, and areas needing attention. "
-            "It is designed to help track progress, uncover opportunities, and guide strategic decision-making across various business domains."
+            "Create a concise and professional summary of a Power BI report in approximately 150 words based on the provided Dashboard Information:\n\n"
+            "**Dashboard Information:**\n"
+            f"{extracted_json_by_page}\n\n"
+            "### Instructions:\n"
+            "- Write a clear and comprehensive summary that captures the **dashboard's purpose**.\n"
+            "- Ensure the summary accurately reflects the content provided and **do not invent anything**.\n"
+            f"- The summary must be appropriately styled for **{target_platform}**.\n"
+            "- You should only return a single paragraph of the summary without adding anything else.\n\n"
+            "### Example Output:\n"
+            "\"This dashboard provides a comprehensive overview of key performance indicators, highlighting recent trends, achievements, and areas requiring attention. "
+            "It serves as a powerful tool to monitor progress, identify growth opportunities, and support strategic decision-making across critical business domains.\"\n"
         )
 
         # Call OpenAI API
@@ -66,25 +72,32 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
 
         try:
             prompt = (
-                "I will provide you a JSON file and you need to retrieve the below information from the provided file:\n"
-                "a. Page Overview\n"
-                "   • List all pages in the dashboard and their purpose.\n"
-                "     Example:\n"
-                '     o "Sales Overview": Provides a summary of total revenue, sales margin, and top-performing regions.\n'
-                "b. Visualizations\n"
-                "   • Charts, Graphs, Cards:\n"
-                "     List the visualizations, what they represent, and how to interpret them.\n"
-                "     Example:\n"
-                '     o "Sales by Region": A bar chart showing total sales per region. Hovering over a bar reveals the exact revenue value.\n'
-                "c. Filtering\n"
-                "   • Explain slicers, filters, date pickers.\n"
-                "     Example:\n"
-                '     o Date Picker: Use the date picker to select a custom period.\n'
-                "d. Scenarios for Interpretation\n"
-                "	• Provide examples to guide users on how to interpret the dashboard.\n"
-                f"Here is the JSON content:\n{extracted_json_of_the_page}\n\n"
-                "If certain information cannot be found in the provided JSON file, you may ignore it and continue with the rest. Do not invent any information.\n"
-                f"Ensure the retrieved information is formatted appropriately for {target_platform}."
+                "I will provide you with a JSON file, and you need to retrieve the following information from the file:\n\n"
+                "### Instructions\n"
+                "1. **Page Overview**\n"
+                "   - Write a overall purpose of the page.\n"
+                "   - Example:\n"
+                '     - "This page provides a summary of total revenue, sales margin, and top-performing regions.\n\n'
+                "2. **Visualizations**\n"
+                "   - List all the visuals on the page, what they represent, and how users can interpret them.\n"
+                "   - Example:\n"
+                '     - "Sales by Region": A bar chart showing total sales per region. Hovering over a bar reveals the exact revenue value.\n\n'
+                "3. **Filtering**\n"
+                "   - Explain slicers, filters, or date pickers used on the page.\n"
+                "   - Example:\n"
+                '     - Date Picker: Use the date picker to select a custom period.\n\n'
+                "4. **Scenarios for Interpretation**\n"
+                "   - Provide examples to guide users on how to interpret the dashboard effectively.\n"
+                '     - Example:\n'
+                '       - "If you want to understand regional performance, use the slicer to select a region and observe the sales trends in the line chart."\n\n'
+                "### Provided JSON\n"
+                f"{extracted_json_of_the_page}\n\n"
+                "### Important Notes\n"
+                "- If certain information is not available in the JSON file, omit it without inventing data.\n"
+                f"- Ensure the retrieved information is structured and formatted appropriately for {target_platform}.\n\n"
+                "### Expected Output Format\n"
+                "- Use headings and bullet points to organize the output.\n"
+                "- Ensure clear and concise explanations for each section."
             )
 
             # Call OpenAI API
@@ -115,7 +128,8 @@ def summarize_table_source(table_content, target_platform):
             "- If the 'source' key includes parameters (e.g., 'server_id', 'database_id', 'storage_id'), match each parameter name with the 'name' key in the 'expressions' section of the TABLE Content to identify the parameter's value.\n"
             "- For parameters with dynamic or concatenated values, describe clearly how these values are combined.\n"
             "- Ensure that all tables listed in the TABLE Content are included in the summary, with none omitted.\n"
-            "- Format the summary appropriately for {target_platform}, ensuring it is clear, concise, and well-organized.\n\n"
+            "- Do not add any irrelevant information such as introductions or summaries.\n"
+            f"- Format the summary appropriately for {target_platform}, ensuring it is clear, concise, and well-organized.\n\n"
             "### TABLE Content\n"
             f"{table_content}\n\n"
         )
@@ -150,7 +164,7 @@ def create_measures_overview_table(measures_content, target_platform):
             "3. Ensure all measures presented in the MEASURES content are included in the 'Name of the Measure' column.\n"
             "4. Based on your understanding of the measure, write a short explanation of the measure's purpose in the 'Description' column\n"
             "5. For the output, **only return the table** without any additional text.\n"
-            "6. Ensure the table is formatted appropriately for {target_platform}\n\n"
+            f"6. Ensure the table is formatted appropriately for {target_platform}\n\n"
             "### Example\n"
             "If a measure is calculated as follows:\n"
             "`Whitelisted Clients = CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\")`\n\n"
@@ -166,7 +180,7 @@ def create_measures_overview_table(measures_content, target_platform):
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
-            model = "gpt-4",
+            model = "gpt-3.5-turbo",
             messages = [
                 {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
                 {"role": "user", "content": prompt}
@@ -197,7 +211,7 @@ def create_measures_by_column_table(measures_content, target_platform):
             "- Each row in the table should correspond to one column from the 'Used Columns' of a measure.\n"
             "- If a measure uses multiple columns, create separate rows for each column, repeating the measure's name and source table.\n"
             "- For the output, **only return the table** without any additional text.\n"
-            "- Ensure the table is formatted appropriately for {target_platform}.\n\n"
+            f"- Ensure the table is formatted appropriately for {target_platform}.\n\n"
             "### MEASURES\n"
             f"{measures_content}\n\n"
             "### Output\n"
@@ -206,7 +220,7 @@ def create_measures_by_column_table(measures_content, target_platform):
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
-            model = "gpt-4",
+            model = "gpt-3.5-turbo",
             messages = [
                 {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
                 {"role": "user", "content": prompt}
