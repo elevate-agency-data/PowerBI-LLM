@@ -66,8 +66,8 @@ if submitted:
             extracted_report = extract_dashboard_by_page(report_json_content)
             extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
             extracted_measures = extract_measures_name_and_expression(extracted_dataset['measures'])
-            overall_summary = global_summary_dashboard(extracted_report, target_platform)
-            summary_dashboard = summarize_dashboard_by_page(extracted_report, target_platform)
+            summary_dashboard, overview_all_pages = summarize_dashboard_by_page(extracted_report, target_platform)
+            overall_summary = global_summary_dashboard(overview_all_pages, target_platform)
             summary_table = summarize_table_source(extracted_dataset['tables'], target_platform)
             summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform)
             summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)          
@@ -95,7 +95,7 @@ if submitted:
                 file_name="Documentation.txt",
                 mime="text/plain"
             )
-            # st.write(summary_dashboard)
+            # st.write(overview_all_pages)
         else:
             # Call the function to modify the JSON file based on user input
             report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string

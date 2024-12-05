@@ -66,32 +66,26 @@ def global_summary_dashboard(extracted_json_by_page, target_platform):
 
 def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
     result_summary = ""
-    for i in range(len(extracted_json_by_page)):
-        page_name = extracted_json_by_page[i]['displayName']
-        extracted_json_of_the_page = extracted_json_by_page[i]['extracted_data']
+    page_overview_dict = {}  # Dictionary to store Page Overview content by page_name
+
+    for page_data in extracted_json_by_page:
+        page_name = page_data['displayName']
+        extracted_json_of_the_page = page_data['extracted_data']
 
         try:
+            # Define prompt for OpenAI
             prompt = (
                 "I will provide you with a JSON file, and you need to retrieve the following information from the file:\n\n"
                 "### Instructions\n"
                 "1. **Page Overview**\n"
-                "   - Write a overall purpose of the page.\n"
-                "   - Example:\n"
-                '     - "This page provides a summary of total revenue, sales margin, and top-performing regions.\n\n'
+                "   - Write a overall purpose of the page.\n\n"
                 "2. **Visualizations**\n"
-                "   - List all the visuals on the page, what they represent, and how users can interpret them.\n"
-                "   - Example:\n"
-                '     - "Sales by Region": A bar chart showing total sales per region. Hovering over a bar reveals the exact revenue value.\n\n'
+                "   - List all the visuals on the page, what they represent, and how users can interpret them.\n\n"
                 "3. **Filtering**\n"
-                "   - Explain slicers, filters, or date pickers used on the page.\n"
-                "   - Example:\n"
-                '     - Date Picker: Use the date picker to select a custom period.\n\n'
+                "   - Explain slicers, filters, or date pickers used on the page.\n\n"
                 "4. **Scenarios for Interpretation**\n"
-                "   - Provide examples to guide users on how to interpret the dashboard effectively.\n"
-                '     - Example:\n'
-                '       - "If you want to understand regional performance, use the slicer to select a region and observe the sales trends in the line chart."\n\n'
-                "### Provided JSON\n"
-                f"{extracted_json_of_the_page}\n\n"
+                "   - Provide examples to guide users on how to interpret the dashboard effectively.\n\n"
+                f"### Provided JSON\n{extracted_json_of_the_page}\n\n"
                 "### Important Notes\n"
                 "- If certain information is not available in the JSON file, omit it without inventing data.\n"
                 f"- Ensure the retrieved information is structured and formatted appropriately for {target_platform}.\n\n"
@@ -113,10 +107,32 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
             summary = response['choices'][0]['message']['content']
             result_summary += f"### {page_name}\n{summary}\n\n"
 
-        except Exception as e:
-            return f"An error occurred: {str(e)}"
+            # Use a structured approach to extract "Page Overview"
+            structured_prompt = (
+                "Extract only the **Page Overview** from the following content and return it in plain text format:\n\n"
+                f"{summary}\n\n"
+                "### Important Notes\n"
+                "- If 'Page Overview' is not found, return: 'No Page Overview available.'"
+            )
 
-    return result_summary
+            # Extract only the Page Overview using another API call
+            overview_response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a content extractor specializing in summarizing key sections."},
+                    {"role": "user", "content": structured_prompt}
+                ]
+            )
+            page_overview = overview_response['choices'][0]['message']['content'].strip()
+
+            # Store the Page Overview in the dictionary
+            page_overview_dict[page_name] = page_overview
+
+        except Exception as e:
+            return {"error": f"An error occurred: {str(e)}"}
+
+    # Return both result_summary and page_overview_dict
+    return result_summary, page_overview_dict
 
 def summarize_table_source(table_content, target_platform):
     try:
