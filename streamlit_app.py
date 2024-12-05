@@ -40,7 +40,8 @@ if submitted:
         print(output.get("function_call", {}).get("name"))
         if output.get("function_call", {}).get("name") == "add_read_me":
             # If "add_read_me" is called, extract the relevant KPI part
-            kpis = extract_relevant_elements_dashboard_summary(report_json_content)
+            # kpis = extract_relevant_elements_dashboard_summary(report_json_content)
+            kpis = extract_dashboard_by_page(report_json_content)
             
             # Run the function call with the extracted KPI data
             add_read_me_output = openai.ChatCompletion.create(
@@ -61,16 +62,28 @@ if submitted:
             report_json_content['sections'].insert(0, updated_report["sections"][0])
             modified_json = json.dumps(report_json_content, indent=4)
         elif output.get("function_call", {}).get("name") == "summary_in_confluence":
+            target_platform = "confluence"
             extracted_report = extract_dashboard_by_page(report_json_content)
             extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
-            target_platform = "confluence"
+            extracted_measures = extract_measures_name_and_expression(extracted_dataset['measures'])
+            overall_summary = global_summary_dashboard(extracted_report, target_platform)
             summary_dashboard = summarize_dashboard_by_page(extracted_report, target_platform)
-            summary_dataset = summarize_dataset(extracted_dataset, target_platform)
-            # dashboard_summary = summarize_dashboard(summary_dashboard, target_platform)
-            # st.write(dashboard_summary)
-            st.write(summary_dashboard)
-            st.write(summary_dataset)
-            
+            summary_table = summarize_table_source(extracted_dataset['tables'], target_platform)
+            summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform)
+            summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)       
+            text_list = [overall_summary, summary_dashboard, summary_table, summary_measure_overview, summary_measure_detailed]
+            # Combine all summaries into a single file content
+            file_content = "\n\n".join(text_list)
+            # Convert the content to bytes
+            file_bytes = file_content.encode('utf-8')
+            # Create a downloadable link for the text file
+            st.download_button(
+                label="Download Generated Documentation",
+                data=file_bytes,
+                file_name="documentation.txt",
+                mime="text/plain"
+            )
+            # st.write(text)
         else:
             # Call the function to modify the JSON file based on user input
             report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string
