@@ -73,6 +73,15 @@ def extract_relevant_parts_dataset(json_dataset):
     
     return extracted_json_dataset
 
+def extract_measures_name_and_expression(elements):
+    result = []
+    for element in elements:
+        name = element.get('name')
+        # Combine the non-empty parts of the 'expression' list into a single string
+        expression = " ".join(part.strip() for part in element.get('expression', []) if part.strip())
+        result.append({'name': name, 'expression': expression})
+    return result
+
 def extract_dashboard_by_page(json_data):
     sections_list = []
 

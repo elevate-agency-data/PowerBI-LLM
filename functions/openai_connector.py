@@ -31,8 +31,35 @@ def modify_report_json(input_text, report_json_content):
     # Return the modified JSON content
     return json.dumps(modified_json_data, indent=2)
 
+def global_summary_dashboard(extracted_json_by_page, target_platform):
+    try:
+        # Combine the user prompt with the JSON content
+        prompt = (
+            "Write a summary of a Power BI report in approximately 150 words based on the provided dashboard summary:\n{dashboard_summary}.\n\n"
+            "The summary should be clear, engaging, and formatted appropriately for {target_platform}.\n\n"
+            "Example Output:\n"
+            "This dashboard provides a high-level overview of key performance indicators, showcasing recent trends, achievements, and areas needing attention. "
+            "It is designed to help track progress, uncover opportunities, and guide strategic decision-making across various business domains."
+        )
+
+        # Call OpenAI API
+        response = openai.ChatCompletion.create(
+            model = "gpt-3.5-turbo",
+            messages = [
+                {"role": "system", "content": "You are an assistant that specializes in summarizing Power BI dashboards. Your task is to create a concise yet comprehensive summary of the dashboard based on the information provided for its different pages. Ensure the summary is accurate, well-structured, and tailored for the specified target platform."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        # Extract and return the summary
+        summary = response['choices'][0]['message']['content']
+        return summary
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+
 def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
-    dashboard_summary_by_page = {}
+    result_summary = ""
     for i in range(len(extracted_json_by_page)):
         page_name = extracted_json_by_page[i]['displayName']
         extracted_json_of_the_page = extracted_json_by_page[i]['extracted_data']
@@ -57,51 +84,47 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
                 "	• Provide examples to guide users on how to interpret the dashboard.\n"
                 f"Here is the JSON content:\n{extracted_json_of_the_page}\n\n"
                 "If certain information cannot be found in the provided JSON file, you may ignore it and continue with the rest. Do not invent any information.\n"
-                f"Ensure the retrived information is formatted appropriately for {target_platform}."
+                f"Ensure the retrieved information is formatted appropriately for {target_platform}."
             )
-
 
             # Call OpenAI API
             response = openai.ChatCompletion.create(
-                model = "gpt-3.5-turbo",
+                model="gpt-3.5-turbo",
                 messages=[
-                    {"role": "system", "content": "You are an assistant that extract the key information from powerBI pbip reports' JSON files."},
+                    {"role": "system", "content": "You are an assistant that extracts key information from Power BI pbip reports' JSON files."},
                     {"role": "user", "content": prompt}
                 ]
             )
 
-            # Extract and return the summary
+            # Extract and append the summary to the result string
             summary = response['choices'][0]['message']['content']
-            dashboard_summary_by_page[page_name] = summary
-            
+            result_summary += f"### {page_name}\n{summary}\n\n"
+
         except Exception as e:
             return f"An error occurred: {str(e)}"
 
-    return dashboard_summary_by_page
+    return result_summary
 
-def summarize_dataset(extracted_dataset, target_platform):
-    tables = extracted_dataset['tables']
-    measures = extracted_dataset['measures']
-
+def summarize_table_source(table_content, target_platform):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
-            "1. List all table names in the dataset along with their sources based on the TABLE Content.\n"
-            "2. Identify all measures in the MEASURE Content and list their formulas in code format.\n"
-            "It is critical that no information is omitted.\n"
-            "Provide a clear explanation of the KPIs, ensuring that every measure and its formula present in the MEASURE Content is included.\n"
-            f"Ensure the summary is formatted appropriately for {target_platform}.\n"
+            "Extract and list all table names and their corresponding sources from the provided TABLE Content.\n"
+            "- The table names are located in the 'name' key of each object under the 'table_partitions' key.\n"
+            "- For each table, extract its 'source' from the 'source' key of the same object.\n"
+            "- If the 'source' key includes parameters (e.g., 'server_id', 'database_id', 'storage_id'), match each parameter name with the 'name' key in the 'expressions' section of the TABLE Content to identify the parameter's value.\n"
+            "- For parameters with dynamic or concatenated values, describe clearly how these values are combined.\n"
+            "- Ensure that all tables listed in the TABLE Content are included in the summary, with none omitted.\n"
+            "- Format the summary appropriately for {target_platform}, ensuring it is clear, concise, and well-organized.\n\n"
             "### TABLE Content\n"
-            f"{tables}\n\n"
-            "### MEASURE Content\n"
-            f"{measures}\n"
+            f"{table_content}\n\n"
         )
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
             model = "gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are an assistant that extract the key information from powerBI pbip reports' JSON files."},
+                {"role": "system", "content": "You are an assistant that specializes in extracting powerBI related information from json file."},
                 {"role": "user", "content": prompt}
             ]
         )
@@ -112,59 +135,81 @@ def summarize_dataset(extracted_dataset, target_platform):
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
-
-# def summarize_in_target_platform(summary_dashboard, summary_dataset, target_platform):
-#     try:
-#         # Combine the user prompt with the JSON content
-#         combined_prompt = (
-#             f"Transform the content below into the format of {target_platform}."
-#             "Ensure that all information from both the Dashboard and Dataset sections is included comprehensively, without omitting any details.\n\n"
-#             "### Dashboard Information\n"
-#             f"{summary_dashboard}\n\n"
-#             "### Dataset Information\n"
-#             f"{summary_dataset}\n"
-#         )
-
-#         # Call OpenAI API
-#         response = openai.ChatCompletion.create(
-#             # Use the latest model for better comprehension
-#             model="gpt-4",
-#             messages=[
-#                 {
-#                     "role": "system",
-#                     "content": (
-#                        "You are an assistant specializing in combiningng documents and put it to the target platform."
-#                     ),
-#                 },
-#                 {"role": "user", "content": combined_prompt},
-#             ]
-#         )
-
-#         # Extract and return the summary
-#         summary = response['choices'][0]['message']['content']
-#         return summary
-
-#     except Exception as e:
-#         return f"An error occurred: {str(e)}"
     
-def summarize_dashboard(text, target_platform):
+def create_measures_overview_table(measures_content, target_platform):
     try:
         # Combine the user prompt with the JSON content
-        combined_prompt = (
-            f"Write a summary of a Power BI dashboard based on the provided content organized by page. "
-            f"Ensure the summary is formatted appropriately for {target_platform}.\n\n"
-            f"### Content Summary by Page:\n"
-            f"{summary_dashboard}"
+        prompt = (
+            "**Create a table** with the following columns:\n"
+            "- 'Name of the Measure'\n"
+            "- 'Measure Formula'\n"
+            "- 'Description'\n\n"
+            "### Instructions\n"
+            "1. The formulas for each measure can be found under the 'expression' key in the MEASURES content.\n"
+            "2. For the 'Measure Formula' column, extract the exact formula from the 'expression' key without modifying or omitting anything.\n"
+            "3. Ensure all measures presented in the MEASURES content are included in the 'Name of the Measure' column.\n"
+            "4. Based on your understanding of the measure, write a short explanation of the measure's purpose in the 'Description' column\n"
+            "5. For the output, **only return the table** without any additional text.\n"
+            "6. Ensure the table is formatted appropriately for {target_platform}\n\n"
+            "### Example\n"
+            "If a measure is calculated as follows:\n"
+            "`Whitelisted Clients = CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\")`\n\n"
+            "The output of the table should look like this:\n\n"
+            "| Name of the Measure   | Measure Formula                                                | Description                               |\n"
+            "|-----------------------|-------------------------------------------------------------|-------------------------------------------|\n"
+            "| Whitelisted Clients   | CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\") | The measure calculates the total number of whitelisted clients |\n\n"
+            "### MEASURES\n"
+            f"{measures_content}\n\n"
+            "### Output\n"
+            "Generate the table in the format shown above."
         )
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                },
-                {"role": "user", "content": combined_prompt},
+            model = "gpt-4",
+            messages = [
+                {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        # Extract and return the summary
+        summary = response['choices'][0]['message']['content']
+        return summary
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+    
+def create_measures_by_column_table(measures_content, target_platform):
+    try:
+        # Combine the user prompt with the JSON content
+        prompt = (
+            "**Create a table** with three columns: 'Name of the Measure', 'Source Table', and 'Used Columns', based on the measures provided below.\n\n"
+            "### Example\n"
+            "If a measure is calculated as follows:\n"
+            "`Whitelisted Clients = CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\")`\n\n"
+            "The output of the second table should look like this:\n\n"
+            "| Name of the Measure   | Source Table | Used Columns       |\n"
+            "|-----------------------|--------------|--------------------|\n"
+            "| Whitelisted Clients   | dim_client   | pky_client         |\n"
+            "| Whitelisted Clients   | dim_client   | is_whitelisted     |\n\n"
+            "### Instructions\n"
+            "- Each row in the table should correspond to one column from the 'Used Columns' of a measure.\n"
+            "- If a measure uses multiple columns, create separate rows for each column, repeating the measure's name and source table.\n"
+            "- For the output, **only return the table** without any additional text.\n"
+            "- Ensure the table is formatted appropriately for {target_platform}.\n\n"
+            "### MEASURES\n"
+            f"{measures_content}\n\n"
+            "### Output\n"
+            "Generate the table in the format shown above."
+        )
+
+        # Call OpenAI API
+        response = openai.ChatCompletion.create(
+            model = "gpt-4",
+            messages = [
+                {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
+                {"role": "user", "content": prompt}
             ]
         )
 
