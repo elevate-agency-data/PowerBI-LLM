@@ -1,0 +1,51 @@
+{
+  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU08\",\"version\":\"5.57\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU08",
+            "path": "BaseThemes/CY24SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "330aa7a94eee278efff3",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3aed92926512263693cb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":102.12765957446808,\"y\":176.048632218845,\"z\":0,\"width\":557.3252279635259,\"height\":280.1215805471125,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Airbnb_Open_Data.neighbourhood group\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(Airbnb_Open_Data.id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"neighbourhood group\"},\"Name\":\"Airbnb_Open_Data.neighbourhood group\",\"NativeReferenceName\":\"Nombre de neighbourhood group\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"id\"}},\"Function\":2},\"Name\":\"Sum(Airbnb_Open_Data.id)\",\"NativeReferenceName\":\"Nombre de id\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"id\"}},\"Function\":2}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[{\"name\":\"8d48a79462e6c0178907\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Airbnb_Open_Data\"}},\"Property\":\"neighbourhood group\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"neighbourhood group\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"''\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 280.12,
+          "width": 557.33,
+          "x": 102.13,
+          "y": 176.05,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"70502086d1c9332f589e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":717.8115501519757,\"y\":156.59574468085108,\"z\":1,\"width\":344.3161094224924,\"height\":159.51367781155017,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(Airbnb_Open_Data.number of reviews)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Airbnb_Open_Data\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"number of reviews\"}},\"Function\":0},\"Name\":\"Sum(Airbnb_Open_Data.number of reviews)\",\"NativeReferenceName\":\"Somme de number of reviews\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"number of reviews\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 159.51,
+          "width": 344.32,
+          "x": 717.81,
+          "y": 156.60,
+          "z": 1.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

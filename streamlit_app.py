@@ -1,102 +1,32 @@
+
+from functions.openai_connector import *
+from functions.integrate_json_back import *
+from functions.main_function import *
+from functions.extract_original_json import *
+from functions.add_read_me import *
+from functions.upload_powerbi_files import *
 import streamlit as st
 import openai
 import json
+# from dotenv import find_dotenv, load_dotenv
 import zipfile
 import io
 import os
 
-st.title('🦜🔗 PBIP Folder Modifier')
+# load_dotenv(find_dotenv())
 
+st.title('🦜🔗 PBIP Folder Modifier')
 # Sidebar for API key input
 openai_api_key = st.sidebar.text_input('OpenAI API Key', type="password")
+openai.api_key = openai_api_key
 
 # Initialize a variable to store the modified JSON content
 modified_json = None
-
-# Function to handle the PBIP folder and extract report.json
-def extract_report_json(zip_file):
-    # Get the base name of the uploaded zip file, excluding the extension
-    inner_folder_name = os.path.splitext(zip_file.name)[0]  # Get the base name without .zip
-    # Extract the zip file
-    extract_path = '/mnt/data/pbip_extracted/'
-    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-        zip_ref.extractall(extract_path)
-    
-    inner_folder_path = os.path.join(extract_path, inner_folder_name)
-
-    # Print the contents of the inner folder
-    inner_folder_contents = os.listdir(inner_folder_path)
-
-    # Look for the folder that ends with '.Report'
-    report_folder_path = None
-    for folder in inner_folder_contents:
-        if folder.endswith('.Report') and os.path.isdir(os.path.join(inner_folder_path, folder)):
-            report_folder_path = os.path.join(inner_folder_path, folder)
-            break
-
-    report_json_path = os.path.join(report_folder_path, 'report.json')
-
-    # Read and return the content of the report.json file
-    with open(report_json_path, 'r', encoding='utf-8') as file:
-        report_json_content = file.read()
-    
-    return report_json_content, inner_folder_path, report_json_path
-
-# Function to modify the report.json file based on user input
-def modify_report_json(input_text, report_json_content):
-    # Set up OpenAI API key
-    openai.api_key = openai_api_key
-    
-    # Create a prompt for the model
-    messages = [
-        {"role": "system", "content": "You are an assistant that helps modify PowerBI JSON files."},
-        {"role": "user", "content": f"Here is a JSON file related to a PowerBI report:\n{report_json_content}\n\nI am going to provide you with a user request that includes some changes they would like to make to the PowerBI report. You need to make the corresponding modifications to the JSON file and send me the modified JSON file. You should only make modifications based on the user request and not invent any other requests.\n\nHere is the user request: {input_text}"}
-    ]
-    
-    # Call the chat-based fine-tuned model
-    response = openai.ChatCompletion.create(
-        model="ft:gpt-3.5-turbo-0125:personal::AG3HbjhD",  # Fine-tuned model
-        messages=messages,
-        max_tokens=1500  # Adjust token limit if needed
-    )
-    
-    modified_json_content = response['choices'][0]['message']['content']
-    
-    try:
-        # Try to parse the response as JSON
-        modified_json_data = json.loads(modified_json_content)
-    except json.JSONDecodeError:
-        st.error("The modified content is not valid JSON. Please refine the request or check the output.")
-        return None
-    
-    # Return the modified JSON content
-    return json.dumps(modified_json_data, indent=2)
-
-# Function to write the modified JSON back to the original folder structure and re-zip the file
-def write_modified_zip(modified_json, report_json_path, folder_path):
-    # Write the modified JSON content back to report.json
-    with open(report_json_path, 'w', encoding='utf-8') as file:
-        file.write(modified_json)
-
-    # Create a new zip file with the modified content
-    zip_buffer = io.BytesIO()
-    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as new_zip:
-        # Walk the folder and add everything back to the zip
-        for root, dirs, files in os.walk(folder_path):
-            for file in files:
-                file_path = os.path.join(root, file)
-                arcname = os.path.relpath(file_path, folder_path)
-                new_zip.write(file_path, arcname=arcname)
-
-    zip_buffer.seek(0)  # Move to the beginning of the file for download
-    return zip_buffer
-
 # Form for user input and file upload
 with st.form('pbip_form'):
     text = st.text_area('Enter your request:', 'I want to add a filter to each page of the PowerBI report.')
     zip_file = st.file_uploader('Upload the PBIP folder (as a .zip file)', type=['zip'])
     submitted = st.form_submit_button('Submit')
-
 # Process the form submission
 if submitted:
     if not openai_api_key.startswith('sk-'):
@@ -104,21 +34,81 @@ if submitted:
     elif zip_file is None:
         st.warning('Please upload the PBIP folder as a .zip file!', icon='⚠')
     else:
-        # Extract report.json from the uploaded PBIP folder
-        report_json_content, folder_path, report_json_path = extract_report_json(zip_file)
-        
-        if report_json_content:
+        # Extract report.json and model.bim from the uploaded PBIP folder
+        report_json_content, model_bim_content, inner_folder_path, report_json_path, model_bim_path = extract_report_and_model(zip_file)
+        output = generate_completion(text)
+        print(output.get("function_call", {}).get("name"))
+        if output.get("function_call", {}).get("name") == "add_read_me":
+            # If "add_read_me" is called, extract the relevant KPI part
+            # kpis = extract_relevant_elements_dashboard_summary(report_json_content)
+            kpis = extract_dashboard_by_page(report_json_content)
+            
+            # Run the function call with the extracted KPI data
+            add_read_me_output = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": f"{kpis}"
+                    }
+                ],
+                functions=function_descriptions,
+                function_call={"name": "add_read_me", "arguments": json.dumps({"kpis": kpis})}
+            )
+            # Extract the arguments string and parse it into a dictionary
+            arguments = prepare_arguments(kpis, function_descriptions)
+            arguments_dict = json.loads(arguments)
+            updated_report = add_read_me(**arguments_dict)
+            report_json_content['sections'].insert(0, updated_report["sections"][0])
+            modified_json = json.dumps(report_json_content, indent=4)
+        elif output.get("function_call", {}).get("name") == "summary_in_confluence":
+            target_platform = "confluence"
+            extracted_report = extract_dashboard_by_page(report_json_content)
+            extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
+            extracted_measures = extract_measures_name_and_expression(extracted_dataset['measures'])
+            summary_dashboard, overview_all_pages = summarize_dashboard_by_page(extracted_report, target_platform)
+            overall_summary = global_summary_dashboard(overview_all_pages, target_platform)
+            summary_table = summarize_table_source(extracted_dataset['tables'], target_platform)
+            summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform)
+            summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)          
+            text_list = [
+                "h1. Dashboard Overview",
+                f"{overall_summary}\n\n",
+                "h1. Detailed Information By Page",
+                f"{summary_dashboard}\n\n",
+                "h1. Dataset Key Information",
+                "h2. Table Source",
+                f"{summary_table}\n\n"
+                "h2. Measures Summary",
+                f"{summary_measure_overview}\n\n"
+                "h2. Detailed Measure Information By Column",
+                f"{summary_measure_detailed}\n\n"
+            ]
+            # Combine all summaries into a single file content
+            file_content = "\n\n".join(text_list)
+            # Convert the content to bytes
+            file_bytes = file_content.encode('utf-8')
+            # Create a downloadable link for the text file
+            st.download_button(
+                label="Download Generated Documentation",
+                data=file_bytes,
+                file_name="Documentation.txt",
+                mime="text/plain"
+            )
+            # st.write(overview_all_pages)
+        else:
             # Call the function to modify the JSON file based on user input
+            report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string
             modified_json = modify_report_json(text, report_json_content)
-            if modified_json:
-                # Write back the modified report.json and create the zip file
-                modified_zip = write_modified_zip(modified_json, report_json_path, folder_path)
-                st.success('PBIP folder modified successfully!')
-                
-                # Provide a download button for the modified zip file
-                st.download_button(
-                    label='Download Modified PBIP Folder',
-                    data=modified_zip,
-                    file_name='modified_pbip.zip',
-                    mime='application/zip'
-                )
+        if modified_json:
+            # Write back the modified report.json and create the zip file
+            modified_zip = write_modified_zip(modified_json, report_json_path, folder_path)
+            st.success('PBIP folder modified successfully!')
+            
+            # Provide a download button for the modified zip file
+            st.download_button(
+                label='Download Modified PBIP Folder',
+                data=modified_zip,
+                file_name='modified_pbip.zip',
+                mime='application/zip'
+            )

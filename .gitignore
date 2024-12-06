@@ -1,0 +1,4 @@
+# DotEnv configuration
+.env
+# openai key
+openaiapikey.txt
