@@ -18,11 +18,10 @@ def save_file(filepath, content):
         outfile.write(content)
 
 # Set the OpenAI API keys by reading them from files
-api_key = OPENAI_KEY
 openai.api_key = api_key
 
 # Create file
-with open("C:/Users/Elevate/Documents/PowerBI_LLM/PowerBI-LLM/bdd/bdd_jsons_train_unif_filtres.jsonl", "rb") as file:
+with open("C:/Users/Elevate/OneDrive - Francetelevisions/Documents/PowerBI_LLM/PowerBI-LLM/bdd/bdd_jsons_train_unif_filtres.jsonl", "rb") as file:
     response = openai.File.create(
         file=file,
         purpose='fine-tune'
@@ -169,23 +168,22 @@ status = check_fine_tune_status(job_id)
 print(status)
 
 fine_tuned_model = status['fine_tuned_model']
-fine_tuned_model = "ft:gpt-3.5-turbo-0125:personal::AWNyxMxO"
-json_input_path = "jsons_test/ftv_modif.json"
-instructions = "Uniformise le format de tous les filtres de la page Vision hebdo en te basant sur le format du filtre Categorie"
-json_input_path = "jsons_test/users_app.json"
-instructions = "Uniformise le format de tous les filtres en te basant sur le format du filtre Operating System"
-
+fine_tuned_model = "ft:gpt-3.5-turbo-0125:personal::AcVIeavl"
+json_input_path = "jsons_test/perf_sliders_ftv.json"
+instructions = "Uniformise le format des filtres Page et Slider en te basant sur le format du filtre Type sur la page 'Performance du jour'"
+json_input_path = "jsons_test/loreal_lbds_reduit.json"
+instructions = "Uniformise le format de tous les filtres de la page Products Performance en te basant sur le format du filtre Range"
 
 def get_answer(json_input_path, fine_tuned_model, prompt, instructions) :
 
     json_input = extract_relevant_elements(json_input_path)
 
     response = openai.ChatCompletion.create(
-    model=fine_tuned_model,
-    messages=[
-        {"role": "system", "content": f"{prompt}"},
-        {"role": "user", "content": f"{instructions} en modifiant les extraits du fichier JSON du rapport power BI fourni. Extraits du fichier JSON ={json_input}"}
-    ]
+        model=fine_tuned_model,
+        messages=[
+            {"role": "system", "content": f"{prompt}"},
+            {"role": "user", "content": f"{instructions} en modifiant les extraits du fichier JSON du rapport power BI fourni. Extraits du fichier JSON ={json_input}"}
+        ]
     )
     json_reponse = response['choices'][0]['message']['content']
     json_reponse_clean = json.dumps(ast.literal_eval(json_reponse), ensure_ascii=False)
@@ -195,10 +193,56 @@ def get_answer(json_input_path, fine_tuned_model, prompt, instructions) :
 
 reponse = get_answer(json_input_path, fine_tuned_model, prompt, instructions)
 
-original_json_path = "jsons_test/users_app.json"
+original_json_path = "jsons_test/perf_sliders_ftv_reduit.json"
 json_output_path = "test.json"
 modified_parts = json.loads(reponse)
 keys_to_update = ['visualType', 'prototypeQuery', 'objects', 'vcObjects']
+
+section = modified_parts.get('sections', [])[0]
+original_section = updated_json.get('sections', [])[0]
+modified_container = modified_visual_containers[0]
+original_container = original_visual_containers[0]
+
+def update_json_bis(original_json_path, modified_parts, json_output_path, keys_to_update):
+    with open(original_json_path, 'r', encoding="utf-8") as file:
+        updated_json = json.load(file)
+
+    # Parcourir les sections modifiées
+    for section in modified_parts.get('sections', []):
+        modified_visual_containers = section.get('visualContainers', [])
+
+        # Rechercher la section correspondante dans l'original
+        for original_section in updated_json.get('sections', []):
+            if section.get('displayName') == original_section.get('displayName'):
+                original_visual_containers = original_section.get('visualContainers', [])
+
+                # Parcourir les visualContainers modifiés
+                for modified_container in modified_visual_containers:
+                    #modified_name = modified_container.get('name')
+                    modified_name = modified_container["prototypeQuery"]["Select"][0]["Name"]
+
+                    # Mettre à jour le conteneur correspondant dans l'original
+                    for original_container in original_visual_containers:
+                        original_config = json.loads(original_container.get('config', '{}'))
+                        #original_name = original_config.get('name')
+                        try :
+                            original_name = original_config["singleVisual"]["prototypeQuery"]["Select"][0]["Name"]
+                        except :
+                            pass
+                        if original_name == modified_name:
+                            # Mettre à jour uniquement les parties spécifiées
+                            for key in keys_to_update :
+                                original_config['singleVisual'][key] = modified_container[key]
+                            # Réécrire la configuration mise à jour
+                            original_container['config'] = json.dumps(original_config, ensure_ascii=False)
+
+    # Sauvegarder les modifications dans un nouveau fichier JSON
+    with open(json_output_path, 'w', encoding='utf-8') as fichier_sortie:
+        json.dump(updated_json, fichier_sortie, ensure_ascii=False, indent=4)
+
+    print(f"Modifications réinsérées dans le fichier {json_output_path}")
+
+
 
 def update_json(original_json_path, modified_parts, json_output_path, keys_to_update):
     with open(original_json_path, 'r', encoding="utf-8") as file:
@@ -236,7 +280,7 @@ def update_json(original_json_path, modified_parts, json_output_path, keys_to_up
 
     print(f"Modifications réinsérées dans le fichier {json_output_path}")
 
-update_json(original_json_path, modified_parts, json_output_path, keys_to_update)
+update_json_bis(original_json_path, modified_parts, json_output_path, keys_to_update)
 
 # section = modified_parts.get('sections', [])[0]
 # original_section = updated_json.get('sections', [])[0]
