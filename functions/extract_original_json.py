@@ -127,3 +127,36 @@ def extract_dashboard_by_page(json_data):
 
     return sections_list
 
+def extract_relevant_elements_slicer_unif(json_data):
+    extracted_data = {
+        #"config": json_data.get("config", {}),
+        "sections": []
+    }
+    for section in json_data.get("sections", []):
+        # Store displayName to know the section/page name
+        section_summary = {
+            "displayName": section.get("displayName", ""),
+            "visualContainers": []
+        }
+        # Process each visual container in the section
+        for visual in section.get("visualContainers", []):
+            # Parse config if it's a string
+            config_data = visual.get("config", {})
+            if isinstance(config_data, str):
+                config_data = json.loads(config_data)
+            # Extract relevant visual properties
+            visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+            if visual_type in ["slicer", "advancedSlicerVisual"]:
+                visual_summary = {
+                    "name": config_data.get("name", ""),
+                    "visualType": visual_type,
+                    "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
+                    "objects": config_data.get("singleVisual", {}).get("objects", {}),
+                    "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
+                }
+                # Add visual summary if it has useful data
+                section_summary["visualContainers"].append(visual_summary)
+        # Add section summary if it has relevant visual containers
+        if section_summary["visualContainers"]:
+            extracted_data["sections"].append(section_summary)
+    return extracted_data

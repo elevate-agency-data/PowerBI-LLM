@@ -98,11 +98,14 @@ if submitted:
             # st.write(overview_all_pages)
         else:
             # Call the function to modify the JSON file based on user input
-            report_json_content = json.dumps(report_json_content, indent=4) # Convert the Python dictionary back to a JSON string
-            modified_json = modify_report_json(text, report_json_content)
+            extracted_report = extract_relevant_elements_slicer_unif(report_json_content)
+            model_response = unif_slicers(extracted_report, text)
+            modified_parts = json.loads(model_response)
+            updated_json = update_json_unif_slicers(report_json_content, modified_parts)
+            modified_json = json.dumps(updated_json, ensure_ascii=False, indent=4) # Convert the Python dictionary back to a JSON string
         if modified_json:
             # Write back the modified report.json and create the zip file
-            modified_zip = write_modified_zip(modified_json, report_json_path, folder_path)
+            modified_zip = write_modified_zip(modified_json, report_json_path, inner_folder_path)
             st.success('PBIP folder modified successfully!')
             
             # Provide a download button for the modified zip file
