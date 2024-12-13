@@ -2,6 +2,7 @@ from streamlit_app import *
 import streamlit as st
 import openai
 import json
+import ast
 
 # Function to modify the report.json file based on user input
 def modify_report_json(input_text, report_json_content):
@@ -249,4 +250,59 @@ def create_measures_by_column_table(measures_content, target_platform):
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
+    
+
+def unif_slicers(extracted_report, instructions) :
+
+    prompt = """Tu es un data analyst expert en Power BI qui a l'habitude de travailler avec des rapports Power BI et leur fichier JSON. 
+    Je vais te fournir une liste de morceaux de fichiers jsons qui decrivent la configuration des filtres dans un dashboard power bi. 
+    Ton role est de modifier les arguments dans les morceaux de fichiers jsons du rapport fourni selon les instructions fournies par l'utilisateur.
+    L'objectif final est d'uniformiser les filtres du rapport en se basant sur le format du filtre precise par l'utilisateur.
+    Tu ne dois absolument pas faire d'autres modifications que celles precisees par l'utilisateur.
+    Si tu ne sais pas comment faire les bonnes modifications, reponds 'Modification impossible'""".replace('\n', '')
+
+    response = openai.ChatCompletion.create(
+    model="ft:gpt-3.5-turbo-0125:personal::AWNyxMxO",
+    messages=[
+        {"role": "system", "content": f"{prompt}"},
+        {"role": "user", "content": f"{instructions} en modifiant les extraits du fichier JSON du rapport power BI fourni. Extraits du fichier JSON ={extracted_report}"}
+    ]
+    )
+    json_reponse = response['choices'][0]['message']['content']
+    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse), ensure_ascii=False)
+
+    return json_reponse_clean
+
+
+def update_json_unif_slicers(json_to_update, modified_parts):
+
+    keys_to_update = ['visualType', 'prototypeQuery', 'objects', 'vcObjects']
+
+    # Parcourir les sections modifiées
+    for section in modified_parts.get('sections', []):
+        modified_visual_containers = section.get('visualContainers', [])
+
+        # Rechercher la section correspondante dans l'original
+        for original_section in json_to_update.get('sections', []):
+            if section.get('displayName') == original_section.get('displayName'):
+                original_visual_containers = original_section.get('visualContainers', [])
+
+                # Parcourir les visualContainers modifiés
+                for modified_container in modified_visual_containers:
+                    #modified_name = modified_container.get('name')
+                    modified_name = modified_container["prototypeQuery"]["Select"][0]["NativeReferenceName"]
+
+                    # Mettre à jour le conteneur correspondant dans l'original
+                    for original_container in original_visual_containers:
+                        original_config = json.loads(original_container.get('config', '{}'))
+                        #original_name = original_config.get('name')
+                        original_name = original_config["singleVisual"]["prototypeQuery"]["Select"][0]["NativeReferenceName"]
+                        if original_name == modified_name:
+                            # Mettre à jour uniquement les parties spécifiées
+                            for key in keys_to_update :
+                                original_config['singleVisual'][key] = modified_container[key]
+                            # Réécrire la configuration mise à jour
+                            original_container['config'] = json.dumps(original_config, ensure_ascii=False)
+
+    return json_to_update
     

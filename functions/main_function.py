@@ -55,7 +55,12 @@ function_descriptions = [
         "name": "summary_in_confluence",
         "description": "Summarize key details and metrics in Confluence.",
         "parameters": {}
-    }
+    },
+    {
+        "name": "slicer_uniformisation_in_report",
+        "description": "Modify the JSON file of the report to uniformize the slicers format based on the user's instructions",
+        "parameters": {}
+    },
 ]
 
 def generate_completion(user_input):
