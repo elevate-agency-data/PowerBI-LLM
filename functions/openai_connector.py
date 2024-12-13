@@ -4,39 +4,11 @@ import openai
 import json
 import ast
 
-# Function to modify the report.json file based on user input
-def modify_report_json(input_text, report_json_content):
-    # Create a prompt for the model
-    messages = [
-        {"role": "system", "content": "You are an assistant that helps modify PowerBI JSON files."},
-        {"role": "user", "content": f"Here is a JSON file related to a PowerBI report:\n{report_json_content}\n\nI am going to provide you with a user request that includes some changes they would like to make to the PowerBI report. You need to make the corresponding modifications to the JSON file and send me the modified JSON file. You should only make modifications based on the user request and not invent any other requests.\n\nHere is the user request: {input_text}"}
-    ]
-    
-    # Call the chat-based fine-tuned model
-    response = openai.ChatCompletion.create(
-        model="ft:gpt-3.5-turbo-0125:personal::AG3HbjhD",  # Fine-tuned model
-        messages=messages,
-        max_tokens=1500  # Adjust token limit if needed
-    )
-    
-    modified_json_content = response['choices'][0]['message']['content']
-    modified_json_content
-    try:
-        # Try to parse the response as JSON
-        modified_json_data = json.loads(modified_json_content)
-        modified_json_data
-    except json.JSONDecodeError:
-        st.error("The modified content is not valid JSON. Please refine the request or check the output.")
-        return None
-    
-    # Return the modified JSON content
-    return json.dumps(modified_json_data, indent=2)
-
-def global_summary_dashboard(extracted_json_by_page, target_platform):
+def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence", language="English"):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
-            "Create a concise and professional summary of a Power BI report in approximately 150 words based on the provided Dashboard Information:\n\n"
+            f"Create a concise and professional summary of a Power BI report in approximately 150 words in {language} based on the provided Dashboard Information:\n\n"
             "**Dashboard Information:**\n"
             f"{extracted_json_by_page}\n\n"
             "### Instructions:\n"
@@ -65,7 +37,7 @@ def global_summary_dashboard(extracted_json_by_page, target_platform):
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
+def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Confluence", language="English"):
     result_summary = ""
     page_overview_dict = {}  # Dictionary to store Page Overview content by page_name
 
@@ -89,7 +61,7 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
                 f"### Provided JSON\n{extracted_json_of_the_page}\n\n"
                 "### Important Notes\n"
                 "- If certain information is not available in the JSON file, omit it without inventing data.\n"
-                f"- Ensure the retrieved information is structured and formatted appropriately for {target_platform}.\n\n"
+                f"- Ensure the retrieved information is structured in {language} and formatted appropriately for {target_platform}.\n\n"
                 "### Expected Output Format\n"
                 "- Use headings and bullet points to organize the output.\n"
                 "- Ensure clear and concise explanations for each section."
@@ -110,10 +82,9 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
 
             # Use a structured approach to extract "Page Overview"
             structured_prompt = (
-                "Extract only the **Page Overview** from the following content and return it in plain text format:\n\n"
+                "Extract only the **Page Overview** and **Visualizations** from the following content and return it in plain text format:\n\n"
+                "- For the content under the Visualizations section, ignore slicers and focus only on visuals such as charts and tables that provide meaningful insights into the dashboard.\n\n"
                 f"{summary}\n\n"
-                "### Important Notes\n"
-                "- If 'Page Overview' is not found, return: 'No Page Overview available.'"
             )
 
             # Extract only the Page Overview using another API call
@@ -135,11 +106,11 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform):
     # Return both result_summary and page_overview_dict
     return result_summary, page_overview_dict
 
-def summarize_table_source(table_content, target_platform):
+def summarize_table_source(table_content, target_platform="Confluence", language="English"):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
-            "Extract and list all table names and their corresponding sources from the provided TABLE Content.\n"
+            f"Extract and list all table names and their corresponding sources from the provided TABLE Content in {language}.\n"
             "- The table names are located in the 'name' key of each object under the 'table_partitions' key.\n"
             "- For each table, extract its 'source' from the 'source' key of the same object.\n"
             "- If the 'source' key includes parameters (e.g., 'server_id', 'database_id', 'storage_id'), match each parameter name with the 'name' key in the 'expressions' section of the TABLE Content to identify the parameter's value.\n"
@@ -167,7 +138,7 @@ def summarize_table_source(table_content, target_platform):
     except Exception as e:
         return f"An error occurred: {str(e)}"
     
-def create_measures_overview_table(measures_content, target_platform):
+def create_measures_overview_table(measures_content, target_platform="Confluence"):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
@@ -211,7 +182,7 @@ def create_measures_overview_table(measures_content, target_platform):
     except Exception as e:
         return f"An error occurred: {str(e)}"
     
-def create_measures_by_column_table(measures_content, target_platform):
+def create_measures_by_column_table(measures_content, target_platform="Confluence"):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
@@ -225,8 +196,7 @@ def create_measures_by_column_table(measures_content, target_platform):
             "| Whitelisted Clients   | dim_client   | pky_client         |\n"
             "| Whitelisted Clients   | dim_client   | is_whitelisted     |\n\n"
             "### Instructions\n"
-            "- Each row in the table should correspond to one column from the 'Used Columns' of a measure.\n"
-            "- If a measure uses multiple columns, create separate rows for each column, repeating the measure's name and source table.\n"
+            "- Each row in the table should correspond to one column from the 'Used Columns' of a measure. If a measure uses multiple columns, create separate rows for each column, repeating the measure's name and source table.\n"
             "- For the output, **only return the table** without any additional text.\n"
             f"- Ensure the table is formatted appropriately for {target_platform}.\n\n"
             "### MEASURES\n"
@@ -250,7 +220,6 @@ def create_measures_by_column_table(measures_content, target_platform):
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
-    
 
 def unif_slicers(extracted_report, instructions) :
 
