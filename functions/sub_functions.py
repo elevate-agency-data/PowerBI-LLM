@@ -1,8 +1,6 @@
 import json
 import openai
 
-template_path = "templates/read_me_template.json"
-
 def prepare_arguments_add_read_me(kpis, function_descriptions):
     # Run the function call with the extracted KPI data
     add_read_me_output = openai.ChatCompletion.create(

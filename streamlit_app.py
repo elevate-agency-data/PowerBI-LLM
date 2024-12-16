@@ -42,18 +42,6 @@ if submitted:
             extracted_report = extract_dashboard_by_page(report_json_content)
             summary_dashboard, overview_all_pages = summarize_dashboard_by_page(extracted_report) 
             # st.write(overview_all_pages)          
-            # Run the function call with the extracted KPI data
-            add_read_me_output = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {
-                        "role": "user",
-                        "content": f"{overview_all_pages}"
-                    }
-                ],
-                functions=function_descriptions,
-                function_call={"name": "add_read_me", "arguments": json.dumps({"kpis": overview_all_pages})}
-            )
             # Extract the arguments string and parse it into a dictionary
             arguments = prepare_arguments_add_read_me(overview_all_pages, function_descriptions)
             arguments_dict = json.loads(arguments)
