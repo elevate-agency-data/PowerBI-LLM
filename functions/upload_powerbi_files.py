@@ -5,8 +5,6 @@ import json
 
 # Function to handle the PBIP folder and extract report.json and model.bim
 def extract_report_and_model(zip_file):
-    # Get the base name of the uploaded zip file, excluding the extension
-    inner_folder_name = os.path.splitext(zip_file.name)[0] 
     # Extract the zip file
     extract_path = '/mnt/data/pbip_extracted/'
 
