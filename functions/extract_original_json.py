@@ -7,86 +7,125 @@ def extract_relevant_elements_dashboard_summary(json_data):
     }
 
     for section in json_data.get("sections", []):
-        # Store displayName to know the section/page name
-        section_summary = {
-            "displayName": section.get("displayName", ""),
-            "visualContainers": []
-        }
-
-        # Process each visual container in the section
-        for visual in section.get("visualContainers", []):
-            # Parse config if it's a string
-            config_data = visual.get("config", {})
-            if isinstance(config_data, str):
-                config_data = json.loads(config_data)
-
-            # Extract relevant visual properties
-            visual_summary = {
-                "visualType": config_data.get("singleVisual", {}).get("visualType", ""),
-                "projections": config_data.get("singleVisual", {}).get("projections", []),
-                "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
-                "columnProperties": config_data.get("singleVisual", {}).get("columnProperties", {}),
-                "title": config_data.get("vcObjects", {}).get("title", []),
-                "filters": visual.get("filters", [])
+        # only include the pages which are not hidden in the dashabord
+        page_config = json.loads(section['config'])
+        if page_config.get('visibility')!=1:
+            # Store displayName to know the section/page name
+            section_summary = {
+                "displayName": section.get("displayName", ""),
+                "filters": section.get("filters", ""),
+                "ordinal": section.get("ordinal", ""),
+                "visualContainers": []
             }
             
-            # Add visual summary if it has useful data
-            if any(visual_summary.values()):
-                section_summary["visualContainers"].append(visual_summary)
+            # Process each visual container in the section
+            for visual in section.get("visualContainers", []):
+                # Parse config if it's a string
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
 
-        # Add section summary if it has relevant visual containers
-        if section_summary["visualContainers"]:
-            extracted_data["sections"].append(section_summary)
+                    visual_type_to_be_excluded = ['actionButton', 'image', 'shape']
+                    if config_data.get("singleVisual", {}).get("visualType", "") not in visual_type_to_be_excluded:
+                        # Extract relevant visual properties
+                        visual_summary = {
+                            "visualType": config_data.get("singleVisual", {}).get("visualType", ""),
+                            "projections": config_data.get("singleVisual", {}).get("projections", []),
+                            "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
+                            "title": config_data.get("vcObjects", {}).get("title", []),
+                            "filters": visual.get("filters", [])
+                        }
+                        
+                        # Add visual summary if it has useful data
+                        if any(visual_summary.values()):
+                            section_summary["visualContainers"].append(visual_summary)
+
+    extracted_data["sections"].append(section_summary)
 
     return extracted_data
 
-def extract_relevant_parts_dataset(data):
-    # Initialize a dictionary to hold extracted information
-    relevant_parts = {
-        "DataSources": [],
-        "DAXCalculations": [],
-        "Relationships": []
+def extract_relevant_parts_dataset(json_dataset):
+    model = json_dataset.get('model', {})
+    # Initialize the extracted dataset
+    extracted_json_dataset = {       
+        "tables": {
+            "expressions": model.get("expressions", []),
+            "table_partitions": []
+        },
+        "measures": []
     }
 
-    # Extract data sources
-    if "expressions" in data.get("model", {}):
-        for expression in data["model"]["expressions"]:
-            relevant_parts["DataSources"].append({
-                "Name": expression.get("name"),
-                "Expression": expression.get("expression"),
-                "QueryGroup": expression.get("queryGroup")
+    # Define the keywords to exclude
+    excluded_keywords = ["LocalDateTable", "DateTableTemplate"]
+
+    # Filter tables to exclude ones containing the excluded keywords
+    for table in model.get("tables", []):
+        if not any(keyword in table.get('name', '') for keyword in excluded_keywords):
+            # Add table partitions if they exist
+            partitions = table.get('partitions', [])
+            if partitions:
+                extracted_json_dataset["tables"]["table_partitions"].extend(partitions)
+
+            # Add measures if they exist
+            if "measures" in table:
+                print(f"The table '{table['name']}' contains measures.")
+                extracted_json_dataset["measures"].extend(table["measures"])
+    
+    return extracted_json_dataset
+
+def extract_measures_name_and_expression(elements):
+    result = []
+    for element in elements:
+        name = element.get('name')
+        # Combine the non-empty parts of the 'expression' list into a single string
+        expression = " ".join(part.strip() for part in element.get('expression', []) if part.strip())
+        result.append({'name': name, 'expression': expression})
+    return result
+
+def extract_dashboard_by_page(json_data):
+    sections_list = []
+
+    for section in json_data.get("sections", []):
+        # only include the pages which are not hidden in the dashboard
+        page_config = json.loads(section['config'])
+        if page_config.get('visibility') != 1:
+            # Store displayName to know the section/page name
+            section_summary = {
+                "displayName": section.get("displayName", ""),
+                "filters": section.get("filters", ""),
+                "ordinal": section.get("ordinal", ""),
+                "visualContainers": []
+            }
+
+            # Process each visual container in the section
+            for visual in section.get("visualContainers", []):
+                # Parse config if it's a string
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
+
+                    visual_type_to_be_excluded = ['actionButton', 'image', 'shape', 'textbox', '']
+                    if config_data.get("singleVisual", {}).get("visualType", "") not in visual_type_to_be_excluded:
+                        # Extract relevant visual properties
+                        visual_summary = {
+                            "visualType": config_data.get("singleVisual", {}).get("visualType", ""),
+                            "projections": config_data.get("singleVisual", {}).get("projections", []),
+                            "prototypeQuery": config_data.get("singleVisual", {}).get("prototypeQuery", {}),
+                            "title": config_data.get("vcObjects", {}).get("title", []),
+                            "filters": visual.get("filters", [])
+                        }
+
+                        # Add visual summary if it has useful data
+                        if any(visual_summary.values()):
+                            section_summary["visualContainers"].append(visual_summary)
+
+            # Add the section's displayName and extracted_data to the list
+            sections_list.append({
+                "displayName": section.get("displayName", ""),
+                "extracted_data": section_summary
             })
 
-    # Extract DAX calculations (calculated columns and measures)
-    if "tables" in data.get("model", {}):
-        for table in data["model"]["tables"]:
-            # for column in table.get("columns", []):
-            #     if column.get("type") == "calculated":
-            #         relevant_parts["DAXCalculations"].append({
-            #             "Table": table.get("name"),
-            #             "Column": column.get("name"),
-            #             "Expression": column.get("expression")
-            #         })
-            for measure in table.get("measures", []):
-                relevant_parts["DAXCalculations"].append({
-                    "Table": table.get("name"),
-                    "Measure": measure.get("name"),
-                    "Expression": measure.get("expression")
-                })
-
-    # Extract relationships between tables
-    if "relationships" in data.get("model", {}):
-        for relationship in data["model"]["relationships"]:
-            relevant_parts["Relationships"].append({
-                "FromTable": relationship.get("fromTable"),
-                "FromColumn": relationship.get("fromColumn"),
-                "ToTable": relationship.get("toTable"),
-                "ToColumn": relationship.get("toColumn"),
-                "JoinBehavior": relationship.get("joinOnDateBehavior", "standard")
-            })
-
-    return relevant_parts
-
+    return sections_list
 
 def extract_relevant_elements_slicer_unif(json_data):
     extracted_data = {

@@ -52,27 +52,26 @@ function_descriptions = [
         }
     },
     {
-        "name": "summary_in_confluence",
-        "description": "Summarize key details and metrics in Confluence.",
-        "parameters": {}
+        "name": "summary_in_target_platform",
+        "description": "Generate documentation for a Power BI report tailored to a specified platform and language.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string",
+                    "description": "The language in which the documentation should be written (e.g., English, French)."
+                },
+                "platform": {
+                    "type": "string",
+                    "description": "The target platform where the documentation will be used (e.g., Confluence, SharePoint)."
+                }
+            }
+        }
     },
     {
         "name": "slicer_uniformisation_in_report",
         "description": "Modify the JSON file of the report to uniformize the slicers format based on the user's instructions",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "report_json": {
-                    "type": "string",
-                    "description": "The content of the JSON file of the Power BI report"
-                },
-                "instructions": {
-                    "type": "string",
-                    "description" : "The user's intructions that specify how to modify the report"
-                }
-            },
-            "required": ["report_json", "instructions"]
-        }
+        "parameters": {}
     },
 ]
 
