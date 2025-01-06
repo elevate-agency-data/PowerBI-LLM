@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import openai
+import copy
 
 # Path to the JSON file
 file_path = "jsons_test/contenus_ftv.json"
@@ -153,6 +154,7 @@ total_prompt = (
     "Your answer should be based on the given DataFrame, which contains information about all the pages and visuals in the dashboard. "
     #"It is essential to understand the user's intention and ensure that nothing in the DataFrame is omitted."
     "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
+    "The name of the visuals and pages must be identical to the df."
     "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
     f"Here is the user input: {user_prompt}\n"
     f"Here is the DataFrame you should base your analysis on:\n{df}"
@@ -203,65 +205,73 @@ source_visual_name = dict_slicers["source"]["source_visual"]
 source_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_name, df)
 
 source_page_name = "Vision mensuelle"
-source_visual_name = "'Plateforme:'"
+source_visual_name = "Catégorie:"
 
 target_page_name = "Vision hebdo"
 target_visual_name = "'Offre:'"
 
+
 def update_target_visuals(original_json_data, source_visual_elements, target_page_name, target_visual_name, df):
     for section in original_json_data.get("sections", []):
         page_name = section.get("displayName", "")
-        if page_name == target_page_name :
+        if page_name == target_page_name:
             print(page_name)
-            for visual in section.get("visualContainers", []) :
+            for visual in section.get("visualContainers", []):
                 config_data = visual.get("config", {})
                 if isinstance(config_data, str):
                     config_data = json.loads(config_data)
+
                 visual_type = config_data.get("singleVisual", {}).get("visualType", "")
                 visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
-                if visual_type in visual_type_to_be_included :
+
+                if visual_type in visual_type_to_be_included:
                     name_key = df[(df["visual name"] == target_visual_name) & (df["page name"] == target_page_name)]["visual name key"].values[0]
-                    # On regarde d'où provient le nom du visuel target et on va chercher au même endroit le nom du visuel en train d'être parcouru dans la boucle for. Si ce n'est pas le bon -> pass
-                    if name_key == "header" :
-                        # try/except parce que le visuel en train d'être parcouru n'a peut être pas de header
-                        try :
+
+                    if name_key == "header":
+                        try:
                             visual_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
-                        except :
+                        except:
                             visual_name = None
-                    elif name_key == "NativeReferenceName" :
-                        try :
+                    elif name_key == "NativeReferenceName":
+                        try:
                             visual_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
-                        except :
+                        except:
                             visual_name = None
-                    elif name_key == "Name" :
-                        try :
+                    elif name_key == "Name":
+                        try:
                             visual_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
-                        except :
+                        except:
                             visual_name = None
-                    # print(visual_name, target_visual_name)
-                    if visual_name == target_visual_name :
+
+                    if visual_name == target_visual_name:
                         print(visual_name)
-                        # print(True)
-                        config_data["singleVisual"].update(source_visual_elements)
+
+                        # Crée une copie indépendante des éléments source
+                        local_visual_elements = copy.deepcopy(source_visual_elements)
+                        config_data["singleVisual"].update(local_visual_elements)
 
                         source_title_present = df[(df["visual name"] == source_visual_name) & (df["page name"] == source_page_name)]["title present"].values[0]
                         source_header_present = df[(df["visual name"] == source_visual_name) & (df["page name"] == source_page_name)]["header present"].values[0]
 
                         target_header_present = df[(df["visual name"] == target_visual_name) & (df["page name"] == target_page_name)]["header present"].values[0]
-                        
-                        # S'il y a un titre on re modifie pour que les slicers n'aient pas tous le même titre
-                        if source_title_present == True :
+
+                        # Modifie le titre si nécessaire
+                        if source_title_present == True:
                             print("title modifié")
                             config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
 
-                        if source_header_present == True :
+                        # Modifie le header si présent dans la source
+                        if source_header_present == True:
                             print("header modifié")
-                            config_data["singleVisual"]["objects"]["header"][0]["properties"]['text'] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
-                        
-                        #Si header dans target visuel mais pas dans source
+                            config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
+
+                        # Si le header est dans le target mais pas dans la source
                         if target_header_present == True and 'text' not in source_visual_elements["objects"]["header"][0]["properties"]:
                             print("header rajouté")
-                            config_data["singleVisual"]["objects"]["header"][0]["properties"].update({"text" : {"expr": {"Literal": {"Value": f"{visual_name}"}}}})
+                            # Crée une copie indépendante du header
+                            target_header = copy.deepcopy(config_data["singleVisual"]["objects"]["header"][0]["properties"])
+                            target_header.update({"text": {"expr": {"Literal": {"Value": f"{visual_name}"}}}})
+                            config_data["singleVisual"]["objects"]["header"][0]["properties"] = target_header
 
                         visual["config"] = json.dumps(config_data, ensure_ascii=False)
                         print("json updated")
@@ -269,6 +279,7 @@ def update_target_visuals(original_json_data, source_visual_elements, target_pag
     with open("test.json", "w", encoding='utf8') as file:
         json.dump(original_json_data, file, indent=4, ensure_ascii=False)
     print("end update")
+
 
 def modify_json(original_json_data, dict_slicers) :
     source_page_name = dict_slicers["source"]["source_page"]
@@ -282,8 +293,3 @@ def modify_json(original_json_data, dict_slicers) :
         
 
 modify_json(original_json_data, dict_slicers)
-
-
-source_page_name = "Vision hebdo"
-source_visual_name = "'Offre:'"
-offre_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_name)
