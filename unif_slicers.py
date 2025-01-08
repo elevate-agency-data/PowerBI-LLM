@@ -4,7 +4,7 @@ import openai
 import copy
 
 # Path to the JSON file
-file_path = "jsons_test/ftv_transverse_cmp.json"
+file_path = "jsons_test/ftv_perf_sliders.json"
 
 # Open and read the JSON file
 with open(file_path, 'r', encoding="utf-8") as file:
@@ -36,10 +36,14 @@ def build_df(json_data):
                     title_present = False
 
                     # Determine slicer name and key
-                    if 'header' in config_data['singleVisual']['objects'] and 'text' in config_data['singleVisual']['objects']['header'][0]['properties']:
+                    if ('header' in config_data['singleVisual']['objects'] and 
+                        'text' in config_data['singleVisual']['objects']['header'][0]['properties'] and 
+                        config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
+
                         slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
                         slicer_name_key = "header"
                         header_present = True
+
                     elif 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
                         slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
                         slicer_name_key = "NativeReferenceName"
@@ -48,10 +52,16 @@ def build_df(json_data):
                         slicer_name_key = "Name"
                     
                     # Determine if there is a title
-                    if ("title" in config_data['singleVisual']["vcObjects"] and 
-                        'text' in config_data['singleVisual']["vcObjects"]["title"][0]["properties"] and 
-                        config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"] != "''"):
-                        title_present = True
+                    try :
+                        if ("title" in config_data['singleVisual']["vcObjects"] and 
+                            'text' in config_data['singleVisual']["vcObjects"]["title"][0]["properties"] and 
+                            config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"] != "''"):
+                            
+                            slicer_name = config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"]
+                            slicer_name_key = "title"
+                            title_present = True
+                    except :
+                        title_present = False
                               
                     if slicer_name and slicer_name_key:
                         slicer_list_per_page.append({
@@ -88,7 +98,9 @@ def build_df(json_data):
 
 pd.set_option('display.max_columns', None)
 df = build_df(original_json_data)
+print(df)
 
+config_data = "{\"name\":\"2563e2b2cd158d9d25e7\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1054,\"y\":44,\"z\":9000,\"width\":222,\"height\":73,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Reference - MyPage.page\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Reference - MyPage\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"page\"},\"Name\":\"Reference - MyPage.page\",\"NativeReferenceName\":\"page1\"}]},\"syncGroup\":{\"groupName\":\"page\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"outlineColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#8C08FF'\"}}}}},\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"r\",\"Entity\":\"Reference - MyPage\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"r\"}},\"Property\":\"page\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'accueil'\"}}]]}}}]}}}}],\"items\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.6}}}}},\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"padding\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"header\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Selection de la page'\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#8C08FF'\"}}}}},\"showRestatement\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"selection\":[{\"properties\":{\"strictSingleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#8C08FF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"''\"}}},\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"padding\":[{\"properties\":{\"left\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"general\":[{\"properties\":{\"keepLayerOrder\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}"
 
 function_descriptions = [
     {
@@ -147,6 +159,10 @@ user_prompt = (
     "I want to update the slicers 'OS' and 'Appareil' on the 'CMP' page and the slicers 'Offre' and 'OS' on the 'DataManagement' page in the dashboard so that they match the 'Offre' slicer on the 'CMP' page"
 )
 
+user_prompt = (
+    "I want to update the slicers 'Période d'analyse' and 'Type vidéonautes' on the 'Profil vidéonautes saison' page and the slicer 'Type de plateforme' on the 'Vision Globale du mois' page in the dashboard so that they match the 'Type de consommation' slicer on the 'Profil vidéonautes saison' page"
+)
+
 # user_prompt = (
 #     "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' on all pages, in the dashboard so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
 # )
@@ -156,7 +172,7 @@ total_prompt = (
     "Your answer should be based on the given DataFrame, which contains information about all the pages and visuals in the dashboard. "
     #"It is essential to understand the user's intention and ensure that nothing in the DataFrame is omitted."
     "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
-    "The name of the visuals and pages must be identical to the df."
+    "The name of the visuals and pages must be identical to the Dataframe."
     "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
     f"Here is the user input: {user_prompt}\n"
     f"Here is the DataFrame you should base your analysis on:\n{df}"
@@ -200,6 +216,11 @@ def extract_json_elements_source_visual(json_data, source_page_name, source_visu
                             visual_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
                         except :
                             None
+                    elif name_key == "title" :
+                        try :
+                            visual_name = config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"]
+                        except :
+                            visual_name = None
 
                     if visual_name == source_visual_name :
                         visual_summary = {
@@ -215,8 +236,8 @@ source_page_name = dict_slicers["source"]["source_page"]
 source_visual_name = dict_slicers["source"]["source_visual"]
 source_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_name, df)
 
-source_page_name = "CMP"
-source_visual_name = "Device_clean"
+source_page_name = "'Selection de la page'"
+source_visual_name = "Performance du jour"
 test_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_name, df)
 
 target_page_name = "Vision hebdo"
@@ -254,6 +275,11 @@ def update_target_visuals(original_json_data, source_visual_elements, target_pag
                         try:
                             visual_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
                         except:
+                            visual_name = None
+                    elif name_key == "title" :
+                        try :
+                            visual_name = config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"]
+                        except :
                             visual_name = None
 
                     if visual_name == target_visual_name:
