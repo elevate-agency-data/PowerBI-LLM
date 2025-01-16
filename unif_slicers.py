@@ -4,11 +4,13 @@ import openai
 import copy
 
 # Path to the JSON file
-file_path = "jsons_test/ftv_perf_sliders.json"
+file_path = "jsons_test/contenus_ftv.json"
 
 # Open and read the JSON file
 with open(file_path, 'r', encoding="utf-8") as file:
     original_json_data = json.load(file)
+
+config_data= "{\"name\":\"b79f06a636b2d80e623b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1123.518766474903,\"y\":0,\"z\":5000,\"width\":156.25,\"height\":65,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"contenu_recrutant_Refonte.src_medium\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c1\",\"Entity\":\"contenu_recrutant_Refonte\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c1\"}},\"Property\":\"src_medium\"},\"Name\":\"contenu_recrutant_Refonte.src_medium\",\"NativeReferenceName\":\"src_medium\"}]},\"syncGroup\":{\"groupName\":\"src_medium\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"items\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.6}}}}},\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"padding\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"header\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Campagne:'\"}}}}}],\"pendingChangesIcon\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#8C08FF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"padding\":[{\"properties\":{\"left\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"general\":[{\"properties\":{\"keepLayerOrder\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}"
 
 def build_df(json_data):
     dict_page_slicers = {}
@@ -36,22 +38,6 @@ def build_df(json_data):
                     title_present = False
 
                     # Determine slicer name and key
-                    if ('header' in config_data['singleVisual']['objects'] and 
-                        'text' in config_data['singleVisual']['objects']['header'][0]['properties'] and 
-                        config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
-
-                        slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
-                        slicer_name_key = "header"
-                        header_present = True
-
-                    elif 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
-                        slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
-                        slicer_name_key = "NativeReferenceName"
-                    elif 'Name' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
-                        slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
-                        slicer_name_key = "Name"
-                    
-                    # Determine if there is a title
                     try :
                         if ("title" in config_data['singleVisual']["vcObjects"] and 
                             'text' in config_data['singleVisual']["vcObjects"]["title"][0]["properties"] and 
@@ -61,7 +47,33 @@ def build_df(json_data):
                             slicer_name_key = "title"
                             title_present = True
                     except :
-                        title_present = False
+                        pass
+
+                    if slicer_name is None :
+                        try :
+                            if ('header' in config_data['singleVisual']['objects'] and 
+                                'text' in config_data['singleVisual']['objects']['header'][0]['properties']) :
+                                # and config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
+                                slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
+                                slicer_name_key = "header"
+                                header_present = True
+                        except :
+                            pass
+                    
+                    if slicer_name is None :
+                        try :
+                            if 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
+                                slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
+                                slicer_name_key = "NativeReferenceName"
+                        except :
+                            pass
+                    if slicer_name is None :
+                        try :
+                            if 'Name' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
+                                slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
+                                slicer_name_key = "Name"
+                        except :
+                            pass
                               
                     if slicer_name and slicer_name_key:
                         slicer_list_per_page.append({
