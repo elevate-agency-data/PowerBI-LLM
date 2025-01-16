@@ -163,6 +163,10 @@ user_prompt = (
     "I want to update the slicers 'Période d'analyse' and 'Type vidéonautes' on the 'Profil vidéonautes saison' page and the slicer 'Type de plateforme' on the 'Vision Globale du mois' page in the dashboard so that they match the 'Type de consommation' slicer on the 'Profil vidéonautes saison' page"
 )
 
+user_prompt = (
+    "I want to update the slicers 'Page sélectionnée' and 'Slider sélectionné' so that they match the 'Type de plateforme' slicer"
+)
+
 # user_prompt = (
 #     "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' on all pages, in the dashboard so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
 # )
