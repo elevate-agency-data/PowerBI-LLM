@@ -179,16 +179,16 @@ user_prompt = (
     "I want to update the slicers 'Page sélectionnée' and 'Slider sélectionné' so that they match the 'Type de plateforme' slicer"
 )
 
-# user_prompt = (
-#     "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' on all pages, in the dashboard so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
-# )
+user_prompt = (
+    "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' on all pages, in the dashboard so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
+)
 
 total_prompt = (
     "You are an assistant designed to identify the source page, source visuals, target page, and target visuals based on user input. "
     "Your answer should be based on the given DataFrame, which contains information about all the pages and visuals in the dashboard. "
     #"It is essential to understand the user's intention and ensure that nothing in the DataFrame is omitted."
     "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
-    "The name of the visuals and pages must be identical to the Dataframe."
+    "The name of the visuals and pages must be identical to the ones in the Dataframe."
     "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
     f"Here is the user input: {user_prompt}\n"
     f"Here is the DataFrame you should base your analysis on:\n{df}"
@@ -275,6 +275,7 @@ def update_target_visuals(original_json_data, source_visual_elements, target_pag
                 visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
 
                 if visual_type in visual_type_to_be_included:
+                    print(target_visual_name, target_page_name)
                     name_key = df[(df["visual name"] == target_visual_name) & (df["page name"] == target_page_name)]["visual name key"].values[0]
 
                     if name_key == "header":
