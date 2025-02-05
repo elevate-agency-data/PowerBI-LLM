@@ -5,6 +5,7 @@ import openai
 from src.file_operator.file_operations import *
 from src.openai_connecter.function_coordinator import FunctionCoordinator
 import config.config as config
+import config.function_descriptions as function_descriptions
 
 def main():
     """Main function to run the Streamlit application."""
@@ -31,7 +32,7 @@ def main():
             report_json_content, model_bim_content, inner_folder_path, report_json_path, model_bim_path = extract_report_and_model(zip_file)
             
             # Initialize the service coordinator
-            coordinator = ServiceCoordinator(config.FUNCTION_DESCRIPTIONS)
+            coordinator = FunctionCoordinator(function_descriptions.FUNCTION_DESCRIPTIONS)
             
             # Process the request
             modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content)
