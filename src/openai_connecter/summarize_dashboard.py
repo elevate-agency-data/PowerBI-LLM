@@ -1,10 +1,6 @@
 """
 This module provides a set of functions to interact with OpenAI's API for summarizing a Power BI dashboard.
 """
-from openai import OpenAI
-
-# Initialize the OpenAI client
-client = OpenAI()
 
 def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence", language="English"):
     """Generate a global summary of the dashboard"""
@@ -23,15 +19,15 @@ def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence
             "It serves as a powerful tool to monitor progress, identify growth opportunities, and support strategic decision-making across critical business domains.\"\n"
         )
 
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
+        response = openai.ChatCompletion.create(
+            model = "gpt-3.5-turbo",
+            messages = [
                 {"role": "system", "content": "You are an assistant that specializes in summarizing Power BI dashboards. Your task is to create a concise yet comprehensive summary of the dashboard based on the information provided for its different pages. Ensure the summary is accurate, well-structured, and tailored for the specified target platform."},
                 {"role": "user", "content": prompt}
             ]
         )
 
-        return response.choices[0].message.content
+        return response['choices'][0]['message']['content']
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
@@ -66,7 +62,7 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
                 "- Ensure clear and concise explanations for each section."
             )
 
-            response = client.chat.completions.create(
+            response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are an assistant that extracts key information from Power BI pbip reports' JSON files."},
@@ -74,7 +70,7 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
                 ]
             )
 
-            summary = response.choices[0].message.content
+            summary = response['choices'][0]['message']['content']
             result_summary += f"### {page_name}\n{summary}\n\n"
 
             structured_prompt = (
@@ -83,14 +79,14 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
                 f"{summary}\n\n"
             )
 
-            overview_response = client.chat.completions.create(
+            overview_response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {"role": "system", "content": "You are a content extractor specializing in summarizing key sections."},
                     {"role": "user", "content": structured_prompt}
                 ]
             )
-            page_overview = overview_response.choices[0].message.content.strip()
+            page_overview = overview_response['choices'][0]['message']['content'].strip()
             page_overview_dict[page_name] = page_overview
 
         except Exception as e:
@@ -101,6 +97,7 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
 def create_measures_overview_table(measures_content, target_platform="Confluence"):
     """Create a table overview of measures"""
     try:
+        # Combine the user prompt with the JSON content
         prompt = (
             "**Create a table** with the following columns:\n"
             "- 'Name of the Measure'\n"
@@ -126,15 +123,18 @@ def create_measures_overview_table(measures_content, target_platform="Confluence
             "Generate the table in the format shown above."
         )
 
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
+        # Call OpenAI API
+        response = openai.ChatCompletion.create(
+            model = "gpt-3.5-turbo",
+            messages = [
                 {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
                 {"role": "user", "content": prompt}
             ]
         )
 
-        return response.choices[0].message.content
+        # Extract and return the summary
+        summary = response['choices'][0]['message']['content']
+        return summary
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
@@ -142,6 +142,7 @@ def create_measures_overview_table(measures_content, target_platform="Confluence
 def create_measures_by_column_table(measures_content, target_platform="Confluence"):
     """Create a table showing measures grouped by column"""
     try:
+        # Combine the user prompt with the JSON content
         prompt = (
             "**Create a table** with three columns: 'Name of the Measure', 'Source Table', and 'Used Columns', based on the measures provided below.\n\n"
             "### Example\n"
@@ -162,16 +163,18 @@ def create_measures_by_column_table(measures_content, target_platform="Confluenc
             "Generate the table in the format shown above."
         )
 
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
+        # Call OpenAI API
+        response = openai.ChatCompletion.create(
+            model = "gpt-3.5-turbo",
+            messages = [
                 {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
                 {"role": "user", "content": prompt}
             ]
         )
 
-        return response.choices[0].message.content
+        # Extract and return the summary
+        summary = response['choices'][0]['message']['content']
+        return summary
 
     except Exception as e:
         return f"An error occurred: {str(e)}"
-
