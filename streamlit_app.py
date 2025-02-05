@@ -2,7 +2,7 @@
 
 import streamlit as st
 import openai
-from src.utils.file_operations import *
+from src.file_operator.file_operations import *
 from src.openai_connecter.function_coordinator import FunctionCoordinator
 import config.config as config
 
