@@ -59,12 +59,15 @@ class FunctionCoordinator:
         summary_dashboard, overview_all_pages = summarize_dashboard_by_page(
             extracted_report, target_platform=target_platform, language=language
         )
+        
         overall_summary = global_summary_dashboard(
             overview_all_pages, target_platform=target_platform, language=language
         )
+
         summary_table = summarize_table_source(
             extracted_dataset['tables'], target_platform=target_platform, language=language
         )
+
         summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform)
         summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)
 

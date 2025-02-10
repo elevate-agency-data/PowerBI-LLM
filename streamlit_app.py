@@ -47,7 +47,6 @@ def main():
             if modified_json:
                 # Write back the modified report.json and create the zip file
                 modified_zip = write_modified_zip(modified_json, report_json_path, inner_folder_path)
-                st.success(config.MODIFICATION_SUCCESS)
                 
                 # Provide a download button for the modified zip file
                 st.download_button(

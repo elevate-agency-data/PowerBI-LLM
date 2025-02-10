@@ -161,26 +161,6 @@ def extract_relevant_elements_slicer_unif(json_data):
             extracted_data["sections"].append(section_summary)
     return extracted_data 
 
-def get_nested_value(dictionary, keys, default=None):
-    """
-    Safely get a value from nested dictionaries.
-    
-    Args:
-        dictionary: The dictionary to search in
-        keys: List of keys to traverse
-        default: Value to return if path doesn't exist
-    
-    Returns:
-        The value at the specified path or the default value
-    """
-    current = dictionary
-    for key in keys:
-        if isinstance(current, dict) and key in current:
-            current = current[key]
-        else:
-            return default
-    return current
-
 def build_df(json_data):
     dict_page_slicers = {}
 
@@ -207,15 +187,13 @@ def build_df(json_data):
                     title_present = False
 
                     # Determine slicer name and key
-                    header_properties = get_nested_value(config_data, ['singleVisual', 'objects', 'header', 0, 'properties'])
-                    if header_properties:
-                        show_value = get_nested_value(header_properties, ['show', 'expr', 'Literal', 'Value'])
-                        text_value = get_nested_value(header_properties, ['text', 'expr', 'Literal', 'Value'])
-                        
-                        if show_value != "false" and text_value:
-                            slicer_name = text_value
-                            slicer_name_key = "header"
-                            header_present = True
+                    if ('header' in config_data['singleVisual']['objects'] and 
+                        'text' in config_data['singleVisual']['objects']['header'][0]['properties'] and 
+                        config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
+
+                        slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
+                        slicer_name_key = "header"
+                        header_present = True
 
                     elif 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
                         slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']

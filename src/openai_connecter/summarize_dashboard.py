@@ -1,3 +1,4 @@
+import openai
 """
 This module provides a set of functions to interact with OpenAI's API for summarizing a Power BI dashboard.
 """
@@ -34,14 +35,14 @@ def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence
 
 def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Confluence", language="English"):
     """Generate a summary for each page in the dashboard"""
-    result_summary = ""
-    page_overview_dict = {}  # Dictionary to store Page Overview content by page_name
+    try:
+        result_summary = ""
+        page_overview_dict = {}  # Dictionary to store Page Overview content by page_name
 
-    for page_data in extracted_json_by_page:
-        page_name = page_data['displayName']
-        extracted_json_of_the_page = page_data['extracted_data']
+        for page_data in extracted_json_by_page:
+            page_name = page_data['displayName']
+            extracted_json_of_the_page = page_data['extracted_data']
 
-        try:
             prompt = (
                 "I will provide you with a JSON file, and you need to retrieve the following information from the file:\n\n"
                 "### Instructions\n"
@@ -89,10 +90,43 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
             page_overview = overview_response['choices'][0]['message']['content'].strip()
             page_overview_dict[page_name] = page_overview
 
-        except Exception as e:
-            return {"error": f"An error occurred: {str(e)}"}
+        return result_summary, page_overview_dict
 
-    return result_summary, page_overview_dict
+    except Exception as e:
+        # Return a tuple with None values instead of a dictionary
+        return None, None
+    
+def summarize_table_source(table_content, target_platform="Confluence", language="English"):
+    try:
+        # Combine the user prompt with the JSON content
+        prompt = (
+            f"Extract and list all table names and their corresponding sources from the provided TABLE Content in {language}.\n"
+            "- The table names are located in the 'name' key of each object under the 'table_partitions' key.\n"
+            "- For each table, extract its 'source' from the 'source' key of the same object.\n"
+            "- If the 'source' key includes parameters (e.g., 'server_id', 'database_id', 'storage_id'), match each parameter name with the 'name' key in the 'expressions' section of the TABLE Content to identify the parameter's value.\n"
+            "- For parameters with dynamic or concatenated values, describe clearly how these values are combined.\n"
+            "- Ensure that all tables listed in the TABLE Content are included in the summary, with none omitted.\n"
+            "- Do not add any irrelevant information such as introductions or summaries.\n"
+            f"- Format the summary appropriately for {target_platform}, ensuring it is clear, concise, and well-organized.\n\n"
+            "### TABLE Content\n"
+            f"{table_content}\n\n"
+        )
+
+        # Call OpenAI API
+        response = openai.ChatCompletion.create(
+            model = "gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an assistant that specializes in extracting powerBI related information from json file."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        # Extract and return the summary
+        summary = response['choices'][0]['message']['content']
+        return summary
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
 
 def create_measures_overview_table(measures_content, target_platform="Confluence"):
     """Create a table overview of measures"""
