@@ -5,9 +5,9 @@ import copy
 from typing import Dict, List
 
 # Path to the JSON file
-file_path = "jsons_test/contenus_ftv.json"
+file_path = "jsons_test/inchanel.json"
 
-openai.api_key = "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"
+openai.api_key =  api_key
 
 # Open and read the JSON file
 with open(file_path, 'r', encoding="utf-8") as file:
