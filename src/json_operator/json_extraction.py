@@ -179,6 +179,7 @@ def build_df(json_data):
 
                 visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
                 visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_id = config_data.get("name", {})
                 
                 if visual_type in visual_type_to_be_included:
                     slicer_name = None
@@ -187,22 +188,6 @@ def build_df(json_data):
                     title_present = False
 
                     # Determine slicer name and key
-                    if ('header' in config_data['singleVisual']['objects'] and 
-                        'text' in config_data['singleVisual']['objects']['header'][0]['properties'] and 
-                        config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
-
-                        slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
-                        slicer_name_key = "header"
-                        header_present = True
-
-                    elif 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
-                        slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
-                        slicer_name_key = "NativeReferenceName"
-                    elif 'Name' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
-                        slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
-                        slicer_name_key = "Name"
-                    
-                    # Determine if there is a title
                     try :
                         if ("title" in config_data['singleVisual']["vcObjects"] and 
                             'text' in config_data['singleVisual']["vcObjects"]["title"][0]["properties"] and 
@@ -212,11 +197,42 @@ def build_df(json_data):
                             slicer_name_key = "title"
                             title_present = True
                     except :
-                        title_present = False
-                              
+                        pass
+
+                    if slicer_name is None :
+                        try :
+                            if ('header' in config_data['singleVisual']['objects'] and 
+                                'text' in config_data['singleVisual']['objects']['header'][0]['properties']) :
+                                # and config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
+                                slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
+                                slicer_name_key = "header"
+                                header_present = True
+                        except :
+                            pass
+                    
+                    if slicer_name is None :
+                        try :
+                            if 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
+                                slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
+                                slicer_name_key = "NativeReferenceName"
+                        except :
+                            pass
+                    if slicer_name is None :
+                        try :
+                            if 'Name' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
+                                slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
+                                slicer_name_key = "Name"
+                        except :
+                            pass
+                    
+                    # slicer_name = slicer_name.replace("'", "").replace(":", "")
+                    
+                    
+
                     if slicer_name and slicer_name_key:
                         slicer_list_per_page.append({
                             "visual name": slicer_name,
+                            "visual id": visual_id,
                             "visual name key": slicer_name_key,
                             "visual type": visual_type,
                             "header present": header_present,
@@ -234,6 +250,7 @@ def build_df(json_data):
         for visual in visuals:
             rows.append({
                 "page name": page_name,
+                "visual id": visual["visual id"],
                 "visual name": visual["visual name"],
                 "visual name key": visual["visual name key"],
                 "visual type": visual["visual type"],

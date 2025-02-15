@@ -1,4 +1,5 @@
 import json
+import copy
 
 def update_json_unif_slicers(json_to_update, modified_parts):
     """Update JSON with modified slicer parts"""
@@ -235,3 +236,95 @@ def add_read_me(dashboard_summary, pages):
     template["sections"][0]["height"] = page_height
 
     return template 
+
+##### Unif slicers #####
+
+def extract_json_elements_source_visual(json_data, source_page_name, source_visual_id, df):
+    for section in json_data.get("sections", []):
+        page_name = section.get("displayName", "")
+        if page_name == source_page_name :
+            for visual in section.get("visualContainers", []) :
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
+                visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
+                if visual_type in visual_type_to_be_included :
+                    visual_id = config_data.get("name", {})
+                    if visual_id == source_visual_id :
+                        visual_summary = {
+                            "visualType": visual_type,
+                            "objects": config_data.get("singleVisual", {}).get("objects", {}),
+                            "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
+                        }
+                
+    return visual_summary
+
+
+def update_target_visuals(original_json_data, source_visual_elements, source_page_name, source_visual_id, target_page_name, target_visual_id, df):
+    for section in original_json_data.get("sections", []):
+        page_name = section.get("displayName", "")
+        if page_name == target_page_name:
+            for visual in section.get("visualContainers", []):
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
+
+                visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
+
+                if visual_type in visual_type_to_be_included:
+                    visual_id = config_data.get("name", {})
+                    if visual_id == target_visual_id:
+                        # Crée une copie indépendante des éléments source
+                        local_visual_elements = copy.deepcopy(source_visual_elements)
+                        config_data["singleVisual"].update(local_visual_elements)
+
+                        source_title_present = df[(df["visual id"] == source_visual_id) & (df["page name"] == source_page_name)]["title present"].values[0]
+                        source_header_present = df[(df["visual id"] == source_visual_id) & (df["page name"] == source_page_name)]["header present"].values[0]
+
+                        target_header_present = df[(df["visual id"] == target_visual_id) & (df["page name"] == target_page_name)]["header present"].values[0]
+
+                        target_visual_name = df[df["visual id"] == target_visual_id]["visual name"].values[0]
+
+                        # Modifie le titre si nécessaire
+                        if source_title_present == True:
+                            #config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
+                            updated_config_data = copy.deepcopy(config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"])
+                            updated_config_data = {"expr": {"Literal": {"Value": f"{target_visual_name}"}}}
+                            config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"] = updated_config_data
+                            print(config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"])
+
+
+                        # Modifie le header si présent dans la source
+                        if source_header_present == True:
+                            # Crée une copie indépendante du header
+                            #config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
+                            updated_config_data = copy.deepcopy(config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"])
+                            updated_config_data = {"expr": {"Literal": {"Value": f"{target_visual_name}"}}}
+                            config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"] = updated_config_data
+
+
+                        # Si le header est dans le target mais pas dans la source
+                        if target_header_present == True and 'text' not in source_visual_elements["objects"]["header"][0]["properties"]:
+                            # Crée une copie indépendante du header
+                            target_header = copy.deepcopy(config_data["singleVisual"]["objects"]["header"][0]["properties"])
+                            target_header.update({"text": {"expr": {"Literal": {"Value": f"{target_visual_name}"}}}})
+                            config_data["singleVisual"]["objects"]["header"][0]["properties"] = target_header
+                        
+    
+                        visual["config"] = json.dumps(config_data, ensure_ascii=False)
+                        
+    return original_json_data
+
+
+def modify_json(original_json_data, dict_slicers, df) :
+    source_page_name = dict_slicers["source"]["source_page"]
+    source_visual_id = dict_slicers["source"]["source_visual"]
+    source_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_id, df)
+    for target_visual in dict_slicers["target"] :
+        target_page_name = target_visual["target_page"]
+        target_visual_id = target_visual["target_visual"]
+        updated_json = update_target_visuals(original_json_data, source_visual_elements, source_page_name, source_visual_id, target_page_name, target_visual_id, df)
+    print("json updated for all visuals")
+    return updated_json

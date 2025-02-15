@@ -3,6 +3,7 @@ from typing import Optional, Tuple, Dict, Any
 from src.json_operator.json_extraction import *
 from src.openai_connecter.general_openai_connecter import *
 from src.openai_connecter.summarize_dashboard import *
+from src.openai_connecter.modify_dashboard import *
 from src.json_operator.json_update import *
 import config.config as config
 
@@ -90,8 +91,9 @@ class FunctionCoordinator:
 
     def _handle_slicer_uniformisation(self, text: str, report_json_content: dict) -> Tuple[str, None, str]:
         """Handle the uniformisation of slicers."""
-        extracted_report = extract_relevant_elements_slicer_unif(report_json_content)
-        model_response = unif_slicers(extracted_report, text)
-        modified_parts = json.loads(model_response)
-        updated_json = update_json_unif_slicers(report_json_content, modified_parts)
+        df = build_df(report_json_content)
+        result = process_dashboard_request(text, df)
+        dict_slicers = json.dumps(result, indent=2, ensure_ascii=False)
+        dict_slicers = json.loads(dict_slicers)
+        updated_json = modify_json(report_json_content, dict_slicers, df)
         return json.dumps(updated_json, ensure_ascii=False, indent=4), None, config.MODIFICATION_SUCCESS 
