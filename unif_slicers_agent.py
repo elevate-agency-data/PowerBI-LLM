@@ -5,9 +5,10 @@ import copy
 from typing import Dict, List
 
 # Path to the JSON file
+file_path = "jsons_test/contenus_ftv.json"
 file_path = "jsons_test/inchanel.json"
 
-openai.api_key =  api_key
+openai.api_key = api_key
 
 # Open and read the JSON file
 with open(file_path, 'r', encoding="utf-8") as file:
@@ -31,6 +32,7 @@ def build_df(json_data):
 
                 visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
                 visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_id = config_data.get("name", {})
                 
                 if visual_type in visual_type_to_be_included:
                     slicer_name = None
@@ -75,10 +77,15 @@ def build_df(json_data):
                                 slicer_name_key = "Name"
                         except :
                             pass
-                              
+                    
+                    # slicer_name = slicer_name.replace("'", "").replace(":", "")
+                    
+                    
+
                     if slicer_name and slicer_name_key:
                         slicer_list_per_page.append({
                             "visual name": slicer_name,
+                            "visual id": visual_id,
                             "visual name key": slicer_name_key,
                             "visual type": visual_type,
                             "header present": header_present,
@@ -96,6 +103,7 @@ def build_df(json_data):
         for visual in visuals:
             rows.append({
                 "page name": page_name,
+                "visual id": visual["visual id"],
                 "visual name": visual["visual name"],
                 "visual name key": visual["visual name key"],
                 "visual type": visual["visual type"],
@@ -128,7 +136,7 @@ class RequestParserAgent(Agent):
         analysis_prompt = f"""
         Given this user request: "{user_prompt}"
         And these available pages and visuals in the dashboard:
-        {df[['page name', 'visual name']].drop_duplicates().to_string()}
+        {df[['page name', 'visual id', 'visual name']].drop_duplicates().to_string()}
 
         Step 1: Determine the scope
         A. Page Scope Analysis:
@@ -139,23 +147,23 @@ class RequestParserAgent(Agent):
            - If request EXPLICITLY mentions "all slicers" or "all visuals" → include ALL visuals in that page
            - If request mentions specific visuals → include ONLY those specific visuals
            - For dashboard-wide updates: include ALL visuals from ALL pages (including the source page)
-           - Include the visual names exactly as written in the dashboard data. They can be slightly different but similar to the user's request. For example if the user mentions "Date" and there is "date:" in the dashboard data, include "date:" in the result.
+           - Using the user prompt, identify the visual name closest to the one mentioned by the user and include the corresponding visual id EXACTLY as written in the provided data.
 
         Step 2: Identify source
-        - Extract exactly one source visual and its page that will be used as reference
+        - Extract exactly one source visual id and its page that will be used as reference
 
         Return only a JSON object with:
         {{
             "source": {{
                 "page": "exact page name",
-                "visual": "exact visual name"
+                "visual": "exact visual id"
             }},
             "page_scope": "dashboard/specific_pages",
             "targets": [
                 {{
                     "page": "exact page name", // if page_scope is dashboard, MUST include all the pages
                     "include_all_visuals": true/false,
-                    "specific_visuals": ["visual1", "visual2"]  // only if include_all_visuals is false
+                    "specific_visuals": ["visual_id1", "visual_id2"]  // only if include_all_visuals is false
                 }}
             ]
         }}
@@ -171,8 +179,8 @@ class RequestParserAgent(Agent):
            - targets: MUST include ALL pages with specific_visuals: ["Date"]
            - Like this:
              "targets": [
-                {{"page": "Page1", "include_all_visuals": false, "specific_visuals": ["Date"]}},
-                {{"page": "Page2", "include_all_visuals": false, "specific_visuals": ["Date"]}},
+                {{"page": "Page1", "include_all_visuals": false, "specific_visuals": ["id of Date visual in Page1"]}},
+                {{"page": "Page2", "include_all_visuals": false, "specific_visuals": ["id of Date visual in Page2"]}},
                 // ... one entry for EACH page in the dashboard
              ]
 
@@ -194,7 +202,7 @@ class RequestParserAgent(Agent):
             # Verify source visual exists
             source_exists = df[
                 (df['page name'] == extracted_info['source']['page']) & 
-                (df['visual name'] == extracted_info['source']['visual'])
+                (df['visual id'] == extracted_info['source']['visual'])
             ].shape[0] > 0
             
             if not source_exists:
@@ -208,7 +216,7 @@ class RequestParserAgent(Agent):
             for target in extracted_info['targets']:
                 if target['include_all_visuals']:
                     # Get all visuals for this page
-                    page_visuals = df[df['page name'] == target['page']]['visual name'].unique()
+                    page_visuals = df[df['page name'] == target['page']]['visual id'].unique()
                     for visual in page_visuals:
                         if not (target['page'] == extracted_info['source']['page'] and 
                                visual == extracted_info['source']['visual']):
@@ -239,25 +247,23 @@ class RequestParserAgent(Agent):
             return None
 class CriticAgent(Agent):
     """Agent responsible for reviewing and challenging the parser's work"""
+    "1. Do the visual ids in the generated configuration exist in the dashboard data ? The ids must not be invented."
 
-    """Does the generated configuration correctly indentify the source visual and extract all the target visuals mentionned by the user without forgetting or adding anything?
-        1. Is the page_scope field correctly interpreted ? If its value is 'dashboard' then all pages must appear in the generated configuration (the source page can also be a target page). Else, if its value are specified pages then only theses pages must appear in the generated configuration.
-        2. For each page, is the 'include_all_visuals' field correctly interpreted ? If it is true then all visuals must appear in the generated configuration, else only the visuals mentionned by the user must appear in the generated configuration.
-        3. Are the visual names in the generated configuration identical to the ones in the dashboard data ?
-        4. Since there could also be target visuals in the source page, are these target visuals correctly identified in the generated configuration?"""
-    
     def review_config(self, config: Dict, user_prompt: str, df: pd.DataFrame) -> Dict:
         review_prompt = f"""
         Given:
         1. Original user request: "{user_prompt}"
         2. Available dashboard data:
-        {df[['page name', 'visual name']].drop_duplicates().to_string()}
+        {df[['page name', 'visual name', 'visual id']].drop_duplicates().to_string()}
         3. Generated configuration:
         {json.dumps(config, indent=2)}
-
-        1. Is the generated configuration correctly reflects the user intent? Does it correctly indentify the source visual and extract all the target visuals without forgetting or adding anything?
-        2. Since there could also be target visuals in the source page, are these target visuals correctly identified in the generated configuration?
-        3. Are the visual names in the generated configuration identical to the ones in the dashboard data ?
+        
+        1. Is the page_scope field correctly interpreted ? If its value is 'dashboard' then all pages must appear in the generated configuration (the source page can also be a target page). Else, if its value are specified pages then only theses pages must appear in the generated configuration.
+        2. For each page, is the 'include_all_visuals' field correctly interpreted ? If it is true then all visual ids must appear in the generated configuration, else only the visual ids corresponding to the visuals mentionned by the user must appear in the generated configuration.
+        3. Since there could also be target visuals in the source page, are these target visuals correctly identified in the generated configuration?
+        4. Do the visual ids in the generated configuration exist in the dashboard data ? The ids must not be invented.
+        5. Are the visual ids associated with the right page ?
+    
         
         Return a JSON with:
         {{
@@ -287,7 +293,7 @@ class EnhancedCoordinatorAgent(Agent):
         super().__init__("Coordinator")
         self.parser = RequestParserAgent("Parser")
         self.critic = CriticAgent("Critic")
-        self.max_iterations = 5
+        self.max_iterations = 3
         
     def process_request(self, user_prompt: str, df: pd.DataFrame) -> Dict:
         # return self.parser.parse_request(user_prompt, df)
@@ -337,15 +343,136 @@ def process_dashboard_request(user_prompt: str, df: pd.DataFrame) -> Dict:
     return result
 
 user_prompt = (
-    "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' in the dashboard so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
+    "I want to update the slicers boutique, period and country of the Digital page so that they match the slicer boutique on the Client Focus page"
 )
 
 user_prompt = (
-    "I want to update the slicers 'Mois' and 'Offre' on the page 'Vision mensuelle' so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
+    "I want to update the slicers 'Campagne', 'Offre' and 'Typologie de vidéos' in the 'Récapitulatif dernière semaine' page so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
 )
+
+user_prompt = (
+    "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' in the 'Récapitulatif dernière semaine' page so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
+)
+
+user_prompt = (
+    "I want to update the slicers 'Campagne', 'Offre', 'Typologie de vidéos', 'Plateforme' and 'Catégorie' on all pages so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
+)
+
+
+# user_prompt = (
+#     "I want to update the slicers 'Mois' and 'Offre' on the page 'Vision mensuelle' so that their format match the 'Catégorie' slicer on the 'Vision hebdo' page."
+# )
 
 # Test the function
 result = process_dashboard_request(user_prompt, df)
 print("\nFinal Configuration:")
 print(json.dumps(result, indent=2, ensure_ascii=False))
+
+dict_slicers = json.dumps(result, indent=2, ensure_ascii=False)
+dict_slicers = json.loads(dict_slicers)
+print(dict_slicers)
+
+
+def extract_json_elements_source_visual(json_data, source_page_name, source_visual_id, df):
+    for section in json_data.get("sections", []):
+        page_name = section.get("displayName", "")
+        if page_name == source_page_name :
+            for visual in section.get("visualContainers", []) :
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
+                visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
+                if visual_type in visual_type_to_be_included :
+                    visual_id = config_data.get("name", {})
+                    if visual_id == source_visual_id :
+                        visual_summary = {
+                            "visualType": visual_type,
+                            "objects": config_data.get("singleVisual", {}).get("objects", {}),
+                            "vcObjects": config_data.get("singleVisual", {}).get("vcObjects", {})
+                        }
+                
+    return visual_summary
+
+
+source_page_name = dict_slicers["source"]["source_page"]
+source_visual_id = dict_slicers["source"]["source_visual"]
+source_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_id, df)
+
+
+def update_target_visuals(original_json_data, source_visual_elements, source_page_name, source_visual_id, target_page_name, target_visual_id, df):
+    for section in original_json_data.get("sections", []):
+        page_name = section.get("displayName", "")
+        if page_name == target_page_name:
+            print(page_name)
+            for visual in section.get("visualContainers", []):
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
+
+                visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
+
+                if visual_type in visual_type_to_be_included:
+                    visual_id = config_data.get("name", {})
+                    if visual_id == target_visual_id:
+                        # Crée une copie indépendante des éléments source
+                        local_visual_elements = copy.deepcopy(source_visual_elements)
+                        config_data["singleVisual"].update(local_visual_elements)
+
+                        source_title_present = df[(df["visual id"] == source_visual_id) & (df["page name"] == source_page_name)]["title present"].values[0]
+                        source_header_present = df[(df["visual id"] == source_visual_id) & (df["page name"] == source_page_name)]["header present"].values[0]
+
+                        target_header_present = df[(df["visual id"] == target_visual_id) & (df["page name"] == target_page_name)]["header present"].values[0]
+
+                        target_visual_name = df[df["visual id"] == target_visual_id]["visual name"].values[0]
+
+                        # Modifie le titre si nécessaire
+                        if source_title_present == True:
+                            #config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
+                            updated_config_data = copy.deepcopy(config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"])
+                            updated_config_data = {"expr": {"Literal": {"Value": f"{target_visual_name}"}}}
+                            config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"] = updated_config_data
+                            print(config_data["singleVisual"]["vcObjects"]["title"][0]["properties"]["text"])
+
+
+                        # Modifie le header si présent dans la source
+                        if source_header_present == True:
+                            print("header modifié")
+                            # Crée une copie indépendante du header
+                            #config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"] = {"expr": {"Literal": {"Value": f"{visual_name}"}}}
+                            updated_config_data = copy.deepcopy(config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"])
+                            updated_config_data = {"expr": {"Literal": {"Value": f"{target_visual_name}"}}}
+                            config_data["singleVisual"]["objects"]["header"][0]["properties"]["text"] = updated_config_data
+
+
+                        # Si le header est dans le target mais pas dans la source
+                        if target_header_present == True and 'text' not in source_visual_elements["objects"]["header"][0]["properties"]:
+                            print("header rajouté")
+                            # Crée une copie indépendante du header
+                            target_header = copy.deepcopy(config_data["singleVisual"]["objects"]["header"][0]["properties"])
+                            target_header.update({"text": {"expr": {"Literal": {"Value": f"{target_visual_name}"}}}})
+                            config_data["singleVisual"]["objects"]["header"][0]["properties"] = target_header
+                        
+    
+                        visual["config"] = json.dumps(config_data, ensure_ascii=False)
+                        print("json updated")
+
+    with open("test.json", "w", encoding='utf8') as file:
+        json.dump(original_json_data, file, indent=4, ensure_ascii=False)
+    print("end update")
+
+
+def modify_json(original_json_data, dict_slicers) :
+    source_page_name = dict_slicers["source"]["source_page"]
+    source_visual_id = dict_slicers["source"]["source_visual"]
+    source_visual_elements = extract_json_elements_source_visual(original_json_data, source_page_name, source_visual_id, df)
+    for target_visual in dict_slicers["target"] :
+        target_page_name = target_visual["target_page"]
+        target_visual_id = target_visual["target_visual"]
+        update_target_visuals(original_json_data, source_visual_elements, source_page_name, source_visual_id, target_page_name, target_visual_id, df)
+    print("json updated for all visuals")
+        
+
+modify_json(original_json_data, dict_slicers)
 

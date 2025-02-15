@@ -363,3 +363,4 @@ modify_json(original_json_data, dict_slicers)
 
 test_visual_elements["vcObjects"]["title"][0]["properties"]["text"]
 test_visual_elements['prototypeQuery']['Select'][0]['NativeReferenceName']
+
