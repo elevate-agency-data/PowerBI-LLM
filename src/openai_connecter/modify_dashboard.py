@@ -177,49 +177,49 @@ class EnhancedCoordinatorAgent(Agent):
     def __init__(self):
         super().__init__("Coordinator")
         self.parser = RequestParserAgent("Parser")
-        self.critic = CriticAgent("Critic")
+        # self.critic = CriticAgent("Critic")
         self.max_iterations = 3
         
     def process_request(self, user_prompt: str, df: pd.DataFrame) -> Dict:
-        # return self.parser.parse_request(user_prompt, df)
+        return self.parser.parse_request(user_prompt, df)
 
-        # Initialize the iteration counter and the current configuration
-        iteration = 0
-        current_config = None
+        # # Initialize the iteration counter and the current configuration
+        # iteration = 0
+        # current_config = None
         
-        while iteration < self.max_iterations:
-            iteration += 1
-            self.log_message(f"Starting iteration {iteration}")
+        # while iteration < self.max_iterations:
+        #     iteration += 1
+        #     self.log_message(f"Starting iteration {iteration}")
             
-            # Get initial or revised configuration
-            current_config = self.parser.parse_request(user_prompt, df)
+        #     # Get initial or revised configuration
+        #     current_config = self.parser.parse_request(user_prompt, df)
             
-            # Have the critic review it
-            review = self.critic.review_config(current_config, user_prompt, df)
+        #     # Have the critic review it
+        #     review = self.critic.review_config(current_config, user_prompt, df)
             
-            if not review:
-                self.log_message("Review failed, returning current configuration")
-                return current_config
+        #     if not review:
+        #         self.log_message("Review failed, returning current configuration")
+        #         return current_config
                 
-            if not review['requires_revision']:
-                self.log_message("Configuration approved by critic")
-                return current_config
+        #     if not review['requires_revision']:
+        #         self.log_message("Configuration approved by critic")
+        #         return current_config
             
-            # If revision is needed, create a new prompt for the parser
-            revision_prompt = f"""
-            Original request: {user_prompt}
+        #     # If revision is needed, create a new prompt for the parser
+        #     revision_prompt = f"""
+        #     Original request: {user_prompt}
             
-            The current configuration has these issues:
-            {json.dumps(review['issues'], indent=2)}
+        #     The current configuration has these issues:
+        #     {json.dumps(review['issues'], indent=2)}
             
-            Please revise the configuration to fix these issues.
-            """
+        #     Please revise the configuration to fix these issues.
+        #     """
             
-            user_prompt = revision_prompt  # Update prompt for next iteration
-            self.log_message("Requesting revision from parser")
+        #     user_prompt = revision_prompt  # Update prompt for next iteration
+        #     self.log_message("Requesting revision from parser")
         
-        self.log_message(f"Reached maximum iterations ({self.max_iterations})")
-        return current_config
+        # self.log_message(f"Reached maximum iterations ({self.max_iterations})")
+        # return current_config
     
 def process_dashboard_request(user_prompt: str, df: pd.DataFrame) -> Dict:
     coordinator = EnhancedCoordinatorAgent()
