@@ -1,0 +1,32 @@
+{
+   "source": {
+      "source_page": "Brands Performance",
+      "source_visual": "e8a2b5ae5873f208334c"
+   },
+   "target": [
+      {
+         "target_page": "Products Performance",
+         "target_visual": "0aabd327a00c422080a4"
+      },
+      {
+         "target_page": "Products Performance",
+         "target_visual": "be504f7ce4f6a04951a2"
+      },
+      {
+         "target_page": "Products Performance",
+         "target_visual": "5c38cf004c593d70240b"
+      },
+      {
+         "target_page": "Orders & clients details",
+         "target_visual": "8857ef7094dc3c310eca"
+      },
+      {
+         "target_page": "Orders & clients details",
+         "target_visual": "a84de872441ea231eb84"
+      },
+      {
+         "target_page": "Orders & clients details",
+         "target_visual": "6bdfb75cd61b02007069"
+      }
+   ]
+}

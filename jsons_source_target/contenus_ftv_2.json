@@ -1,0 +1,32 @@
+{
+   "source": {
+      "source_page": "Vision mensuelle",
+      "source_visual": "fb93fc1164386edc20c0"
+   },
+   "target": [
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "b79f06a636b2d80e623b"
+      },
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "7829174f2202486337ea"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "3699f6b14be17904b974"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "352f31b6d5001b233179"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "aa14591f5700d021c963"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "2edb91c281c07723b226"
+      }
+   ]
+}

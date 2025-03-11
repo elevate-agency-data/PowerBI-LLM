@@ -1,0 +1,20 @@
+{
+   "source": {
+      "source_page": "Strates Performance",
+      "source_visual": "ce186b9dfdd7e0b627fa"
+   },
+   "target": [
+      {
+         "target_page": "Products Performance",
+         "target_visual": "0aabd327a00c422080a4"
+      },
+      {
+         "target_page": "Products Performance",
+         "target_visual": "be504f7ce4f6a04951a2"
+      },
+      {
+         "target_page": "Products Performance",
+         "target_visual": "55966945c86971f97c40"
+      }
+   ]
+}

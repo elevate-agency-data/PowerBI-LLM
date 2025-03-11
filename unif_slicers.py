@@ -10,8 +10,6 @@ file_path = "jsons_test/contenus_ftv.json"
 with open(file_path, 'r', encoding="utf-8") as file:
     original_json_data = json.load(file)
 
-config_data= "{\"name\":\"b79f06a636b2d80e623b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1123.518766474903,\"y\":0,\"z\":5000,\"width\":156.25,\"height\":65,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"contenu_recrutant_Refonte.src_medium\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c1\",\"Entity\":\"contenu_recrutant_Refonte\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c1\"}},\"Property\":\"src_medium\"},\"Name\":\"contenu_recrutant_Refonte.src_medium\",\"NativeReferenceName\":\"src_medium\"}]},\"syncGroup\":{\"groupName\":\"src_medium\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"items\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"background\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.6}}}}},\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}},\"padding\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}}}}],\"selection\":[{\"properties\":{\"singleSelect\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"selectAllCheckboxEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"header\":[{\"properties\":{\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Campagne:'\"}}}}}],\"pendingChangesIcon\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#8C08FF'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"titleWrap\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"padding\":[{\"properties\":{\"left\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"general\":[{\"properties\":{\"keepLayerOrder\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}"
-
 def build_df(json_data):
     dict_page_slicers = {}
 
@@ -166,7 +164,6 @@ def generate_completion(user_input):
     return arguments
 
 
-
 user_prompt = (
     "I want to update the slicers 'OS' and 'Appareil' on the 'CMP' page and the slicers 'Offre' and 'OS' on the 'DataManagement' page in the dashboard so that they match the 'Offre' slicer on the 'CMP' page"
 )
@@ -197,6 +194,8 @@ total_prompt = (
 dict_slicers = generate_completion(total_prompt)
 dict_slicers = json.loads(dict_slicers)
 print(dict_slicers)
+
+
 
 def extract_json_elements_source_visual(json_data, source_page_name, source_visual_name, df):
     for section in json_data.get("sections", []):

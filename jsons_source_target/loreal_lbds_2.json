@@ -1,0 +1,24 @@
+{
+   "source": {
+      "source_page": "Products Performance",
+      "source_visual": "5c38cf004c593d70240b"
+   },
+   "target": [
+      {
+         "target_page": "Brands Performance",
+         "target_visual": "c13f8da233196100dcb5"
+      },
+      {
+         "target_page": "Flash KPI - Overview",
+         "target_visual": "391154f7514a090226ba"
+      },
+      {
+         "target_page": "Orders & clients details",
+         "target_visual": "6bdfb75cd61b02007069"
+      },
+      {
+         "target_page": "Strates Performance",
+         "target_visual": "a6b016844a0c293a7919"
+      }
+   ]
+}

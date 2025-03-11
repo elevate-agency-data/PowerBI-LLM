@@ -1,0 +1,16 @@
+{
+   "source": {
+      "source_page": "Récapitulatif dernière semaine",
+      "source_visual": "b79f06a636b2d80e623b"
+   },
+   "target": [
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "70025422ae5d7c07c393"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "b3b5cd6c19d3beb0cc00"
+      }
+   ]
+}

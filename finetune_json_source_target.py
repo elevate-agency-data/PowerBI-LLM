@@ -1,0 +1,235 @@
+import json
+import pandas as pd
+import openai
+import copy
+
+##########################
+# Construction de la bdd #
+##########################
+
+# Path to the JSON file
+file_path = "jsons_test/loreal_lbds.json"
+
+# Open and read the JSON file
+with open(file_path, 'r', encoding="utf-8") as file:
+    original_json_data = json.load(file)
+
+def build_df(json_data):
+    dict_page_slicers = {}
+
+    for section in json_data.get("sections", []):
+        # Only include pages that are not hidden in the dashboard
+        page_config = json.loads(section['config'])
+        if page_config.get('visibility') != 1:
+            slicer_list_per_page = []
+
+            # Process each visual container in the section
+            for visual in section.get("visualContainers", []):
+                # Parse config if it's a string
+                config_data = visual.get("config", {})
+                if isinstance(config_data, str):
+                    config_data = json.loads(config_data)
+
+                visual_type_to_be_included = ['slicer', 'advancedSlicerVisual']
+                visual_type = config_data.get("singleVisual", {}).get("visualType", "")
+                visual_id = config_data.get("name", {})
+                
+                if visual_type in visual_type_to_be_included:
+                    slicer_name = None
+                    slicer_name_key = None
+                    header_present = False
+                    title_present = False
+
+                    # Determine slicer name and key
+                    try :
+                        if ("title" in config_data['singleVisual']["vcObjects"] and 
+                            'text' in config_data['singleVisual']["vcObjects"]["title"][0]["properties"] and 
+                            config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"] != "''"):
+                            
+                            slicer_name = config_data['singleVisual']["vcObjects"]["title"][0]["properties"]["text"]["expr"]["Literal"]["Value"]
+                            slicer_name_key = "title"
+                            title_present = True
+                    except :
+                        pass
+
+                    if slicer_name is None :
+                        try :
+                            if ('header' in config_data['singleVisual']['objects'] and 
+                                'text' in config_data['singleVisual']['objects']['header'][0]['properties']) :
+                                # and config_data['singleVisual']['objects']['header'][0]['properties']['show']['expr']['Literal']['Value'] != "false"):
+                                slicer_name = config_data['singleVisual']['objects']['header'][0]['properties']['text']['expr']['Literal']['Value']
+                                slicer_name_key = "header"
+                                header_present = True
+                        except :
+                            pass
+                    
+                    if slicer_name is None :
+                        try :
+                            if 'NativeReferenceName' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
+                                slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['NativeReferenceName']
+                                slicer_name_key = "NativeReferenceName"
+                        except :
+                            pass
+                    if slicer_name is None :
+                        try :
+                            if 'Name' in config_data['singleVisual']['prototypeQuery']['Select'][0]:
+                                slicer_name = config_data['singleVisual']['prototypeQuery']['Select'][0]['Name']
+                                slicer_name_key = "Name"
+                        except :
+                            pass
+                    
+                    # slicer_name = slicer_name.replace("'", "").replace(":", "")
+                    
+                    
+
+                    if slicer_name and slicer_name_key:
+                        slicer_list_per_page.append({
+                            "visual name": slicer_name,
+                            "visual id": visual_id,
+                            "visual name key": slicer_name_key,
+                            "visual type": visual_type,
+                            "header present": header_present,
+                            "title present": title_present
+                        })
+
+            # Add slicer visuals for the current page
+            dict_page_slicers[section.get("displayName", "")] = slicer_list_per_page
+
+    # List to store each row as a dictionary
+    rows = []
+
+    # Loop through each page and its visuals
+    for page_name, visuals in dict_page_slicers.items():
+        for visual in visuals:
+            rows.append({
+                "page name": page_name,
+                "visual id": visual["visual id"],
+                "visual name": visual["visual name"],
+                "visual name key": visual["visual name key"],
+                "visual type": visual["visual type"],
+                "header present": visual["header present"],
+                "title present": visual["title present"]
+            })
+
+    # Convert list of dictionaries into a DataFrame
+    df = pd.DataFrame(rows)
+
+    return df
+
+
+pd.set_option('display.max_columns', None)
+df = build_df(original_json_data)
+print(df)
+
+user_prompt = (
+    "I want to update the slicers 'Strate', 'Brand' and 'Order type' on the 'Products Performance', 'Brands Performance', 'Strates Performance' and 'Orders & clients details' pages so that their format match the 'Brand' slicer on the 'Strates Performance' page."
+)
+
+prompt = (
+    "You are an assistant designed to identify the source page, source visuals, target page, and target visuals based on user input. "
+    "Your answer should be based on the given DataFrame, which contains information about all the pages and visuals in the dashboard. "
+    "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
+    "The name of the visuals and pages must be identical to the ones in the Dataframe."
+    "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
+    f"Here is the user input: {user_prompt}\n"
+    f"Here is the DataFrame you should base your analysis on:\n{df}"
+)
+
+function_descriptions = [
+    {
+        "name": "uniformize_visuals",
+        "description": "This function automates the standardization of visual styles across different pages of a Power BI dashboard. It updates the formatting of specified target visuals to match the style of a designated source visual. The function ensures consistent visual presentation, aiding in seamless user experiences across various dashboard pages.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "object",
+                    "properties": {
+                        "source_page": {
+                            "type": "string",
+                            "description": "Specifies the page name where the source visual is located. This value must correspond to the 'page name' column of the dataframe. Only one source page is allowed."
+                        },
+                        "source_visual": {
+                            "type": "string",
+                            "description": "The id of the visual on the source page used as the formatting template. This should be extracted from the 'visual id' column of the dataframe. Only one source visual is permitted."
+                        }
+                    }
+                },
+                "target": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "target_page": {
+                                "type": "string",
+                                "description": "The name of the page containing the target visuals that will be updated. This is taken from the 'page name' column of the dataframe. Multiple target pages can be specified. The source page can also be a target page."
+                            },
+                            "target_visual": {
+                                "type": "string",
+                                "description": "The id of each target visual on the target page to be formatted. These ids are sourced from the 'visual id' column of the dataframe. Multiple target visuals can be specified per page."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+]
+
+####### Récupérer les jsons source target
+completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        functions=function_descriptions,
+        function_call="auto",  # Let the model decide if it needs to call the function
+    )
+
+arguments = completion.choices[0].message["function_call"]["arguments"]
+
+with open("jsons_source_target/loreal_lbds_4.json", 'w', encoding='utf8') as file:
+    json_obj = json.loads(arguments)
+    json.dump(json_obj, file, indent=3, ensure_ascii=False)
+
+df[['page name', 'visual id', 'visual name']]
+
+####### Construire le template pour chaque exemple de la base ########
+
+def template_json(user_prompt, df, json_path_source_target, prompt):
+# Fonction pour mettre en forme le prompt avec le json PBI
+    with open(json_path_source_target, 'r') as json_data :
+        json_source_target = json.load(json_data)
+    df_infos = df[['page name', 'visual id', 'visual name']].drop_duplicates().to_string()
+    template = {"messages": [
+        {"role": "system", "content": f"{prompt}"}, 
+        {"role": "user", "content": f"{user_prompt}. Here is the informations on the dashboard you should base your analysis on: {df_infos}"}, 
+        {"role": "assistant", "content": f"{json_source_target}"}]}
+
+    final_json = json.dumps(template, indent=4)
+
+    return final_json
+
+# Test sur un rapport
+
+user_prompt = "Ajoute un histogramme du nombre de user_id par pays"
+df = build_df(original_json_data)
+json_source_target = "jsons_train/IT__web_bis_same_as_browser.json"
+
+processed_json = template_json(instructions, json_path_before_change, json_path_after_change, visual_types, prompt)
+print(processed_json)
+
+####### Construction de la base de données #######
+
+bdd_excel = pd.read_excel("bdd/bdd_train_interaction_mode.xlsx")
+jsonl_path = 'bdd/bdd_jsons_train_interaction.jsonl'
+
+def build_bdd(bdd_excel, prompt, jsonl_path):
+    bdd_excel['json_resultat'] = bdd_excel.apply(lambda row: template_json(row['instructions'], row['json_path_before_change'], row['json_path_after_change'], prompt), axis=1)
+
+    # On ajoute tous les jsons à un fichier jsonl
+    with open(jsonl_path, 'w') as file:
+        for item in bdd_excel['json_resultat']:
+            json_obj = json.loads(item)
+            json.dump(json_obj, file)
+            file.write('\n')
+    
+build_bdd(bdd_excel, prompt, jsonl_path)

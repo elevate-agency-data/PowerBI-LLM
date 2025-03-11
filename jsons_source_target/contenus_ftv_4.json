@@ -1,0 +1,24 @@
+{
+   "source": {
+      "source_page": "Récapitulatif dernière semaine",
+      "source_visual": "949c819cbb54e340e306"
+   },
+   "target": [
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "8c30a52705179622217e"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "70025422ae5d7c07c393"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "65e2f29bee72b27c3c1e"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "fb93fc1164386edc20c0"
+      }
+   ]
+}

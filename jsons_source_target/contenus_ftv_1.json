@@ -1,0 +1,70 @@
+{
+   "source": {
+      "source_page": "Vision hebdo",
+      "source_visual": "2edb91c281c07723b226"
+   },
+   "target": [
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "da168ff3c1257e2d0c82"
+      },
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "e878312bcbd3b136dd00"
+      },
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "b79f06a636b2d80e623b"
+      },
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "949c819cbb54e340e306"
+      },
+      {
+         "target_page": "Récapitulatif dernière semaine",
+         "target_visual": "7829174f2202486337ea"
+      },
+
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "352f31b6d5001b233179"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "3699f6b14be17904b974"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "65e2f29bee72b27c3c1e"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "847ffd0757823d40b270"
+      },
+      {
+         "target_page": "Vision mensuelle",
+         "target_visual": "fb93fc1164386edc20c0"
+      },
+
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "2edb91c281c07723b226"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "70025422ae5d7c07c393"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "8c30a52705179622217e"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "aa14591f5700d021c963"
+      },
+      {
+         "target_page": "Vision hebdo",
+         "target_visual": "b3b5cd6c19d3beb0cc00"
+      }
+   ]
+}
