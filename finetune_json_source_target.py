@@ -8,7 +8,7 @@ import copy
 ##########################
 
 # Path to the JSON file
-file_path = "jsons_test/loreal_lbds.json"
+file_path = "jsons_test/ftv_profils_videonautes.json"
 
 # Open and read the JSON file
 with open(file_path, 'r', encoding="utf-8") as file:
@@ -122,7 +122,7 @@ df = build_df(original_json_data)
 print(df)
 
 user_prompt = (
-    "I want to update the slicers 'Strate', 'Brand' and 'Order type' on the 'Products Performance', 'Brands Performance', 'Strates Performance' and 'Orders & clients details' pages so that their format match the 'Brand' slicer on the 'Strates Performance' page."
+    "I want to update the slicer 'Type de plateforme' on the 'Vision globale du mois' page so that his format match the 'Type vidéonautes' slicer on the 'Profil vidéonautes saison' page."
 )
 
 prompt = (
@@ -186,7 +186,7 @@ completion = openai.ChatCompletion.create(
 
 arguments = completion.choices[0].message["function_call"]["arguments"]
 
-with open("jsons_source_target/loreal_lbds_4.json", 'w', encoding='utf8') as file:
+with open("jsons_source_target/videonautes_ftv_3.json", 'w', encoding='utf8') as file:
     json_obj = json.loads(arguments)
     json.dump(json_obj, file, indent=3, ensure_ascii=False)
 
@@ -194,9 +194,12 @@ df[['page name', 'visual id', 'visual name']]
 
 ####### Construire le template pour chaque exemple de la base ########
 
-def template_json(user_prompt, df, json_path_source_target, prompt):
+def template_json(user_prompt, original_json_path, json_source_target_path, prompt):
 # Fonction pour mettre en forme le prompt avec le json PBI
-    with open(json_path_source_target, 'r') as json_data :
+    with open(original_json_path, 'r', encoding="utf-8") as file:
+        original_json_data = json.load(file)
+    df = build_df(original_json_data)
+    with open(json_source_target_path, 'r', encoding="utf-8") as json_data :
         json_source_target = json.load(json_data)
     df_infos = df[['page name', 'visual id', 'visual name']].drop_duplicates().to_string()
     template = {"messages": [
@@ -204,32 +207,32 @@ def template_json(user_prompt, df, json_path_source_target, prompt):
         {"role": "user", "content": f"{user_prompt}. Here is the informations on the dashboard you should base your analysis on: {df_infos}"}, 
         {"role": "assistant", "content": f"{json_source_target}"}]}
 
-    final_json = json.dumps(template, indent=4)
+    final_json = json.dumps(template, indent=4, ensure_ascii=False)
 
     return final_json
 
 # Test sur un rapport
 
-user_prompt = "Ajoute un histogramme du nombre de user_id par pays"
-df = build_df(original_json_data)
-json_source_target = "jsons_train/IT__web_bis_same_as_browser.json"
+user_prompt = "I want to update the slicer 'Type de plateforme' on the 'Vision globale du mois' page so that his format match the 'Type vidéonautes' slicer on the 'Profil vidéonautes saison' page."
+original_json_path = "jsons_test/ftv_profils_videonautes.json"
+json_source_target_path = "jsons_source_target/videonautes_ftv_3.json"
 
-processed_json = template_json(instructions, json_path_before_change, json_path_after_change, visual_types, prompt)
+processed_json = template_json(user_prompt, original_json_path, json_source_target_path, prompt)
 print(processed_json)
 
 ####### Construction de la base de données #######
 
-bdd_excel = pd.read_excel("bdd/bdd_train_interaction_mode.xlsx")
-jsonl_path = 'bdd/bdd_jsons_train_interaction.jsonl'
+bdd_excel = pd.read_excel("bdd/bdd_json_source_target.xlsx")
+jsonl_path = 'bdd/bdd_json_source_target.jsonl'
 
 def build_bdd(bdd_excel, prompt, jsonl_path):
-    bdd_excel['json_resultat'] = bdd_excel.apply(lambda row: template_json(row['instructions'], row['json_path_before_change'], row['json_path_after_change'], prompt), axis=1)
+    bdd_excel['json_resultat'] = bdd_excel.apply(lambda row: template_json(row['user_prompt'], row['json_source_path'], row['json_output_path'], prompt), axis=1)
 
     # On ajoute tous les jsons à un fichier jsonl
-    with open(jsonl_path, 'w') as file:
+    with open(jsonl_path, 'w', encoding="utf-8") as file:
         for item in bdd_excel['json_resultat']:
             json_obj = json.loads(item)
-            json.dump(json_obj, file)
+            json.dump(json_obj, file, ensure_ascii=False)
             file.write('\n')
     
 build_bdd(bdd_excel, prompt, jsonl_path)
