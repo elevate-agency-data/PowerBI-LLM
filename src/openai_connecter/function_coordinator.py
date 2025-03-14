@@ -42,7 +42,9 @@ class FunctionCoordinator:
         """Handle the generation of a README page."""
         extracted_report = extract_dashboard_by_page(report_json_content)
         summary_dashboard, overview_all_pages = summarize_dashboard_by_page(extracted_report)
-        arguments = json.loads(output.get("function_call", {}).get("arguments", "{}"))
+        arguments_str = prepare_arguments_add_read_me(overview_all_pages, self.function_descriptions)
+        # Parse the JSON string into a dictionary
+        arguments = json.loads(arguments_str)
         updated_report = add_read_me(arguments['dashboard_summary'], arguments['pages'])
         report_json_content['sections'].insert(0, updated_report["sections"][0])
         return json.dumps(report_json_content, indent=4), None, config.MODIFICATION_SUCCESS
