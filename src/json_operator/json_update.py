@@ -173,16 +173,16 @@ def add_read_me(dashboard_summary, pages):
                             "paragraphs": [
                                 {"textRuns": [{
                                     "value": "Page Overview",
-                                    "textStyle": {"fontWeight": "bold", "fontSize": "14pt"}
+                                    "textStyle": {"fontWeight": "bold", "fontSize": "20pt"}
                                 }]},
                                 *[{"textRuns": [
                                     {
                                         "value": f"{page['page_name']}: ",
-                                        "textStyle": {"fontSize": "12pt", "fontWeight": "bold"}
+                                        "textStyle": {"fontSize": "14pt", "fontWeight": "bold"}
                                     },
                                     {
                                         "value": page['page_summary'],
-                                        "textStyle": {"fontSize": "12pt"}
+                                        "textStyle": {"fontSize": "14pt"}
                                     }
                                 ]} for page in pages]
                             ]
@@ -203,10 +203,8 @@ def add_read_me(dashboard_summary, pages):
     # 4. Add KPI sections for each page
     y_position = 340
     for i, page in enumerate(pages):
-        x_position = 10 if i % 2 == 0 else 660
-        if i % 2 == 0 and i > 0:
-            y_position += 320  # Increase y position for new row
-
+        x_position = 0  # Changed from: x_position = 10 if i % 2 == 0 else 660
+        
         kpi_height = 230 if len(page['visuals']) > 5 else 170
         kpi_config = {
             "config": json.dumps({
@@ -217,7 +215,7 @@ def add_read_me(dashboard_summary, pages):
                         "x": x_position,
                         "y": y_position,
                         "z": 3000 + i * 1000,
-                        "width": 600,
+                        "width": 1280,  # Changed from 600 to full width
                         "height": kpi_height
                     }
                 }],
@@ -235,11 +233,11 @@ def add_read_me(dashboard_summary, pages):
                                     *[{"textRuns": [
                                         {
                                             "value": f"{visual['kpi_name']}: ",
-                                            "textStyle": {"fontSize": "12pt", "fontWeight": "bold"}
+                                            "textStyle": {"fontSize": "14pt", "fontWeight": "bold"}
                                         },
                                         {
                                             "value": visual['kpi_definition'],
-                                            "textStyle": {"fontSize": "12pt"}
+                                            "textStyle": {"fontSize": "14pt"}
                                         }
                                     ]} for visual in page['visuals']]
                                 ]
@@ -250,12 +248,15 @@ def add_read_me(dashboard_summary, pages):
             }),
             "filters": "[]",
             "height": kpi_height,
-            "width": 600.00,
+            "width": 1280.00,  # Changed from 600 to full width
             "x": x_position,
             "y": y_position,
             "z": 3000 + i * 1000
         }
         template["sections"][0]["visualContainers"].append(kpi_config)
+        
+        # Add spacing between sections
+        y_position += kpi_height + 40  # Add some spacing between sections
 
     return template
 
