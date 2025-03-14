@@ -67,13 +67,21 @@ def add_read_me(dashboard_summary, pages):
         ]
     }
 
+    # Set the distance variables
+    title_height = 64
+    dashboard_objective_height = 140
+    page_overview_height = len(pages) * 55
+    kpi_section_header = 46
+    y_position = 0
+    gap_between_sections = 20
+
     # 1. Add the title section with dark background
     title_config = {
         "config": json.dumps({
             "name": "677ff640e2128e7c8715",
             "layouts": [{
                 "id": 0,
-                "position": {"x": 0, "y": 0, "z": 0, "width": 1280, "height": 64}
+                "position": {"x": 0, "y": y_position, "z": 0, "width": 1280, "height": title_height}
             }],
             "singleVisual": {
                 "visualType": "textbox",
@@ -109,7 +117,7 @@ def add_read_me(dashboard_summary, pages):
             }
         }),
         "filters": "[]",
-        "height": 64.00,
+        "height": title_height,
         "width": 1280.00,
         "x": 0.00,
         "y": 0.00,
@@ -118,12 +126,13 @@ def add_read_me(dashboard_summary, pages):
     template["sections"][0]["visualContainers"].append(title_config)
 
     # 2. Add the dashboard objective section
+    y_position += title_height
     objective_config = {
         "config": json.dumps({
             "name": "dashboardSummaryBox",
             "layouts": [{
                 "id": 0,
-                "position": {"x": 0, "y": 64, "z": 1000, "width": 1280, "height": 106}
+                "position": {"x": 0, "y": y_position, "z": 1000, "width": 1280, "height": dashboard_objective_height}
             }],
             "singleVisual": {
                 "visualType": "textbox",
@@ -148,21 +157,22 @@ def add_read_me(dashboard_summary, pages):
             }
         }),
         "filters": "[]",
-        "height": 106.00,
+        "height": dashboard_objective_height,
         "width": 1280.00,
         "x": 0.00,
-        "y": 64.00,
+        "y": y_position,
         "z": 1000.00
     }
     template["sections"][0]["visualContainers"].append(objective_config)
 
     # 3. Add the page overview section
+    y_position += dashboard_objective_height + gap_between_sections
     page_overview_config = {
         "config": json.dumps({
             "name": "pageSummariesBox",
             "layouts": [{
                 "id": 0,
-                "position": {"x": 10, "y": 170, "z": 2000, "width": 1200, "height": 130}
+                "position": {"x": 0, "y": y_position, "z": 2000, "width": 1280, "height": page_overview_height}
             }],
             "singleVisual": {
                 "visualType": "textbox",
@@ -192,20 +202,63 @@ def add_read_me(dashboard_summary, pages):
             }
         }),
         "filters": "[]",
-        "height": 130.00,
+        "height": page_overview_height,
         "width": 1200.00,
-        "x": 10.00,
-        "y": 170.00,
+        "x": 0.00,
+        "y": y_position,
         "z": 2000.00
     }
     template["sections"][0]["visualContainers"].append(page_overview_config)
 
-    # 4. Add KPI sections for each page
-    y_position = 340
+    # 4. Add KPI header and sections
+    y_position += page_overview_height + gap_between_sections
+    
+    # Add KPI header text
+    kpi_header_config = {
+        "config": json.dumps({
+            "name": "kpiHeader",
+            "layouts": [{
+                "id": 0,
+                "position": {
+                    "x": 0,
+                    "y": y_position,
+                    "z": 2500,
+                    "width": 1280,
+                    "height": kpi_section_header
+                }
+            }],
+            "singleVisual": {
+                "visualType": "textbox",
+                "drillFilterOtherVisuals": True,
+                "objects": {
+                    "general": [{
+                        "properties": {
+                            "paragraphs": [
+                                {"textRuns": [{
+                                    "value": "Detailed KPIs by Page",
+                                    "textStyle": {"fontWeight": "bold", "fontSize": "20pt"}
+                                }]}
+                            ]
+                        }
+                    }]
+                }
+            }
+        }),
+        "filters": "[]",
+        "height": kpi_section_header,
+        "width": 1280.00,
+        "x": 0.00,
+        "y": y_position,
+        "z": 2500
+    }
+    template["sections"][0]["visualContainers"].append(kpi_header_config)
+    
+    y_position += kpi_section_header
+
+    # Add individual KPI sections for each page
     for i, page in enumerate(pages):
-        x_position = 0  # Changed from: x_position = 10 if i % 2 == 0 else 660
-        
-        kpi_height = 230 if len(page['visuals']) > 5 else 170
+        x_position = 0
+        kpi_height = len(page['visuals']) * 30 if len(page['visuals']) > 5 else len(page['visuals']) * 38
         kpi_config = {
             "config": json.dumps({
                 "name": f"{page['page_name'].replace(' ', '')}KPIs",
@@ -215,7 +268,7 @@ def add_read_me(dashboard_summary, pages):
                         "x": x_position,
                         "y": y_position,
                         "z": 3000 + i * 1000,
-                        "width": 1280,  # Changed from 600 to full width
+                        "width": 1280, 
                         "height": kpi_height
                     }
                 }],
@@ -231,6 +284,10 @@ def add_read_me(dashboard_summary, pages):
                                         "textStyle": {"fontWeight": "bold", "fontSize": "14pt"}
                                     }]},
                                     *[{"textRuns": [
+                                        {
+                                            "value": "• ",
+                                            "textStyle": {"fontSize": "14pt"}
+                                        },
                                         {
                                             "value": f"{visual['kpi_name']}: ",
                                             "textStyle": {"fontSize": "14pt", "fontWeight": "bold"}
@@ -248,15 +305,16 @@ def add_read_me(dashboard_summary, pages):
             }),
             "filters": "[]",
             "height": kpi_height,
-            "width": 1280.00,  # Changed from 600 to full width
+            "width": 1280.00, 
             "x": x_position,
             "y": y_position,
             "z": 3000 + i * 1000
         }
         template["sections"][0]["visualContainers"].append(kpi_config)
         
-        # Add spacing between sections
-        y_position += kpi_height + 40  # Add some spacing between sections
+        # Update the page height to reflect the total height
+        y_position += kpi_height + gap_between_sections
+        template["sections"][0]["height"] = y_position
 
     return template
 
