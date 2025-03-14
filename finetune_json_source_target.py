@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 import openai
-import copy
+import ast
 
 ##########################
 # Construction de la bdd #
@@ -131,8 +131,6 @@ prompt = (
     "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
     "The name of the visuals and pages must be identical to the ones in the Dataframe."
     "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
-    f"Here is the user input: {user_prompt}\n"
-    f"Here is the DataFrame you should base your analysis on:\n{df}"
 )
 
 function_descriptions = [
@@ -236,3 +234,94 @@ def build_bdd(bdd_excel, prompt, jsonl_path):
             file.write('\n')
     
 build_bdd(bdd_excel, prompt, jsonl_path)
+
+##########################
+# Finetuning du modèle   #
+##########################
+
+# Define a function to open a file and return its contents as a string
+def open_file(filepath):
+    with open(filepath, 'r', encoding='utf-8') as infile:
+        return infile.read()
+
+# Define a function to save content to a file
+def save_file(filepath, content):
+    with open(filepath, 'a', encoding='utf-8') as outfile:
+        outfile.write(content)
+
+# Set the OpenAI API keys by reading them from files
+openai.api_key = api_key
+
+# Create file
+with open("C:/Users/Elevate/OneDrive - Francetelevisions/Documents/PowerBI_LLM/PowerBI-LLM/bdd/bdd_json_source_target.jsonl", "rb") as file:
+    response = openai.File.create(
+        file=file,
+        purpose='fine-tune'
+    )
+
+file_id = response['id']
+print(f"File uploaded successfully with ID: {file_id}")
+
+
+# Using the provided file_id
+model_name = "gpt-3.5-turbo"  
+
+response = openai.FineTuningJob.create(
+    training_file=file_id,
+    model=model_name
+)
+
+job_id = response['id']
+
+print(f"Fine-tuning job created successfully with ID: {job_id}")
+
+# Fonction pour vérifier l'état du travail de fine-tuning
+def check_fine_tune_status(job_id):
+    response = openai.FineTuningJob.retrieve(job_id)
+    return response
+
+status = check_fine_tune_status(job_id)
+print(status)
+
+
+##### Utilisation du modèle finetuné ######
+
+user_prompt = (
+    "I want to update the slicers 'Genre', 'Age', 'Region' and 'Periode' on the 'Vision utilisateurs' page and the slicers 'Livechat JOP' and 'Data JOP' on the 'Vision visiteurs' page, so that his format match the 'Video JOP' slicer on the 'Vision visiteurs' page."
+)
+
+prompt = (
+    "You are an assistant designed to identify the source page, source visuals, target page, and target visuals based on user input. "
+    "Your answer should be based on the given DataFrame, which contains information about all the pages and visuals in the dashboard. "
+    "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
+    "The name of the visuals and pages must be identical to the ones in the Dataframe."
+    "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
+)
+
+fine_tuned_model = status['fine_tuned_model']
+
+# Modèle finetuné 10 exemples uniformisation filtres
+fine_tuned_model = "ft:gpt-3.5-turbo-0125:personal::BAwNWDg1"
+
+json_input_path = "jsons_test/ftv_jo.json"
+
+
+def get_answer(json_input_path, fine_tuned_model, prompt, user_prompt) :
+    with open(json_input_path, 'r') as json_data :
+        json_input = json.load(json_data)
+    df = build_df(json_input)
+    df_infos = df[['page name', 'visual id', 'visual name']].drop_duplicates().to_string()
+    response = openai.ChatCompletion.create(
+    model=fine_tuned_model,
+    messages=[
+        {"role": "system", "content": f"{prompt}"}, 
+        {"role": "user", "content": f"{user_prompt}. Here is the informations on the dashboard you should base your analysis on: {df_infos}"}, 
+    ]
+    )
+    json_reponse = response['choices'][0]['message']['content']
+    json_reponse_clean = json.dumps(ast.literal_eval(json_reponse), indent=4, ensure_ascii=False)
+
+    return json_reponse_clean
+
+
+json_reponse_clean = get_answer(json_input_path, fine_tuned_model, prompt, user_prompt)
