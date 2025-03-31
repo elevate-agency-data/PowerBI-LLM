@@ -258,7 +258,7 @@ def add_read_me(dashboard_summary, pages):
     # Add individual KPI sections for each page
     for i, page in enumerate(pages):
         x_position = 0
-        kpi_height = len(page['visuals']) * 30 if len(page['visuals']) > 5 else len(page['visuals']) * 38
+        kpi_height = len(page['visuals']) * 30 if len(page['visuals']) > 5 else len(page['visuals']) * 40
         kpi_config = {
             "config": json.dumps({
                 "name": f"{page['page_name'].replace(' ', '')}KPIs",
