@@ -202,7 +202,7 @@ def template_json(user_prompt, original_json_path, json_source_target_path, prom
     df_infos = df[['page name', 'visual id', 'visual name']].drop_duplicates().to_string()
     template = {"messages": [
         {"role": "system", "content": f"{prompt}"}, 
-        {"role": "user", "content": f"{user_prompt}. Here is the informations on the dashboard you should base your analysis on: {df_infos}"}, 
+        {"role": "user", "content": f"{user_prompt}. Here are the informations on the dashboard you should base your analysis on: {df_infos}"}, 
         {"role": "assistant", "content": f"{json_source_target}"}]}
 
     final_json = json.dumps(template, indent=4, ensure_ascii=False)
@@ -283,8 +283,91 @@ def check_fine_tune_status(job_id):
 status = check_fine_tune_status(job_id)
 print(status)
 
+##### Utilisation du function calling #######
+
+function_descriptions = [
+    {
+        "name": "uniformize_visuals",
+        "description": "This function automates the standardization of visual styles across different pages of a Power BI dashboard. It updates the formatting of specified target visuals to match the style of a designated source visual. The function ensures consistent visual presentation, aiding in seamless user experiences across various dashboard pages.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "object",
+                    "properties": {
+                        "source_page": {
+                            "type": "string",
+                            "description": "Specifies the page name where the source visual is located. This value must correspond to the 'page name' column of the dataframe. Only one source page is allowed."
+                        },
+                        "source_visual": {
+                            "type": "string",
+                            "description": "The name of the visual on the source page used as the formatting template. This should be extracted from the 'visual name' column of the dataframe. Only one source visual is permitted."
+                        }
+                    }
+                },
+                "target": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "target_page": {
+                                "type": "string",
+                                "description": "The name of the page containing the target visuals that will be updated. This is taken from the 'page name' column of the dataframe. Multiple target pages can be specified. The source page can also be a target page."
+                            },
+                            "target_visual": {
+                                "type": "string",
+                                "description": "The identifier of each target visual on the target page to be formatted. These identifiers are sourced from the 'visual name' column of the dataframe. Multiple target visuals can be specified per page."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+]
+
+def generate_completion(user_input):
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": user_input}],
+        functions=function_descriptions,
+        function_call="auto",  # Let the model decide if it needs to call the function
+    )
+    arguments = completion.choices[0].message["function_call"]["arguments"]
+    return arguments
+
+json_input_path = "jsons_test/ftv_jo.json"
+
+with open(json_input_path, 'r') as json_data :
+    json_input = json.load(json_data)
+df = build_df(json_input)
+print(df)
+
+user_prompt = (
+    "I want to update the slicers 'Genre', 'Age', 'Region' and 'Periode' on the 'Vision utilisateurs' page and the slicers 'Livechat JOP' and 'Data JOP' on the 'Vision visiteurs' page, so that his format match the 'Video JOP' slicer on the 'Vision visiteurs' page."
+)
+
+total_prompt = (
+    "You are an assistant designed to identify the source page, source visuals, target page, and target visuals based on user input. "
+    "Your answer should be based on the given DataFrame, which contains information about all the pages and visuals in the dashboard. "
+    #"It is essential to understand the user's intention and ensure that nothing in the DataFrame is omitted."
+    "It is essential that you identify the correct source visual and target visuals from the user input and the DataFrame."
+    "The name of the visuals and pages must be identical to the ones in the Dataframe."
+    "If the user does not specify a particular page for uniformization, they might want to apply uniformization to all the pages.\n"
+    f"Here is the user input: {user_prompt}\n"
+    f"Here is the DataFrame you should base your analysis on:\n{df}"
+)
+
+dict_slicers = generate_completion(total_prompt)
+dict_slicers = json.loads(dict_slicers)
+print(dict_slicers)
+
 
 ##### Utilisation du modèle finetuné ######
+
+user_prompt = (
+    "I want to update the slicers 'Genre', 'Age', 'Region' and 'Periode' on the 'Vision utilisateurs' page and the slicers 'Livechat JOP' and 'Data JOP' on the 'Vision visiteurs' page, so that his format match the 'Video JOP' slicer on the 'Vision visiteurs' page."
+)
 
 user_prompt = (
     "I want to update the slicers 'Genre', 'Age', 'Region' and 'Periode' on the 'Vision utilisateurs' page and the slicers 'Livechat JOP' and 'Data JOP' on the 'Vision visiteurs' page, so that his format match the 'Video JOP' slicer on the 'Vision visiteurs' page."
@@ -304,6 +387,7 @@ fine_tuned_model = status['fine_tuned_model']
 fine_tuned_model = "ft:gpt-3.5-turbo-0125:personal::BAwNWDg1"
 
 json_input_path = "jsons_test/ftv_jo.json"
+json_input_path = "jsons_test/ftv_perf_sliders.json"
 
 
 def get_answer(json_input_path, fine_tuned_model, prompt, user_prompt) :
