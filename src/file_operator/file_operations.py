@@ -16,8 +16,12 @@ def extract_report_and_model(zip_file):
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
         zip_ref.extractall(extract_path)
 
-    inner_folder_name = os.listdir(extract_path)[0]
-    inner_folder_path = os.path.join(extract_path, inner_folder_name)
+    # sometimes there is a sub-folder after extraction and sometimes not. This is a workaround to handle both cases and need to be investigated in the future
+    if len(os.listdir(extract_path)) == 1:
+        inner_folder_name = os.listdir(extract_path)[0]
+        inner_folder_path = os.path.join(extract_path, inner_folder_name)
+    else:
+        inner_folder_path = extract_path
     inner_folder_contents = os.listdir(inner_folder_path)
     report_folder_path = None
     model_bim_path = None
