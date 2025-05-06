@@ -8,7 +8,7 @@ import ast
 openai.api_key = api_key
 
 # Path to the JSON file
-json_input_path = "jsons_test/contenus_ftv.json"
+json_input_path = "jsons/loreal_ca_client.json"
 
 # Open and read the JSON file
 with open(json_input_path, 'r', encoding="utf-8") as file:

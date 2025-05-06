@@ -1,0 +1,756 @@
+{
+  "config": "{\"version\":\"5.62\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY22SU09\",\"version\":\"5.39\",\"type\":2},\"customTheme\":{\"name\":\"Chanel_et_moi48308652450584866.json\",\"version\":\"5.39\",\"type\":1}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "filters": "[]",
+  "layoutOptimization": 0,
+  "publicCustomVisuals": [
+    "ChicletSlicer1448559807354"
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "Chanel_et_moi48308652450584866.json",
+            "path": "Chanel_et_moi48308652450584866.json",
+            "type": 100
+          },
+          {
+            "name": "bullseye-arrow4834893053925515.png",
+            "path": "bullseye-arrow4834893053925515.png",
+            "type": 100
+          },
+          {
+            "name": "calendar-clock4178093640477909.png",
+            "path": "calendar-clock4178093640477909.png",
+            "type": 100
+          },
+          {
+            "name": "multiple-alt037392281175680164.png",
+            "path": "multiple-alt037392281175680164.png",
+            "type": 100
+          },
+          {
+            "name": "team-check1026256583883789.png",
+            "path": "team-check1026256583883789.png",
+            "type": 100
+          },
+          {
+            "name": "user-xmark005529514391720003.png",
+            "path": "user-xmark005529514391720003.png",
+            "type": 100
+          },
+          {
+            "name": "users-alt_(1)5381587054885046.png",
+            "path": "users-alt_(1)5381587054885046.png",
+            "type": 100
+          },
+          {
+            "name": "window-alt10004126265534397.png",
+            "path": "window-alt10004126265534397.png",
+            "type": 100
+          }
+        ],
+        "name": "RegisteredResources",
+        "type": 1
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY22SU09",
+            "path": "BaseThemes/CY22SU09.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"185L\"}}}}}]},\"filterSortOrder\":3}",
+      "displayName": "RSVP GLOBAL",
+      "displayOption": 3,
+      "filters": "[]",
+      "height": 2900.00,
+      "name": "ReportSection4fbe4ed062192d693e26",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"00ee7a90d39dc391b57a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":22000,\"width\":270,\"height\":31.25,\"tabOrder\":22000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Locale distribution \"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"ed5205aa4a569ac6936e\"}",
+          "filters": "[]",
+          "height": 31.25,
+          "width": 270.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 22000.00
+        },
+        {
+          "config": "{\"name\":\"0472ac436ac37230d372\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":6000,\"width\":1320,\"height\":80,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"RSVP GLOBAL\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"24pt\",\"color\":\"#000000\"}}],\"horizontalTextAlignment\":\"center\"},{\"textRuns\":[{\"value\":\"watches & fine jewelry\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"14pt\",\"color\":\"#000000\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'page title'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 1320.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 6000.00
+        },
+        {
+          "config": "{\"name\":\"0b204739b4d51521ad41\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":528,\"z\":0,\"width\":1216,\"height\":383.99999999999994,\"tabOrder\":18000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 384.00,
+          "width": 1216.00,
+          "x": 32.00,
+          "y": 528.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"0b516b60f3f9a2e3bb04\",\"layouts\":[{\"id\":0,\"position\":{\"x\":400,\"y\":448,\"z\":59000,\"width\":156,\"height\":32,\"tabOrder\":56000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_page_sessions\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_page_sessions\"},\"Name\":\"A_Mesures.Evol_page_sessions\",\"NativeReferenceName\":\"Evol_page_sessions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_page_sessions\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_page_sessions\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_page_sessions\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 156.00,
+          "x": 400.00,
+          "y": 448.00,
+          "z": 59000.00
+        },
+        {
+          "config": "{\"name\":\"13714e19ce89b4cac625\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":944,\"z\":34000,\"width\":624,\"height\":416,\"tabOrder\":36000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 416.00,
+          "width": 624.00,
+          "x": 640.00,
+          "y": 944.00,
+          "z": 34000.00
+        },
+        {
+          "config": "{\"name\":\"1441e08fa86707015755\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":16,\"z\":24000,\"width\":208,\"height\":32,\"tabOrder\":24000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"per visits\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"4802eea829e383ac04c0\"}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 208.00,
+          "x": 0.00,
+          "y": 16.00,
+          "z": 24000.00
+        },
+        {
+          "config": "{\"name\":\"14c14bb289ceea11ba6c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":610,\"y\":317.25,\"z\":14000,\"width\":45,\"height\":45,\"tabOrder\":11000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"calendar-clock4178093640477909.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 610.00,
+          "y": 317.25,
+          "z": 14000.00
+        },
+        {
+          "config": "{\"name\":\"162bea1b40523b8ea060\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":1712,\"z\":1000,\"width\":624,\"height\":1104,\"tabOrder\":41000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 1104.00,
+          "width": 624.00,
+          "x": 640.00,
+          "y": 1712.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"1814021b8ddf8ae46372\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":1728,\"z\":40000,\"width\":492.35294117647055,\"height\":31.25,\"tabOrder\":62000}}],\"singleVisualGroup\":{\"displayName\":\"Groupe 1\",\"groupMode\":0}}",
+          "height": 31.25,
+          "width": 492.35,
+          "x": 32.00,
+          "y": 1728.00,
+          "z": 40000.00
+        },
+        {
+          "config": "{\"name\":\"1e50c5dc0d5c4c637197\",\"layouts\":[{\"id\":0,\"position\":{\"x\":662.75,\"y\":1730.25,\"z\":47000,\"width\":492.35294117647055,\"height\":31.25,\"tabOrder\":7000}}],\"singleVisualGroup\":{\"displayName\":\"Groupe 1\",\"groupMode\":0}}",
+          "height": 31.25,
+          "width": 492.35,
+          "x": 662.75,
+          "y": 1730.25,
+          "z": 47000.00
+        },
+        {
+          "config": "{\"name\":\"278e1ae8cecadbf336e3\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.22222222222222,\"y\":128.88888888888889,\"z\":27000,\"width\":272.22222222222223,\"height\":64.44444444444444,\"tabOrder\":29000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Date benchmark.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"Date benchmark\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Date\"},\"Name\":\"Date benchmark.Date\",\"NativeReferenceName\":\"benchmark\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Date\"}}}]},\"columnProperties\":{\"Date benchmark.Date\":{\"displayName\":\"benchmark\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-10-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-10-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"slider\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d1\",\"Entity\":\"Date benchmark\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-10-01T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-11-01T00:00:00'\"}}}}}}}]}}}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"date\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"pendingChangesIcon\":[{\"properties\":{\"size\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.1}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"54D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 64.44,
+          "width": 272.22,
+          "x": 32.22,
+          "y": 128.89,
+          "z": 27000.00
+        },
+        {
+          "config": "{\"name\":\"2acc9123a0d349b46621\",\"layouts\":[{\"id\":0,\"position\":{\"x\":72,\"y\":576,\"z\":31000,\"width\":1152,\"height\":336,\"tabOrder\":33000}}],\"singleVisual\":{\"visualType\":\"lineStackedColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Date.Date.Variation.Hiérarchie de dates.Mois\",\"active\":true},{\"queryRef\":\"Date.Date.Variation.Hiérarchie de dates.Jour\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions)\"}],\"Y2\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0},{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Name\":\"Variation\",\"Property\":\"Date\"}},\"Hierarchy\":\"Hiérarchie de dates\"}},\"Level\":\"Mois\"},\"Name\":\"Date.Date.Variation.Hiérarchie de dates.Mois\",\"NativeReferenceName\":\"Date Mois\"},{\"HierarchyLevel\":{\"Expression\":{\"Hierarchy\":{\"Expression\":{\"PropertyVariationSource\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Name\":\"Variation\",\"Property\":\"Date\"}},\"Hierarchy\":\"Hiérarchie de dates\"}},\"Level\":\"Jour\"},\"Name\":\"Date.Date.Variation.Hiérarchie de dates.Jour\",\"NativeReferenceName\":\"Date Jour\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions)\",\"NativeReferenceName\":\"Sessions\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions_reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\",\"NativeReferenceName\":\"sessions reservation created\"}]},\"columnProperties\":{\"Sum(WFJ_RSVP_sessions.sessions)\":{\"displayName\":\"Sessions\"},\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\":{\"displayName\":\"sessions reservation created\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"valueAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"categoryAxis\":[{\"properties\":{\"showAxisTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 336.00,
+          "width": 1152.00,
+          "x": 72.00,
+          "y": 576.00,
+          "z": 31000.00
+        },
+        {
+          "config": "{\"name\":\"2cd433b683d0c8bf8960\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32.22222222222222,\"y\":2175.5555555555557,\"z\":42000,\"width\":560,\"height\":322.22222222222223,\"tabOrder\":42000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"WFJ_RSVP_sessions.source_manual\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions)\",\"NativeReferenceName\":\"sessions\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"source_manual\"},\"Name\":\"WFJ_RSVP_sessions.source_manual\",\"NativeReferenceName\":\"source de la session1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(WFJ_RSVP_sessions.sessions)\":{\"displayName\":\"sessions\"},\"WFJ_RSVP_sessions.source_manual\":{\"displayName\":\"source de la session\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"433D\"}}}},\"selector\":{\"metadata\":\"WFJ_RSVP_sessions.source_manual\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 322.22,
+          "width": 560.00,
+          "x": 32.22,
+          "y": 2175.56,
+          "z": 42000.00
+        },
+        {
+          "config": "{\"name\":\"2d7cef5d278a9051291e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":656,\"y\":2544,\"z\":53000,\"width\":592,\"height\":256,\"tabOrder\":52000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"WFJ_RSVP_sessions.medium\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"medium\"},\"Name\":\"WFJ_RSVP_sessions.medium\",\"NativeReferenceName\":\"medium de la session1\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.reservation_created)\",\"NativeReferenceName\":\"reservation created1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"reservation_created\"}},\"Function\":0}}}]},\"columnProperties\":{\"WFJ_RSVP_sessions.medium\":{\"displayName\":\"medium de la session\"},\"Sum(WFJ_RSVP_sessions.reservation_created)\":{\"displayName\":\"reservation created\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"362.33332213868823D\"}}}},\"selector\":{\"metadata\":\"WFJ_RSVP_sessions.medium\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 256.00,
+          "width": 592.00,
+          "x": 656.00,
+          "y": 2544.00,
+          "z": 53000.00
+        },
+        {
+          "config": "{\"name\":\"319918519a770087ba99\",\"layouts\":[{\"id\":0,\"position\":{\"x\":140,\"y\":317.25,\"z\":22000,\"width\":45,\"height\":45,\"tabOrder\":24000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"users-alt_(1)5381587054885046.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 140.00,
+          "y": 317.25,
+          "z": 22000.00
+        },
+        {
+          "config": "{\"name\":\"31fbbbb089297396402f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":656,\"y\":960.0000000000001,\"z\":56000,\"width\":592,\"height\":64,\"tabOrder\":64000}}],\"singleVisualGroup\":{\"displayName\":\"Groupe 3\",\"groupMode\":0}}",
+          "height": 64.00,
+          "width": 592.00,
+          "x": 656.00,
+          "y": 960.00,
+          "z": 56000.00
+        },
+        {
+          "config": "{\"name\":\"336c1665530f3bdf3f33\",\"layouts\":[{\"id\":0,\"position\":{\"height\":31.25,\"width\":492.35294117647055,\"x\":0,\"y\":0,\"z\":25000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Global traffic sources \",\"textStyle\":{\"fontWeight\":\"bold\"}},{\"value\":\"per visits\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#808080\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"1814021b8ddf8ae46372\"}",
+          "filters": "[]",
+          "height": 31.25,
+          "width": 492.35,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 25000.00
+        },
+        {
+          "config": "{\"name\":\"3909e3b0d59b09650a71\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":2864,\"z\":4000,\"width\":1280,\"height\":32,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"glow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 2864.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"3a32f174b6884894c4a1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":312.22222222222223,\"y\":128.88888888888889,\"z\":20000,\"width\":195.55555555555554,\"height\":63.33333333333333,\"tabOrder\":17000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Channel Grouping.custom_channel_group\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c1\",\"Entity\":\"Channel Grouping\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c1\"}},\"Property\":\"custom_channel_group\"},\"Name\":\"Channel Grouping.custom_channel_group\",\"NativeReferenceName\":\"Channel Grouping\"}]},\"columnProperties\":{\"Channel Grouping.custom_channel_group\":{\"displayName\":\"Channel Grouping\"}},\"syncGroup\":{\"groupName\":\"Default_Channel_Grouping\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.2}}}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 63.33,
+          "width": 195.56,
+          "x": 312.22,
+          "y": 128.89,
+          "z": 20000.00
+        },
+        {
+          "config": "{\"name\":\"403dcafa89e9ebd16dab\",\"layouts\":[{\"id\":0,\"position\":{\"x\":64,\"y\":240.00000000000003,\"z\":8000,\"width\":1152,\"height\":256,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 256.00,
+          "width": 1152.00,
+          "x": 64.00,
+          "y": 240.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"4802eea829e383ac04c0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":1392,\"z\":35000,\"width\":270,\"height\":48,\"tabOrder\":23000}}],\"singleVisualGroup\":{\"displayName\":\"Groupe 1\",\"groupMode\":0}}",
+          "height": 48.00,
+          "width": 270.00,
+          "x": 32.00,
+          "y": 1392.00,
+          "z": 35000.00
+        },
+        {
+          "config": "{\"name\":\"49b3dcd6f43960c595aa\",\"layouts\":[{\"id\":0,\"position\":{\"height\":27.78947368421052,\"width\":206.5185185185185,\"x\":0,\"y\":20.21052631578947,\"z\":34000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"per visits\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"ae34b68b29ea75612baa\"}",
+          "filters": "[]",
+          "height": 27.79,
+          "width": 206.52,
+          "x": 0.00,
+          "y": 20.21,
+          "z": 34000.00
+        },
+        {
+          "config": "{\"name\":\"4a957f11485e93a650dc\",\"layouts\":[{\"id\":0,\"position\":{\"height\":41.666666666666664,\"width\":587.6470588235294,\"x\":0,\"y\":0,\"z\":33000,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Appointment WITH GUEST\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"31fbbbb089297396402f\"}",
+          "filters": "[]",
+          "height": 41.67,
+          "width": 587.65,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 33000.00
+        },
+        {
+          "config": "{\"name\":\"4cd58206f0c6b89f7169\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":2512,\"z\":45000,\"width\":192.00000000000003,\"height\":32,\"tabOrder\":45000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"By medium\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 192.00,
+          "x": 32.00,
+          "y": 2512.00,
+          "z": 45000.00
+        },
+        {
+          "config": "{\"name\":\"4dd9c75389bbbe6c6103\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1080,\"y\":320,\"z\":24000,\"width\":45,\"height\":45,\"tabOrder\":26000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"bullseye-arrow4834893053925515.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 1080.00,
+          "y": 320.00,
+          "z": 24000.00
+        },
+        {
+          "config": "{\"name\":\"4fbe0371668d703b1753\",\"layouts\":[{\"id\":0,\"position\":{\"x\":395.7142857142857,\"y\":372.8571428571429,\"z\":16000,\"width\":157.14285714285714,\"height\":74.28571428571429,\"tabOrder\":13000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.page_sessions\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"page_sessions\"},\"Name\":\"A_Mesures.page_sessions\",\"NativeReferenceName\":\"page_sessions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"page_sessions\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'AVG. PAGES PER SESSION'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 74.29,
+          "width": 157.14,
+          "x": 395.71,
+          "y": 372.86,
+          "z": 16000.00
+        },
+        {
+          "config": "{\"name\":\"53acfdcbc8229ee87750\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1024.2857142857144,\"y\":448.5714285714286,\"z\":63000,\"width\":160,\"height\":47.142857142857146,\"tabOrder\":60000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_conversion_rate\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_conversion_rate\"},\"Name\":\"A_Mesures.Evol_conversion_rate\",\"NativeReferenceName\":\"pts\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_conversion_rate\"}}}]},\"columnProperties\":{\"A_Mesures.Evol_conversion_rate\":{\"displayName\":\"pts\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_conversion_rate\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_conversion_rate\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'Arial'\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 47.14,
+          "width": 160.00,
+          "x": 1024.29,
+          "y": 448.57,
+          "z": 63000.00
+        },
+        {
+          "config": "{\"name\":\"55ec280244ca5027eb73\",\"layouts\":[{\"id\":0,\"position\":{\"x\":64,\"y\":544,\"z\":21000,\"width\":464,\"height\":32,\"tabOrder\":19000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Visits & Appointments created over days\"}]}]}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 464.00,
+          "x": 64.00,
+          "y": 544.00,
+          "z": 21000.00
+        },
+        {
+          "config": "{\"name\":\"56245814a6d08982e35a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":895.5555555555555,\"y\":127.77777777777777,\"z\":64000,\"width\":180,\"height\":64.44444444444444,\"tabOrder\":61000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Market.market.2\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Market\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"market.2\"},\"Name\":\"Market.market.2\",\"NativeReferenceName\":\"market\"}]},\"columnProperties\":{\"Market.market.2\":{\"displayName\":\"market\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.2}}}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[{\"name\":\"Filterff36afa8c91caf592bec\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Market\"}},\"Property\":\"market.2\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Market\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"market.2\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 64.44,
+          "width": 180.00,
+          "x": 895.56,
+          "y": 127.78,
+          "z": 64000.00
+        },
+        {
+          "config": "{\"name\":\"57f7928ffbf30784a76c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":80,\"y\":448,\"z\":57000,\"width\":160,\"height\":32,\"tabOrder\":54000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_users\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_users\"},\"Name\":\"A_Mesures.Evol_users\",\"NativeReferenceName\":\"Evol_users\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_users\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_users\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_users\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 160.00,
+          "x": 80.00,
+          "y": 448.00,
+          "z": 57000.00
+        },
+        {
+          "config": "{\"name\":\"632eb4b25cf1ea489003\",\"layouts\":[{\"id\":0,\"position\":{\"x\":704,\"y\":448,\"z\":61000,\"width\":160,\"height\":32,\"tabOrder\":58000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_reservation_created\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_reservation_created\"},\"Name\":\"A_Mesures.Evol_reservation_created\",\"NativeReferenceName\":\"Evol_reservation_created\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_reservation_created\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_reservation_created\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_reservation_created\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 160.00,
+          "x": 704.00,
+          "y": 448.00,
+          "z": 61000.00
+        },
+        {
+          "config": "{\"name\":\"649b4192dd2786c27acb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":711.9999999999999,\"y\":375.99999999999994,\"z\":18000,\"width\":152,\"height\":72,\"tabOrder\":15000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.reservation_created)\",\"NativeReferenceName\":\"Somme de reservation_created\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"reservation_created\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Reservation created'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading3'\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 152.00,
+          "x": 712.00,
+          "y": 376.00,
+          "z": 18000.00
+        },
+        {
+          "config": "{\"name\":\"6812e37b7f13908aaf60\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":1440,\"z\":37000,\"width\":560,\"height\":240,\"tabOrder\":37000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"WFJ_RSVP_sessions.market.2\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"market.2\"},\"Name\":\"WFJ_RSVP_sessions.market.2\",\"NativeReferenceName\":\"market\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions)\",\"NativeReferenceName\":\"sessions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0}}}]},\"columnProperties\":{\"WFJ_RSVP_sessions.market.2\":{\"displayName\":\"market\"},\"Sum(WFJ_RSVP_sessions.sessions)\":{\"displayName\":\"sessions\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}},\"gridHorizontalColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F0F0F0'\"}}}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"431.85712338454823D\"}}}},\"selector\":{\"metadata\":\"WFJ_RSVP_sessions.market.2\"}}]}}}",
+          "filters": "[]",
+          "height": 240.00,
+          "width": 560.00,
+          "x": 32.00,
+          "y": 1440.00,
+          "z": 37000.00
+        },
+        {
+          "config": "{\"name\":\"6be79e6d0c0c8280ae57\",\"layouts\":[{\"id\":0,\"position\":{\"x\":553.75,\"y\":373.5,\"z\":17000,\"width\":156.25,\"height\":73.75,\"tabOrder\":14000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.AverageSessionSecFormatted\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_ONE_eapp\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"AverageSessionSecFormatted\"},\"Name\":\"A_Mesures.AverageSessionSecFormatted\",\"NativeReferenceName\":\"AverageSessionSecFormatted\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"m_avg_pages_per_session\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'AVG. SESSION DURATION'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading3'\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 73.75,
+          "width": 156.25,
+          "x": 553.75,
+          "y": 373.50,
+          "z": 17000.00
+        },
+        {
+          "config": "{\"name\":\"7e4fa9ff37e81a647947\",\"layouts\":[{\"id\":0,\"position\":{\"x\":864,\"y\":376,\"z\":30000,\"width\":160,\"height\":72,\"tabOrder\":32000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.reservation_cancelled)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"reservation_cancelled\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.reservation_cancelled)\",\"NativeReferenceName\":\"Somme de reservation_cancelled\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"reservation_cancelled\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Reservation cancelled'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading3'\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 160.00,
+          "x": 864.00,
+          "y": 376.00,
+          "z": 30000.00
+        },
+        {
+          "config": "{\"name\":\"8273230f12624ecf9c51\",\"layouts\":[{\"id\":0,\"position\":{\"x\":864,\"y\":448,\"z\":62000,\"width\":160,\"height\":32,\"tabOrder\":59000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_reservation_cancelled\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_reservation_cancelled\"},\"Name\":\"A_Mesures.Evol_reservation_cancelled\",\"NativeReferenceName\":\"Evol_reservation_cancelled\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_reservation_cancelled\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_reservation_cancelled\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_reservation_cancelled\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 160.00,
+          "x": 864.00,
+          "y": 448.00,
+          "z": 62000.00
+        },
+        {
+          "config": "{\"name\":\"8491612300a7c8aca001\",\"layouts\":[{\"id\":0,\"position\":{\"x\":757.5,\"y\":317.25,\"z\":23000,\"width\":45,\"height\":45,\"tabOrder\":25000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"team-check1026256583883789.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 757.50,
+          "y": 317.25,
+          "z": 23000.00
+        },
+        {
+          "config": "{\"name\":\"8579497538d20da3b160\",\"layouts\":[{\"id\":0,\"position\":{\"x\":662.75,\"y\":2146.25,\"z\":51000,\"width\":192.00000000000003,\"height\":32,\"tabOrder\":50000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"By source\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 192.00,
+          "x": 662.75,
+          "y": 2146.25,
+          "z": 51000.00
+        },
+        {
+          "config": "{\"name\":\"86901792190c1e053756\",\"layouts\":[{\"id\":0,\"position\":{\"x\":296.25,\"y\":317.25,\"z\":13000,\"width\":45,\"height\":45,\"tabOrder\":10000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"window-alt10004126265534397.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 296.25,
+          "y": 317.25,
+          "z": 13000.00
+        },
+        {
+          "config": "{\"name\":\"887009a21230574228eb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":452.5,\"y\":317.25,\"z\":26000,\"width\":45,\"height\":45,\"tabOrder\":28000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"multiple-alt037392281175680164.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 452.50,
+          "y": 317.25,
+          "z": 26000.00
+        },
+        {
+          "config": "{\"name\":\"8875f87e7d030c96b135\",\"layouts\":[{\"id\":0,\"position\":{\"x\":655.5555555555555,\"y\":2175.5555555555557,\"z\":49000,\"width\":592.2222222222222,\"height\":322.22222222222223,\"tabOrder\":48000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"WFJ_RSVP_sessions.source_manual\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.reservation_created)\",\"NativeReferenceName\":\"reservation created1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"source_manual\"},\"Name\":\"WFJ_RSVP_sessions.source_manual\",\"NativeReferenceName\":\"source de la session\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"reservation_created\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(WFJ_RSVP_sessions.reservation_created)\":{\"displayName\":\"reservation created\"},\"WFJ_RSVP_sessions.source_manual\":{\"displayName\":\"source de la session\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"360D\"}}}},\"selector\":{\"metadata\":\"WFJ_RSVP_sessions.source_manual\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 322.22,
+          "width": 592.22,
+          "x": 655.56,
+          "y": 2175.56,
+          "z": 49000.00
+        },
+        {
+          "config": "{\"name\":\"889a5fe56260c9257be6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":560,\"y\":448,\"z\":60000,\"width\":144,\"height\":32,\"tabOrder\":57000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_avg_duration\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_avg_duration\"},\"Name\":\"A_Mesures.Evol_avg_duration\",\"NativeReferenceName\":\"Evol_avg_duration\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_avg_duration\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_avg_duration\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_avg_duration\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 144.00,
+          "x": 560.00,
+          "y": 448.00,
+          "z": 60000.00
+        },
+        {
+          "config": "{\"name\":\"8e2763c98a32de04f0ad\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":1712,\"z\":39000,\"width\":592,\"height\":1104,\"tabOrder\":39000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 1104.00,
+          "width": 592.00,
+          "x": 16.00,
+          "y": 1712.00,
+          "z": 39000.00
+        },
+        {
+          "config": "{\"name\":\"9229bfda012f8f4dc174\",\"layouts\":[{\"id\":0,\"position\":{\"x\":672,\"y\":1024,\"z\":54000,\"width\":560,\"height\":304,\"tabOrder\":53000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"WFJ_RSVP_guest.epk_event_category\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(WFJ_RSVP_guest.session_event)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_guest\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"epk_event_category\"},\"Name\":\"WFJ_RSVP_guest.epk_event_category\",\"NativeReferenceName\":\"epk_event_category\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"session_event\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_guest.session_event)\",\"NativeReferenceName\":\"Somme de session_event\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"session_event\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'BottomCenter'\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social Paid'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":7,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Email'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.4}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_guest\"}},\"Property\":\"epk_event_category\"}},\"Right\":{\"Literal\":{\"Value\":\"'guests invited reservation'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 304.00,
+          "width": 560.00,
+          "x": 672.00,
+          "y": 1024.00,
+          "z": 54000.00
+        },
+        {
+          "config": "{\"name\":\"941e4624c1492cbe8434\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1084.4444444444446,\"y\":127.77777777777777,\"z\":5000,\"width\":270,\"height\":64.44444444444444,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"date.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"},\"Name\":\"date.Date\",\"NativeReferenceName\":\"Current date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}}}]},\"columnProperties\":{\"date.Date\":{\"displayName\":\"Current date\"}},\"syncGroup\":{\"groupName\":\"Date\",\"fieldChanges\":true,\"filterChanges\":true},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-10-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-10-31T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"slider\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"Date\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-10-01T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-11-01T00:00:00'\"}}}}}}}]}}}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 64.44,
+          "width": 270.00,
+          "x": 1084.44,
+          "y": 127.78,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"992c4d9f9ab3338c6729\",\"layouts\":[{\"id\":0,\"position\":{\"x\":640,\"y\":1375.9999999999998,\"z\":2000,\"width\":624,\"height\":320,\"tabOrder\":20000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 320.00,
+          "width": 624.00,
+          "x": 640.00,
+          "y": 1376.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"99c3c471235bbd975731\",\"layouts\":[{\"id\":0,\"position\":{\"x\":240,\"y\":448,\"z\":58000,\"width\":160,\"height\":32,\"tabOrder\":55000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.Evol_sessions\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_sessions\"},\"Name\":\"A_Mesures.Evol_sessions\",\"NativeReferenceName\":\"Evol_sessions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Evol_sessions\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"2L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"Conditional\":{\"Cases\":[{\"Condition\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_sessions\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#7CA671'\"}}},{\"Condition\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"A_Mesures\"}},\"Property\":\"Evol_sessions\"}},\"Right\":{\"Literal\":{\"Value\":\"0D\"}}}},\"Value\":{\"Literal\":{\"Value\":\"'#de6a73'\"}}}]}}}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 160.00,
+          "x": 240.00,
+          "y": 448.00,
+          "z": 58000.00
+        },
+        {
+          "config": "{\"name\":\"aa5859fdc97ce4cc414b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":704.4444444444445,\"y\":128.33333333333334,\"z\":29000,\"width\":180,\"height\":64,\"tabOrder\":31000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Market.Region\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Market\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"Region\"},\"Name\":\"Market.Region\",\"NativeReferenceName\":\"Region\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.2}}}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[{\"name\":\"Filterff36afa8c91caf592bec\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Market\"}},\"Property\":\"market.2\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Market\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"market.2\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 64.00,
+          "width": 180.00,
+          "x": 704.44,
+          "y": 128.33,
+          "z": 29000.00
+        },
+        {
+          "config": "{\"name\":\"acb028dae3cd2260e791\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":2144,\"z\":44000,\"width\":192.00000000000003,\"height\":32,\"tabOrder\":44000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"By source\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 192.00,
+          "x": 32.00,
+          "y": 2144.00,
+          "z": 44000.00
+        },
+        {
+          "config": "{\"name\":\"ae34b68b29ea75612baa\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":960.0000000000001,\"z\":55000,\"width\":272,\"height\":47.99999999999999,\"tabOrder\":63000}}],\"singleVisualGroup\":{\"displayName\":\"Groupe 3\",\"groupMode\":0}}",
+          "height": 48.00,
+          "width": 272.00,
+          "x": 32.00,
+          "y": 960.00,
+          "z": 55000.00
+        },
+        {
+          "config": "{\"name\":\"b29c5ce36ded136b122d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":16,\"z\":23000,\"width\":208,\"height\":47.99999999999999,\"tabOrder\":23000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"per reservation created\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"ed5205aa4a569ac6936e\"}",
+          "filters": "[]",
+          "height": 48.00,
+          "width": 208.00,
+          "x": 0.00,
+          "y": 16.00,
+          "z": 23000.00
+        },
+        {
+          "config": "{\"name\":\"b8330bca4983b07a44b4\",\"layouts\":[{\"id\":0,\"position\":{\"x\":83.75,\"y\":373.5,\"z\":11000,\"width\":156.25,\"height\":73.75,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.users)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"users\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.users)\",\"NativeReferenceName\":\"Somme de users\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"users\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Users'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 73.75,
+          "width": 156.25,
+          "x": 83.75,
+          "y": 373.50,
+          "z": 11000.00
+        },
+        {
+          "config": "{\"name\":\"b93e14f7016207a4e95d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":25000,\"width\":270,\"height\":31.25,\"tabOrder\":25000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Locale distribution \"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"4802eea829e383ac04c0\"}",
+          "filters": "[]",
+          "height": 31.25,
+          "width": 270.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 25000.00
+        },
+        {
+          "config": "{\"name\":\"bafeee98f2aa517f5375\",\"layouts\":[{\"id\":0,\"position\":{\"height\":31.25,\"width\":492.35294117647055,\"x\":0,\"y\":0,\"z\":25000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"traffic sources with appointment \",\"textStyle\":{\"fontWeight\":\"bold\"}},{\"value\":\"per visits\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#808080\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"1e50c5dc0d5c4c637197\"}",
+          "filters": "[]",
+          "height": 31.25,
+          "width": 492.35,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 25000.00
+        },
+        {
+          "config": "{\"name\":\"bc9dcd0cd61194c347b5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":1760,\"z\":43000,\"width\":191.99999999999997,\"height\":32,\"tabOrder\":43000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"By channel\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 192.00,
+          "x": 32.00,
+          "y": 1760.00,
+          "z": 43000.00
+        },
+        {
+          "config": "{\"name\":\"be79726103a968a71100\",\"layouts\":[{\"id\":0,\"position\":{\"x\":240,\"y\":373.5,\"z\":15000,\"width\":156.25,\"height\":73.75,\"tabOrder\":12000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions)\",\"NativeReferenceName\":\"Somme de sessions\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Sessions'\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 73.75,
+          "width": 156.25,
+          "x": 240.00,
+          "y": 373.50,
+          "z": 15000.00
+        },
+        {
+          "config": "{\"name\":\"c040ec85dac3c6803605\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":1375.9999999999998,\"z\":3000,\"width\":592,\"height\":320,\"tabOrder\":21000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 320.00,
+          "width": 592.00,
+          "x": 16.00,
+          "y": 1376.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"c6365491b036ed16f181\",\"layouts\":[{\"id\":0,\"position\":{\"x\":672,\"y\":1760,\"z\":50000,\"width\":191.99999999999997,\"height\":32,\"tabOrder\":49000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"By channel\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 192.00,
+          "x": 672.00,
+          "y": 1760.00,
+          "z": 50000.00
+        },
+        {
+          "config": "{\"name\":\"c99b61af3e730c359cad\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":1808,\"z\":41000,\"width\":560,\"height\":304,\"tabOrder\":40000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"WFJ_RSVP_sessions.custom_channel_group\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions)\",\"NativeReferenceName\":\"Somme de sessions\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"custom_channel_group\"},\"Name\":\"WFJ_RSVP_sessions.custom_channel_group\",\"NativeReferenceName\":\"custom_channel_group\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social Paid'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":7,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Email'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.4}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social Paid'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#CCE6B0'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Email'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#CAF4F1'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.2}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'CRM 2.0'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Unassigned'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Email'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":7,\"Percent\":0}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":5,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Unassigned'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'CRM'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Other'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":5,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"WFJ_RSVP_sessions\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 304.00,
+          "width": 560.00,
+          "x": 32.00,
+          "y": 1808.00,
+          "z": 41000.00
+        },
+        {
+          "config": "{\"name\":\"cdc24373ae7f848d845e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":2544,\"z\":46000,\"width\":560,\"height\":240,\"tabOrder\":46000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"WFJ_RSVP_sessions.medium_manual\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions)\",\"NativeReferenceName\":\"sessions\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"medium_manual\"},\"Name\":\"WFJ_RSVP_sessions.medium_manual\",\"NativeReferenceName\":\"medium de la session\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(WFJ_RSVP_sessions.sessions)\":{\"displayName\":\"sessions\"},\"WFJ_RSVP_sessions.medium_manual\":{\"displayName\":\"medium de la session\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}}}}],\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"443D\"}}}},\"selector\":{\"metadata\":\"WFJ_RSVP_sessions.medium_manual\"}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 240.00,
+          "width": 560.00,
+          "x": 32.00,
+          "y": 2544.00,
+          "z": 46000.00
+        },
+        {
+          "config": "{\"name\":\"d9a775cce7f7207f7d89\",\"layouts\":[{\"id\":0,\"position\":{\"height\":31.578947368421048,\"width\":272,\"x\":0,\"y\":0,\"z\":33000,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Appointment funnel\"}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"ae34b68b29ea75612baa\"}",
+          "filters": "[]",
+          "height": 31.58,
+          "width": 272.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 33000.00
+        },
+        {
+          "config": "{\"name\":\"dc82acdebc3cc663a2ad\",\"layouts\":[{\"id\":0,\"position\":{\"x\":93.75,\"y\":272.25,\"z\":9000,\"width\":217.5,\"height\":53.75,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Global overview\"}]}]}}]}}}",
+          "filters": "[]",
+          "height": 53.75,
+          "width": 217.50,
+          "x": 93.75,
+          "y": 272.25,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"dc96cb01b9163144455b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":16,\"y\":944,\"z\":32000,\"width\":592,\"height\":416,\"tabOrder\":34000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"22L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"fill\":[{\"properties\":{\"fillColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}},\"selector\":{\"id\":\"default\"}}],\"outline\":[{\"properties\":{\"lineColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"weight\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}},\"selector\":{\"id\":\"default\"}},{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"shadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}},{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"47D\"}}}},\"selector\":{\"id\":\"default\"}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 416.00,
+          "width": 592.00,
+          "x": 16.00,
+          "y": 944.00,
+          "z": 32000.00
+        },
+        {
+          "config": "{\"name\":\"df5a98b9c9e096d4570d\",\"layouts\":[{\"id\":0,\"position\":{\"height\":36.666666666666664,\"width\":446.17647058823525,\"x\":0,\"y\":26.666666666666664,\"z\":34000,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"per visits\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}},\"parentGroupName\":\"31fbbbb089297396402f\"}",
+          "filters": "[]",
+          "height": 36.67,
+          "width": 446.18,
+          "x": 0.00,
+          "y": 26.67,
+          "z": 34000.00
+        },
+        {
+          "config": "{\"name\":\"e43b71718051b2ed7060\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1024,\"y\":376,\"z\":19000,\"width\":160,\"height\":72,\"tabOrder\":16000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"A_Mesures.conversion_rate\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"A_Mesures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"conversion_rate\"},\"Name\":\"A_Mesures.conversion_rate\",\"NativeReferenceName\":\"conversion_rate\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"conversion_rate\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"12D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'conversion rate '\"}}},\"alignment\":{\"expr\":{\"Literal\":{\"Value\":\"'center'\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"heading\":{\"expr\":{\"Literal\":{\"Value\":\"'Heading3'\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 72.00,
+          "width": 160.00,
+          "x": 1024.00,
+          "y": 376.00,
+          "z": 19000.00
+        },
+        {
+          "config": "{\"name\":\"e66367d6b11f6f73e064\",\"layouts\":[{\"id\":0,\"position\":{\"x\":662.75,\"y\":2514.25,\"z\":52000,\"width\":192.00000000000003,\"height\":32,\"tabOrder\":51000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"By medium\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 192.00,
+          "x": 662.75,
+          "y": 2514.25,
+          "z": 52000.00
+        },
+        {
+          "config": "{\"name\":\"e7981d63bc1b00d12b07\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":2864,\"z\":7000,\"width\":1280,\"height\":32,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"WFJ Digital Data Team | \",\"textStyle\":{\"color\":\"#ffffff\"}},{\"value\":\"Contact : Yasmina Sekal & Grégoire Kodjabeykian\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#ffffff\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}},\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'traffic'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 32.00,
+          "width": 1280.00,
+          "x": 0.00,
+          "y": 2864.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"e7a227460b3e8cdd4442\",\"layouts\":[{\"id\":0,\"position\":{\"x\":258,\"y\":272,\"z\":10000,\"width\":218,\"height\":54,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"vs previous period\",\"textStyle\":{\"fontFamily\":\"Arial\",\"color\":\"#999999\"}}]}]}}]},\"vcObjects\":{\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 54.00,
+          "width": 218.00,
+          "x": 258.00,
+          "y": 272.00,
+          "z": 10000.00
+        },
+        {
+          "config": "{\"name\":\"ec247727b84a3d25aa88\",\"layouts\":[{\"id\":0,\"position\":{\"x\":928,\"y\":320,\"z\":25000,\"width\":45,\"height\":45,\"tabOrder\":27000}}],\"singleVisual\":{\"visualType\":\"image\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"imageUrl\":{\"expr\":{\"ResourcePackageItem\":{\"PackageName\":\"RegisteredResources\",\"PackageType\":1,\"ItemName\":\"user-xmark005529514391720003.png\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 45.00,
+          "width": 45.00,
+          "x": 928.00,
+          "y": 320.00,
+          "z": 25000.00
+        },
+        {
+          "config": "{\"name\":\"ed5205aa4a569ac6936e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":656,\"y\":1392,\"z\":36000,\"width\":270,\"height\":63.99999999999999,\"tabOrder\":22000}}],\"singleVisualGroup\":{\"displayName\":\"Groupe 2\",\"groupMode\":0}}",
+          "height": 64.00,
+          "width": 270.00,
+          "x": 656.00,
+          "y": 1392.00,
+          "z": 36000.00
+        },
+        {
+          "config": "{\"name\":\"ee3bcc92600cb0c7656a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":672,\"y\":1440,\"z\":38000,\"width\":560,\"height\":240,\"tabOrder\":38000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Market.market.2\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"m\",\"Entity\":\"Market\",\"Type\":0},{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"m\"}},\"Property\":\"market.2\"},\"Name\":\"Market.market.2\",\"NativeReferenceName\":\"market\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.reservation_created)\",\"NativeReferenceName\":\"reservation created\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"reservation_created\"}},\"Function\":0}}}]},\"columnProperties\":{\"Market.market.2\":{\"displayName\":\"market\"},\"Sum(WFJ_RSVP_sessions.reservation_created)\":{\"displayName\":\"reservation created\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"333.58576527982456D\"}}}},\"selector\":{\"metadata\":\"Market.market.2\"}}],\"grid\":[{\"properties\":{\"rowPadding\":{\"expr\":{\"Literal\":{\"Value\":\"4D\"}}},\"gridHorizontalColor\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#F0F0F0'\"}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 240.00,
+          "width": 560.00,
+          "x": 672.00,
+          "y": 1440.00,
+          "z": 38000.00
+        },
+        {
+          "config": "{\"name\":\"f2d46d646a46145bdb46\",\"layouts\":[{\"id\":0,\"position\":{\"x\":517.7777777777777,\"y\":130,\"z\":28000,\"width\":180,\"height\":63.33333333333333,\"tabOrder\":30000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Event.epk_sub_category_lvl1\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"e\",\"Entity\":\"Event\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"e\"}},\"Property\":\"epk_sub_category_lvl1\"},\"Name\":\"Event.epk_sub_category_lvl1\",\"NativeReferenceName\":\"event lv1\"}]},\"columnProperties\":{\"Event.epk_sub_category_lvl1\":{\"displayName\":\"event lv1\"}},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"header\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.2}}}}}}}],\"items\":[{\"properties\":{\"textSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"15D\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"11D\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":0}}}}}}}]}}}",
+          "filters": "[]",
+          "height": 63.33,
+          "width": 180.00,
+          "x": 517.78,
+          "y": 130.00,
+          "z": 28000.00
+        },
+        {
+          "config": "{\"name\":\"f77b5f297981bbec6052\",\"layouts\":[{\"id\":0,\"position\":{\"x\":32,\"y\":1008.0000000000001,\"z\":33000,\"width\":544,\"height\":336,\"tabOrder\":35000}}],\"singleVisual\":{\"visualType\":\"funnel\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions_home)\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions_choose_slot)\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions_personal_information)\"},{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"w\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions_home\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions_home)\",\"NativeReferenceName\":\"home\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions_choose_slot\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions_choose_slot)\",\"NativeReferenceName\":\"choose slot\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions_personal_information\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions_personal_information)\",\"NativeReferenceName\":\"personal information\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions_reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\",\"NativeReferenceName\":\"reservation created\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w\"}},\"Property\":\"sessions_home\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(WFJ_RSVP_sessions.sessions_home)\":{\"displayName\":\"home\"},\"Sum(WFJ_RSVP_sessions.sessions_choose_slot)\":{\"displayName\":\"choose slot\"},\"Sum(WFJ_RSVP_sessions.sessions_personal_information)\":{\"displayName\":\"personal information\"},\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\":{\"displayName\":\"reservation created\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'OutsideEnd'\"}}},\"funnelLabelStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'Data, percent of first'\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"10D\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.3}}}}},\"showAllDataPoints\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryAxis\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"9D\"}}},\"fontFamily\":{\"expr\":{\"Literal\":{\"Value\":\"'Arial'\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0}}}}}}}],\"percentBarLabel\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"padding\":[{\"properties\":{\"bottom\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"top\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"left\":{\"expr\":{\"Literal\":{\"Value\":\"3D\"}}},\"right\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"background\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 336.00,
+          "width": 544.00,
+          "x": 32.00,
+          "y": 1008.00,
+          "z": 33000.00
+        },
+        {
+          "config": "{\"name\":\"fe84d89f0cab400913a0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":12000,\"width\":336.25,\"height\":80,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Please note :\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontFamily\":\"Arial\",\"fontSize\":\"8pt\"}}]},{\"textRuns\":[{\"value\":\" Data from GA4 are available from the 8th march 2024\",\"textStyle\":{\"fontFamily\":\"Arial\",\"fontSize\":\"8pt\"}}]},{\"textRuns\":[{\"value\":\"Traffic source data are \",\"textStyle\":{\"fontFamily\":\"Arial\",\"fontSize\":\"8pt\"}},{\"value\":\"available from the 10th october 2024\",\"textStyle\":{\"fontFamily\":\"Arial\",\"fontSize\":\"10.6667px\"}}]}]}}]}}}",
+          "filters": "[]",
+          "height": 80.00,
+          "width": 336.25,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 12000.00
+        },
+        {
+          "config": "{\"name\":\"ff7098ae779879062278\",\"layouts\":[{\"id\":0,\"position\":{\"x\":662.75,\"y\":1810.25,\"z\":48000,\"width\":560,\"height\":304,\"tabOrder\":47000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Channel Grouping.custom_channel_group\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Channel Grouping\",\"Type\":0},{\"Name\":\"w1\",\"Entity\":\"WFJ_RSVP_sessions\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions_reservation_created\"}},\"Function\":0},\"Name\":\"Sum(WFJ_RSVP_sessions.sessions_reservation_created)\",\"NativeReferenceName\":\"Somme de sessions_reservation_created1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"custom_channel_group\"},\"Name\":\"Channel Grouping.custom_channel_group\",\"NativeReferenceName\":\"custom_channel_group\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"w1\"}},\"Property\":\"sessions_reservation_created\"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"legend\":[{\"properties\":{\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"8D\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social Paid'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":9,\"Percent\":0.4}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Social'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#CCE6B0'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Email'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#CAF4F1'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.2}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'CRM 2.0'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"Default_Channel_Grouping\"}},\"Right\":{\"Literal\":{\"Value\":\"'Unassigned'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Email'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":7,\"Percent\":0}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":1,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Unassigned'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":5,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":8,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"primary_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'CRM'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":3,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Other'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":4,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Direct'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":5,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Organic Search'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":6,\"Percent\":0.6}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Channel Grouping\"}},\"Property\":\"custom_channel_group\"}},\"Right\":{\"Literal\":{\"Value\":\"'Referral'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 304.00,
+          "width": 560.00,
+          "x": 662.75,
+          "y": 1810.25,
+          "z": 48000.00
+        }
+      ],
+      "width": 1370.00
+    }
+  ],
+  "theme": "Chanel_et_moi48308652450584866.json"
+}
