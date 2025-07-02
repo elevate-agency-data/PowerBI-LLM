@@ -1,6 +1,9 @@
 import json
 import copy
 
+import pandas as pd
+df=pd.read_csv("test.csv", sep=";")
+
 def update_json_unif_slicers(json_to_update, modified_parts):
     """Update JSON with modified slicer parts"""
     keys_to_update = ['visualType', 'prototypeQuery', 'objects', 'vcObjects']
