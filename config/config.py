@@ -11,7 +11,10 @@ DOC_DETAILED_MEASURES = "h2. Detailed Measure Information By Column"
 # Default values
 DEFAULT_LANGUAGE = "English"
 DEFAULT_PLATFORM = "Confluence"
-DEFAULT_REQUEST_TEXT = "I want to add a filter to each page of the PowerBI report."
+DEFAULT_MODEL = "gpt-5"
+SUPPORTED_MODELS = ["gpt-5", "gpt-4.1", "gpt-3.5-turbo"]
+SUPPORTED_TASKS = ["README", "Documentation"]
+DEFAULT_REQUEST_TEXT = "I want to add a README page to the PowerBI report."
 
 # File paths and names
 DOCUMENTATION_FILENAME = "Documentation.txt"

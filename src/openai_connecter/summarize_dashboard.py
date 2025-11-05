@@ -1,9 +1,10 @@
 import openai
+import config.config as config
 """
 This module provides a set of functions to interact with OpenAI's API for summarizing a Power BI dashboard.
 """
 
-def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence", language="English"):
+def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
     """Generate a global summary of the dashboard"""
     try:
         prompt = (
@@ -14,16 +15,16 @@ def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence
             "- Write a clear and comprehensive summary that captures the **dashboard's purpose**.\n"
             "- Ensure the summary accurately reflects the content provided and **do not invent anything**.\n"
             f"- The summary must be appropriately styled for **{target_platform}**.\n"
-            "- You should only return a single paragraph of the summary without adding anything else.\n\n"
+            f"- You should only return a single paragraph in {language} of the summary without adding anything else.\n\n"
             "### Example Output:\n"
             "\"This dashboard provides a comprehensive overview of key performance indicators, highlighting recent trends, achievements, and areas requiring attention. "
             "It serves as a powerful tool to monitor progress, identify growth opportunities, and support strategic decision-making across critical business domains.\"\n"
         )
 
         response = openai.ChatCompletion.create(
-            model = "gpt-3.5-turbo",
+            model=model_name,
             messages = [
-                {"role": "system", "content": "You are an assistant that specializes in summarizing Power BI dashboards. Your task is to create a concise yet comprehensive summary of the dashboard based on the information provided for its different pages. Ensure the summary is accurate, well-structured, and tailored for the specified target platform."},
+                {"role": "system", "content": f"You are a {language} assistant that specializes in summarizing Power BI dashboards. Your task is to create a concise yet comprehensive summary of the dashboard based on the information provided for its different pages. Ensure the summary is accurate, well-structured, and tailored for the specified target platform."},
                 {"role": "user", "content": prompt}
             ]
         )
@@ -33,7 +34,7 @@ def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Confluence", language="English"):
+def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
     """Generate a summary for each page in the dashboard"""
     try:
         result_summary = ""
@@ -47,11 +48,11 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
                 "I will provide you with a JSON file, and you need to retrieve the following information from the file:\n\n"
                 "### Instructions\n"
                 "1. **Page Overview**\n"
-                "   - Write a overall purpose of the page.\n\n"
+                f"   - Write a overall purpose of the page in {language}.\n\n"
                 "2. **Visualizations**\n"
-                "   - List all the visuals on the page, what they represent, and how users can interpret them.\n\n"
+                f"   - List all the visuals on the page, what they represent, and how users can interpret them in {language}.\n\n"
                 "3. **Filtering**\n"
-                "   - Explain slicers, filters, or date pickers used on the page.\n\n"
+                f"   - Explain slicers, filters, or date pickers used on the page in {language}.\n\n"
                 "4. **Scenarios for Interpretation**\n"
                 "   - Provide examples to guide users on how to interpret the dashboard effectively.\n\n"
                 f"### Provided JSON\n{extracted_json_of_the_page}\n\n"
@@ -60,13 +61,13 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
                 f"- Ensure the retrieved information is structured in {language} and formatted appropriately for {target_platform}.\n\n"
                 "### Expected Output Format\n"
                 "- Use headings and bullet points to organize the output.\n"
-                "- Ensure clear and concise explanations for each section."
+                f"- Ensure clear and concise explanations in {language} for each section."
             )
 
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model=model_name,
                 messages=[
-                    {"role": "system", "content": "You are an assistant that extracts key information from Power BI pbip reports' JSON files."},
+                    {"role": "system", "content": f"You are a {language} assistant that extracts key information from Power BI pbip reports' JSON files."},
                     {"role": "user", "content": prompt}
                 ]
             )
@@ -81,9 +82,9 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
             )
 
             overview_response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model=model_name,
                 messages=[
-                    {"role": "system", "content": "You are a content extractor specializing in summarizing key sections."},
+                    {"role": "system", "content": f"You are a {language} content extractor specializing in summarizing key sections."},
                     {"role": "user", "content": structured_prompt}
                 ]
             )
@@ -96,7 +97,7 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
         # Return a tuple with None values instead of a dictionary
         return None, None
     
-def summarize_table_source(table_content, target_platform="Confluence", language="English"):
+def summarize_table_source(table_content, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
@@ -104,7 +105,7 @@ def summarize_table_source(table_content, target_platform="Confluence", language
             "- The table names are located in the 'name' key of each object under the 'table_partitions' key.\n"
             "- For each table, extract its 'source' from the 'source' key of the same object.\n"
             "- If the 'source' key includes parameters (e.g., 'server_id', 'database_id', 'storage_id'), match each parameter name with the 'name' key in the 'expressions' section of the TABLE Content to identify the parameter's value.\n"
-            "- For parameters with dynamic or concatenated values, describe clearly how these values are combined.\n"
+            f"- For parameters with dynamic or concatenated values, describe clearly how these values are combined in {language}.\n"
             "- Ensure that all tables listed in the TABLE Content are included in the summary, with none omitted.\n"
             "- Do not add any irrelevant information such as introductions or summaries.\n"
             f"- Format the summary appropriately for {target_platform}, ensuring it is clear, concise, and well-organized.\n\n"
@@ -114,9 +115,9 @@ def summarize_table_source(table_content, target_platform="Confluence", language
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
-            model = "gpt-3.5-turbo",
+            model = model_name,
             messages=[
-                {"role": "system", "content": "You are an assistant that specializes in extracting powerBI related information from json file."},
+                {"role": "system", "content": f"You are a {language} assistant that specializes in extracting powerBI related information from json file."},
                 {"role": "user", "content": prompt}
             ]
         )
@@ -128,7 +129,7 @@ def summarize_table_source(table_content, target_platform="Confluence", language
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def create_measures_overview_table(measures_content, target_platform="Confluence"):
+def create_measures_overview_table(measures_content, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
     """Create a table overview of measures"""
     try:
         # Combine the user prompt with the JSON content
@@ -141,7 +142,7 @@ def create_measures_overview_table(measures_content, target_platform="Confluence
             "1. The formulas for each measure can be found under the 'expression' key in the MEASURES content.\n"
             "2. For the 'Measure Formula' column, extract the exact formula from the 'expression' key without modifying or omitting anything.\n"
             "3. Ensure all measures presented in the MEASURES content are included in the 'Name of the Measure' column.\n"
-            "4. Based on your understanding of the measure, write a short explanation of the measure's purpose in the 'Description' column\n"
+            f"4. Based on your understanding of the measure, write a short explanation of the measure's purpose in the 'Description' column in {language}\n"
             "5. For the output, **only return the table** without any additional text.\n"
             f"6. Ensure the table is formatted appropriately for {target_platform}\n\n"
             "### Example\n"
@@ -159,9 +160,9 @@ def create_measures_overview_table(measures_content, target_platform="Confluence
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
-            model = "gpt-3.5-turbo",
+            model = model_name,
             messages = [
-                {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
+                {"role": "system", "content": f"You are a {language} assistant that specializes in summarizing the measures in Power BI dashboards."},
                 {"role": "user", "content": prompt}
             ]
         )
@@ -173,7 +174,7 @@ def create_measures_overview_table(measures_content, target_platform="Confluence
     except Exception as e:
         return f"An error occurred: {str(e)}"
     
-def create_measures_by_column_table(measures_content, target_platform="Confluence"):
+def create_measures_by_column_table(measures_content, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
     """Create a table showing measures grouped by column"""
     try:
         # Combine the user prompt with the JSON content
@@ -199,9 +200,9 @@ def create_measures_by_column_table(measures_content, target_platform="Confluenc
 
         # Call OpenAI API
         response = openai.ChatCompletion.create(
-            model = "gpt-3.5-turbo",
+            model = model_name,
             messages = [
-                {"role": "system", "content": "You are an assistant that specializes in summarizing the measures in Power BI dashboards."},
+                {"role": "system", "content": f"You are a {language} assistant that specializes in summarizing the measures in Power BI dashboards."},
                 {"role": "user", "content": prompt}
             ]
         )

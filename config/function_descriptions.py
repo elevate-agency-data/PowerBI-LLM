@@ -7,7 +7,7 @@ FUNCTION_DESCRIPTIONS = [
             "properties": {
                 "dashboard_summary": {
                     "type": "string",
-                    "description": "A summary description of the entire dashboard."
+                    "description": "A summary description of the entire dashboard. (write this in the user-selected language)."
                 },
                 "pages": {
                     "type": "array",
@@ -16,11 +16,11 @@ FUNCTION_DESCRIPTIONS = [
                         "properties": {
                             "page_name": {
                                 "type": "string",
-                                "description": "The name of the dashboard page, populated from the displayName of the sections in the provided JSON."
+                                "description": "The name of the dashboard page, populated from the displayName of the sections in the provided JSON. (write this in the user-selected language)."
                             },
                             "page_summary": {
                                 "type": "string",
-                                "description": "A summary description of the page."
+                                "description": "A summary description of the page. (write this in the user-selected language)."
                             },
                             "visuals": {
                                 "type": "array",
@@ -29,16 +29,16 @@ FUNCTION_DESCRIPTIONS = [
                                     "properties": {
                                         "kpi_name": {
                                             "type": "string",
-                                            "description": "The name of the KPI or visual on the page."
+                                            "description": "The name of the KPI or visual on the page. (write this in the user-selected language)."
                                         },
                                         "kpi_definition": {
                                             "type": "string",
-                                            "description": "The definition of the KPI or visual."
+                                            "description": "The definition of the KPI or visual. (write this in the user-selected language)."
                                         }
                                     },
                                     "required": ["kpi_name", "kpi_definition"]
                                 },
-                                "description": "A list of visuals/KPIs on the page with their definitions."
+                                "description": "A list of visuals/KPIs on the page with their definitions. (write this in the user-selected language)."
                             }
                         },
                         "required": ["page_name", "page_summary", "visuals"]
