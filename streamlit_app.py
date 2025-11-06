@@ -99,7 +99,7 @@ def main():
         coordinator = FunctionCoordinator(function_descriptions.FUNCTION_DESCRIPTIONS)
         
         # Process the request
-        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, selected_language)
+        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, selected_language, selected_model)
         print(f"Documentation generation took {time.time() - start:.2f}s")
         
         # Display the message
