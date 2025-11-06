@@ -1,12 +1,13 @@
 """Configuration constants for the PowerBI Assistant application."""
 
 # Documentation section titles
-DOC_DASHBOARD_OVERVIEW = "h1. Dashboard Overview"
-DOC_DETAILED_INFO = "h1. Detailed Information By Page"
-DOC_DATASET_INFO = "h1. Dataset Key Information"
-DOC_TABLE_SOURCE = "h2. Table Source"
-DOC_MEASURES_SUMMARY = "h2. Measures Summary"
-DOC_DETAILED_MEASURES = "h2. Detailed Measure Information By Column"
+
+#DOC_DASHBOARD_OVERVIEW = "h1. Aperçu du tableau de bord"
+#DOC_DETAILED_INFO = "h1. Informations détaillées"
+#DOC_DATASET_INFO = "h1. Informations sur le jeu de données"
+#DOC_TABLE_SOURCE = "h2. Source des tables"
+#DOC_MEASURES_SUMMARY = "h2. Résumé des mesures"
+#DOC_DETAILED_MEASURES = "h2. Détails des mesures par colonne"
 
 # Default values
 DEFAULT_LANGUAGE = "English"
@@ -22,6 +23,20 @@ MODIFIED_PBIP_FILENAME = "modified_pbip.zip"
 
 # UI Text
 TITLE = "💡Your PowerBI Assistant"
+DETAILS_APP = """
+This assistant analyzes Power BI reports and automatically generates two types of documentation :
+
+📘 1. README Page embedded in the Power BI file
+A clear summary within the Power BI file, including :
+- Dashboard objectives
+- Overview of the pages
+- Detailed KPIs per page
+
+📄 2. Complete Detailed Documentation
+A comprehensive guide to understand and maintain the Power BI model :
+- Global view of the dashboard and its pages
+- Key information about the dataset: table sources, measure summaries, and DAX details per column.
+"""
 API_KEY_LABEL = "OpenAI API Key"
 REQUEST_LABEL = "Enter your request:"
 FILE_UPLOAD_LABEL = "Upload the PBIP folder (as a .zip file)"

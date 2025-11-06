@@ -1,5 +1,7 @@
 import json
 import copy
+from config.translation import t
+
 
 def update_json_unif_slicers(json_to_update, modified_parts):
     """Update JSON with modified slicer parts"""
@@ -31,7 +33,7 @@ def update_json_unif_slicers(json_to_update, modified_parts):
 
     return json_to_update 
 
-def add_read_me(dashboard_summary, pages):
+def add_read_me(dashboard_summary, pages, language):
     """Add a README page to the PowerBI report"""
     # Define the template with the same base structure as the target
     template = {
@@ -143,7 +145,7 @@ def add_read_me(dashboard_summary, pages):
                             "paragraphs": [
                                 {"textRuns": [{"value": ""}]},
                                 {"textRuns": [{
-                                    "value": "Dashboard Objective",
+                                    "value": t(language, 'dash_objtiv'),
                                     "textStyle": {"fontWeight": "bold", "fontSize": "20pt"}
                                 }]},
                                 {"textRuns": [{
@@ -182,7 +184,7 @@ def add_read_me(dashboard_summary, pages):
                         "properties": {
                             "paragraphs": [
                                 {"textRuns": [{
-                                    "value": "Page Overview",
+                                    "value": t(language, 'page_overview'),
                                     "textStyle": {"fontWeight": "bold", "fontSize": "20pt"}
                                 }]},
                                 *[{"textRuns": [
@@ -235,7 +237,7 @@ def add_read_me(dashboard_summary, pages):
                         "properties": {
                             "paragraphs": [
                                 {"textRuns": [{
-                                    "value": "Detailed KPIs by Page",
+                                    "value": t(language, 'detail_kpi'),
                                     "textStyle": {"fontWeight": "bold", "fontSize": "20pt"}
                                 }]}
                             ]

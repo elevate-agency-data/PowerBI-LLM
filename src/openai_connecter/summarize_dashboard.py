@@ -1,10 +1,12 @@
 import openai
 import config.config as config
+from config.translation import t
+
 """
 This module provides a set of functions to interact with OpenAI's API for summarizing a Power BI dashboard.
 """
 
-def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
+def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence", language=config.DEFAULT_LANGUAGE, model_name=config.DEFAULT_MODEL):
     """Generate a global summary of the dashboard"""
     try:
         prompt = (
@@ -34,7 +36,7 @@ def global_summary_dashboard(extracted_json_by_page, target_platform="Confluence
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
+def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Confluence", language=config.DEFAULT_LANGUAGE, model_name=config.DEFAULT_MODEL):
     """Generate a summary for each page in the dashboard"""
     try:
         result_summary = ""
@@ -97,7 +99,7 @@ def summarize_dashboard_by_page(extracted_json_by_page, target_platform="Conflue
         # Return a tuple with None values instead of a dictionary
         return None, None
     
-def summarize_table_source(table_content, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
+def summarize_table_source(table_content, target_platform="Confluence", language=config.DEFAULT_LANGUAGE, model_name=config.DEFAULT_MODEL):
     try:
         # Combine the user prompt with the JSON content
         prompt = (
@@ -129,27 +131,27 @@ def summarize_table_source(table_content, target_platform="Confluence", language
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
-def create_measures_overview_table(measures_content, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
+def create_measures_overview_table(measures_content, target_platform="Confluence", language=config.DEFAULT_LANGUAGE, model_name=config.DEFAULT_MODEL):
     """Create a table overview of measures"""
     try:
         # Combine the user prompt with the JSON content
         prompt = (
             "**Create a table** with the following columns:\n"
-            "- 'Name of the Measure'\n"
-            "- 'Measure Formula'\n"
-            "- 'Description'\n\n"
+            f"- {t(language, 'name_measure')}\n"
+            f"- {t(language, 'measure_formula')}\n"
+            f"- {t(language, 'measure_description')}\n\n"
             "### Instructions\n"
             "1. The formulas for each measure can be found under the 'expression' key in the MEASURES content.\n"
-            "2. For the 'Measure Formula' column, extract the exact formula from the 'expression' key without modifying or omitting anything.\n"
-            "3. Ensure all measures presented in the MEASURES content are included in the 'Name of the Measure' column.\n"
-            f"4. Based on your understanding of the measure, write a short explanation of the measure's purpose in the 'Description' column in {language}\n"
+            f"2. For the {t(language, 'measure_formula')} column, extract the exact formula from the 'expression' key without modifying or omitting anything.\n"
+            f"3. Ensure all measures presented in the MEASURES content are included in the {t(language, 'name_measure')} column.\n"
+            f"4. Based on your understanding of the measure, write a short explanation of the measure's purpose in the {t(language, 'measure_description')} column in {language}\n"
             "5. For the output, **only return the table** without any additional text.\n"
             f"6. Ensure the table is formatted appropriately for {target_platform}\n\n"
             "### Example\n"
             "If a measure is calculated as follows:\n"
             "`Whitelisted Clients = CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\")`\n\n"
             "The output of the table should look like this:\n\n"
-            "| Name of the Measure   | Measure Formula                                                | Description                               |\n"
+            f"|  {t(language, 'name_measure')}  |  {t(language, 'measure_formula')}  |  {t(language, 'measure_description')}  |\n"
             "|-----------------------|-------------------------------------------------------------|-------------------------------------------|\n"
             "| Whitelisted Clients   | CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\") | The measure calculates the total number of whitelisted clients |\n\n"
             "### MEASURES\n"
@@ -174,22 +176,22 @@ def create_measures_overview_table(measures_content, target_platform="Confluence
     except Exception as e:
         return f"An error occurred: {str(e)}"
     
-def create_measures_by_column_table(measures_content, target_platform="Confluence", language="French", model_name=config.DEFAULT_MODEL):
+def create_measures_by_column_table(measures_content, target_platform="Confluence", language=config.DEFAULT_LANGUAGE, model_name=config.DEFAULT_MODEL):
     """Create a table showing measures grouped by column"""
     try:
         # Combine the user prompt with the JSON content
         prompt = (
-            "**Create a table** with three columns: 'Name of the Measure', 'Source Table', and 'Used Columns', based on the measures provided below.\n\n"
+            f"**Create a table** with three columns: {t(language, 'name_measure')}, {t(language, 'source_table')}, and {t(language, 'used_columns')}, based on the measures provided below.\n\n"
             "### Example\n"
             "If a measure is calculated as follows:\n"
             "`Whitelisted Clients = CALCULATE(COUNTROWS('dim_client'), dim_client[is_whitelisted] = \"yes\")`\n\n"
             "The output of the second table should look like this:\n\n"
-            "| Name of the Measure   | Source Table | Used Columns       |\n"
+            f"| {t(language, 'name_measure')}  | {t(language, 'source_table')} | {t(language, 'used_columns')} |\n"
             "|-----------------------|--------------|--------------------|\n"
             "| Whitelisted Clients   | dim_client   | pky_client         |\n"
             "| Whitelisted Clients   | dim_client   | is_whitelisted     |\n\n"
             "### Instructions\n"
-            "- Each row in the table should correspond to one column from the 'Used Columns' of a measure. If a measure uses multiple columns, create separate rows for each column, repeating the measure's name and source table.\n"
+            f"- Each row in the table should correspond to one column from the {t(language, 'used_columns')} of a measure. If a measure uses multiple columns, create separate rows for each column, repeating the measure's name and source table.\n"
             "- For the output, **only return the table** without any additional text.\n"
             f"- Ensure the table is formatted appropriately for {target_platform}.\n\n"
             "### MEASURES\n"
