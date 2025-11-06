@@ -6,7 +6,7 @@ from src.openai_connecter.summarize_dashboard import *
 from src.openai_connecter.modify_dashboard import *
 from src.json_operator.json_update import *
 import config.config as config
-import config.translation as t
+from config.translation import t
 
 class FunctionCoordinator:
     """Coordinates different functions and handles the business logic of the application."""
