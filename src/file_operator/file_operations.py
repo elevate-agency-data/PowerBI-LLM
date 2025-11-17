@@ -4,7 +4,24 @@ import shutil
 import json
 import io
 import tempfile
+import sys
+from pathlib import Path
+import fitz  # PyMuPDF
 
+def convert_pdf_to_images(pdf_file):
+    output_dir = "C:/Users/Elevate/Desktop/PowerBI-LLM/Images"
+    image_paths = []
+    zoom = 2.0
+    mat = fitz.Matrix(zoom, zoom)
+    with fitz.open(stream=pdf_file.read(),filetype="pdf") as doc:
+        for page_index in range(len(doc)):
+            page = doc.load_page(page_index)
+            pix = page.get_pixmap(matrix=mat, alpha=False)
+            tmp = "page_" + str(page_index+1) +".png"
+            out_path = output_dir + "/"+ tmp
+            pix.save(out_path)
+            image_paths.append(str(out_path))
+    return image_paths
 def extract_report_and_model(zip_file):
     """Extract report.json and model.bim from the uploaded PBIP folder"""
     # Create a temporary directory for extraction
