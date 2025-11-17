@@ -2,6 +2,7 @@
 
 import streamlit as st
 import openai
+from openai import OpenAI
 from src.file_operator.file_operations import *
 from src.openai_connecter.function_coordinator import FunctionCoordinator
 import config.config as config
@@ -15,8 +16,8 @@ def main():
 
     # Sidebar for API key input
     openai_api_key = st.sidebar.text_input(config.API_KEY_LABEL, type="password")
-    openai.api_key = openai_api_key
     
+
     # Sidebar for language selection
     language_options = ["English", "French", "Chinese"]
     default_lang_index = language_options.index(config.DEFAULT_LANGUAGE) if config.DEFAULT_LANGUAGE in language_options else 0
@@ -39,6 +40,7 @@ def main():
         #readme_requested = st.checkbox("Generate README")
         #documentation_requested = st.checkbox("Generate Description")
         #submitted = st.form_submit_button(config.SUBMIT_BUTTON_LABEL)
+    pdf_file = st.file_uploader(config.FILE_PDF_UPLOAD_LABEL, type=['pdf'])
     col1, col2 = st.columns(2)
     generate_readme = col1.button(t(selected_language, 'readme'), disabled=zip_file is None, use_container_width=True)
     generate_description = col2.button(t(selected_language, 'documentation'), disabled=zip_file is None, use_container_width=True)
@@ -54,19 +56,24 @@ def main():
     elif zip_file is None:
         st.warning(config.FILE_UPLOAD_ERROR, icon='⚠')
     
+    elif pdf_file is None:
+        st.warning(config.FILE_UPLOAD_ERROR, icon='⚠')
         
     elif generate_readme:
+        openai.api_key = openai_api_key
+        openai_client = OpenAI(api_key=openai_api_key)
         start = time.time()
         text = "Please add a README page to the dashboard."
         
         # Extract report.json and model.bim from the uploaded PBIP folder
         report_json_content, model_bim_content, inner_folder_path, report_json_path, model_bim_path = extract_report_and_model(zip_file)
+        report_images = convert_pdf_to_images(pdf_file)
         
         # Initialize the service coordinator
         coordinator = FunctionCoordinator(function_descriptions.FUNCTION_DESCRIPTIONS)
         
         # Process the request
-        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, selected_language, selected_model)
+        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, report_images, selected_language, selected_model, openai_client)
         print(f"README generation took {time.time() - start:.2f}s")
         
         # Display the message
@@ -87,9 +94,10 @@ def main():
                 file_name=config.MODIFIED_PBIP_FILENAME,
                 mime='application/zip'
             )
-
-            
     elif generate_description:
+
+        openai.api_key = openai_api_key
+        openai_client = OpenAI(api_key=openai_api_key)
         start = time.time()
         text = "Provide full documentation of the dashboard for confluence."
         
@@ -99,7 +107,9 @@ def main():
         coordinator = FunctionCoordinator(function_descriptions.FUNCTION_DESCRIPTIONS)
         
         # Process the request
-        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, selected_language, selected_model)
+        print(openai_client)
+        report_images = []
+        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, report_images, selected_language, selected_model, openai_client)
         print(f"Documentation generation took {time.time() - start:.2f}s")
         
         # Display the message
@@ -121,6 +131,8 @@ def main():
     #else:
     #    st.warning("Sélectionnez au moins une action.", icon="⚠")
     #    st.stop()
+
+            
 
 if __name__ == "__main__":
     main()
