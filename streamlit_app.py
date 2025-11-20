@@ -41,7 +41,7 @@ def main():
         #documentation_requested = st.checkbox("Generate Description")
         #submitted = st.form_submit_button(config.SUBMIT_BUTTON_LABEL)
     pdf_file = st.file_uploader(config.FILE_UPLOAD_LABEL, type=['pdf'])
-    print(pdf_file.name)
+    
     col1, col2 = st.columns(2)
     generate_readme = col1.button(t(selected_language, 'readme'), disabled=zip_file is None, use_container_width=True)
     generate_description = col2.button(t(selected_language, 'documentation'), disabled=zip_file is None, use_container_width=True)
@@ -74,7 +74,16 @@ def main():
         coordinator = FunctionCoordinator(function_descriptions.FUNCTION_DESCRIPTIONS)
         
         # Process the request
-        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, report_images, selected_language, selected_model, openai_client)
+        modified_json, file_content, message = coordinator.process_request(
+            text,
+            report_json_content,
+            model_bim_content,
+            report_images,
+            selected_language,
+            selected_model,
+            openai_client,
+            requested_function="add_read_me",
+        )
         print(f"README generation took {time.time() - start:.2f}s")
         
         # Display the message
@@ -110,7 +119,16 @@ def main():
         # Process the request
         print(openai_client)
         report_images = []
-        modified_json, file_content, message = coordinator.process_request(text, report_json_content, model_bim_content, report_images, selected_language, selected_model, openai_client)
+        modified_json, file_content, message = coordinator.process_request(
+            text,
+            report_json_content,
+            model_bim_content,
+            report_images,
+            selected_language,
+            selected_model,
+            openai_client,
+            requested_function="summary_in_target_platform",
+        )
         print(f"Documentation generation took {time.time() - start:.2f}s")
         
         # Display the message

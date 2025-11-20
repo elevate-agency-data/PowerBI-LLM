@@ -14,7 +14,17 @@ class FunctionCoordinator:
     def __init__(self, function_descriptions: list):
         self.function_descriptions = function_descriptions
 
-    def process_request(self, text: str, report_json_content: dict, model_bim_content: dict, report_images: list, language: str = config.DEFAULT_LANGUAGE, model_name: str = config.DEFAULT_MODEL, openai_client = None) -> Tuple[Optional[str], Optional[bytes], str]:
+    def process_request(
+        self,
+        text: str,
+        report_json_content: dict,
+        model_bim_content: dict,
+        report_images: list,
+        language: str = config.DEFAULT_LANGUAGE,
+        model_name: str = config.DEFAULT_MODEL,
+        openai_client = None,
+        requested_function: Optional[str] = None,
+    ) -> Tuple[Optional[str], Optional[bytes], str]:
         """
         Process the user's request and coordinate the appropriate services.
         
@@ -24,10 +34,18 @@ class FunctionCoordinator:
         - message: Status or error message
         """
         try:
-            text_with_language = f"{text}\n\nPreferred output language: {language}\nPreferred model: {model_name}"
+            output = None
+            function_name = requested_function
 
-            output = generate_completion(text_with_language, self.function_descriptions, model_name, openai_client)
-            function_name = output.function_call.name
+            if not function_name:
+                text_with_language = f"{text}\n\nPreferred output language: {language}\nPreferred model: {model_name}"
+                output = generate_completion(text_with_language, self.function_descriptions, model_name, openai_client)
+                function_call = getattr(output, "function_call", None)
+                if not function_call:
+                    return None, None, config.UNSUPPORTED_REQUEST_ERROR
+                function_name = function_call.name
+            else:
+                output = None
 
 
             if function_name == "add_read_me":
@@ -57,11 +75,18 @@ class FunctionCoordinator:
         report_json_content['sections'].insert(0, updated_report["sections"][0])
         return json.dumps(report_json_content, indent=4), None, config.MODIFICATION_SUCCESS
 
-    def _handle_documentation_generation(self, output: Dict[str, Any], report_json_content: dict, model_bim_content: dict, language_override, model_name, openai_client) -> Tuple[None, bytes, str]:
+    def _handle_documentation_generation(self, output: Optional[Dict[str, Any]], report_json_content: dict, model_bim_content: dict, language_override, model_name, openai_client) -> Tuple[None, bytes, str]:
         """Handle the generation of documentation."""
-        args = json.loads(output.function_call.arguments)
-        language = args.get("language") or language_override
-        target_platform = args.get("platform", config.DEFAULT_PLATFORM)
+        language = language_override
+        target_platform = config.DEFAULT_PLATFORM
+
+        if output and getattr(output, "function_call", None):
+            try:
+                args = json.loads(output.function_call.arguments)
+            except (TypeError, json.JSONDecodeError):
+                args = {}
+            language = args.get("language") or language_override
+            target_platform = args.get("platform", config.DEFAULT_PLATFORM)
 
         extracted_report = extract_dashboard_by_page(report_json_content)
         extracted_dataset = extract_relevant_parts_dataset(model_bim_content)

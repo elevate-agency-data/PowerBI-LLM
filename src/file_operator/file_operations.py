@@ -9,19 +9,22 @@ from pathlib import Path
 import fitz  # PyMuPDF
 
 def convert_pdf_to_images(pdf_file):
-    output_dir = "C:/Users/Elevate/Desktop/PowerBI-LLM/Images"
-    image_paths = []
-    zoom = 2.0
-    mat = fitz.Matrix(zoom, zoom)
-    with fitz.open(stream=pdf_file.read(),filetype="pdf") as doc:
-        for page_index in range(len(doc)):
-            page = doc.load_page(page_index)
-            pix = page.get_pixmap(matrix=mat, alpha=False)
-            tmp = "page_" + str(page_index+1) +".png"
-            out_path = output_dir + "/"+ tmp
-            pix.save(out_path)
-            image_paths.append(str(out_path))
-    return image_paths
+    # Create output directory relative to the project
+    output_dir = os.path.join(os.getcwd(), "Images")
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Open the PDF
+    doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
+    images = []
+
+    for i, page in enumerate(doc):
+        pix = page.get_pixmap()
+        out_path = os.path.join(output_dir, f"page_{i+1}.png")
+        pix.save(out_path)
+        images.append(out_path)
+
+    return images
+
 def extract_report_and_model(zip_file):
     """Extract report.json and model.bim from the uploaded PBIP folder"""
     # Create a temporary directory for extraction
