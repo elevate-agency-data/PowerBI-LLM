@@ -17,6 +17,7 @@ SUPPORTED_MODELS = ["gpt-5", "gpt-4.1", "gpt-3.5-turbo"]
 SUPPORTED_TASKS = ["README", "Documentation"]
 DEFAULT_REQUEST_TEXT = "I want to add a README page to the PowerBI report."
 FILE_UPLOAD_LABEL = "Upload the PBIP folder (as a .zip file)"
+FILE_UPLOAD_LABEL_PDF = "Upload the PowerBI report (as a .pdf file)"
 FILE_PDF_UPLOAD_LABEL = "Upload the PDF file"
 
 # File paths and names

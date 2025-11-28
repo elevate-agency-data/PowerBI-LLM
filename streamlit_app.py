@@ -40,7 +40,7 @@ def main():
         #readme_requested = st.checkbox("Generate README")
         #documentation_requested = st.checkbox("Generate Description")
         #submitted = st.form_submit_button(config.SUBMIT_BUTTON_LABEL)
-    pdf_file = st.file_uploader(config.FILE_UPLOAD_LABEL, type=['pdf'])
+    pdf_file = st.file_uploader(config.FILE_UPLOAD_LABEL_PDF, type=['pdf'])
     
     col1, col2 = st.columns(2)
     generate_readme = col1.button(t(selected_language, 'readme'), disabled=zip_file is None, use_container_width=True)
