@@ -65,9 +65,4 @@ FUNCTION_DESCRIPTIONS = [
             }
         }
     },
-    {
-        "name": "slicer_uniformisation_in_report",
-        "description": "Modify the JSON file of the report to uniformize the slicers format based on the user's instructions",
-        "parameters": {}
-    },
 ]

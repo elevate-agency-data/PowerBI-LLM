@@ -1,18 +1,68 @@
 import json
-from typing import Optional, Tuple, Dict, Any
+from typing import Optional, Tuple, Dict, Any, Callable
 from src.json_operator.json_extraction import *
 from src.openai_connecter.general_openai_connecter import *
 from src.openai_connecter.summarize_dashboard import *
-from src.openai_connecter.modify_dashboard import *
-from src.json_operator.json_update import *
 import config.config as config
 from config.translation import t
+from src.openai_connecter.handlers.readme_function_handler import ReadmeFunctionHandler
+from src.openai_connecter.handlers.documentation_function_handler import (
+    DocumentationFunctionHandler,
+)
+
 
 class FunctionCoordinator:
-    """Coordinates different functions and handles the business logic of the application."""
-    
+    """
+    Coordinates higher-level operations by routing to function-specific handlers.
+
+    Open/Closed Principle:
+    - New capabilities should be added by registering a new handler,
+      without modifying the core coordination logic.
+    """
+
     def __init__(self, function_descriptions: list):
         self.function_descriptions = function_descriptions
+        self._readme_handler = ReadmeFunctionHandler(function_descriptions)
+        self._documentation_handler = DocumentationFunctionHandler()
+        # Registry of function name -> handler callable
+        # Handlers share a common signature via small adapter lambdas.
+        self._handlers: Dict[
+            str,
+            Callable[
+                [
+                    Optional[Dict[str, Any]],
+                    str,
+                    dict,
+                    dict,
+                    list,
+                    str,
+                    str,
+                    Any,
+                ],
+                Tuple[Optional[str], Optional[bytes], str],
+            ],
+        ] = {
+            "add_read_me": lambda output, text, report_json, model_bim, images, lang, model, client: self._readme_handler.process(  # noqa: E501
+                text,
+                report_json,
+                model_bim,
+                images,
+                lang,
+                model,
+                client,
+                output,
+            ),
+            "summary_in_target_platform": lambda output, text, report_json, model_bim, images, lang, model, client: self._documentation_handler.process(  # noqa: E501
+                text,
+                report_json,
+                model_bim,
+                images,
+                lang,
+                model,
+                client,
+                output,
+            ),
+        }
 
     def process_request(
         self,
@@ -47,86 +97,21 @@ class FunctionCoordinator:
             else:
                 output = None
 
-
-            if function_name == "add_read_me":
-                print("coordinator")
-                return self._handle_readme_generation(output, report_json_content, report_images, language, model_name,openai_client)
-            elif function_name == "summary_in_target_platform":
-                return self._handle_documentation_generation(output, report_json_content, model_bim_content, language, model_name, openai_client)
-            elif function_name == "slicer_uniformisation_in_report":
-                return self._handle_slicer_uniformisation(text, report_json_content, language, model_name)
-            else:
+            handler = self._handlers.get(function_name)
+            if not handler:
                 return None, None, config.UNSUPPORTED_REQUEST_ERROR
+
+            return handler(
+                output,
+                text,
+                report_json_content,
+                model_bim_content,
+                report_images,
+                language,
+                model_name,
+                openai_client,
+            )
 
         except Exception as e:
             return None, None, f"An error occurred: {str(e)}"
 
-    def _handle_readme_generation(self, output: Dict[str, Any], report_json_content: dict, report_images: list, language, model_name,openai_client) -> Tuple[str, None, str]:
-        """Handle the generation of a README page."""
-        print("step1")
-        extracted_report = extract_dashboard_by_page(report_json_content)
-        #summary_dashboard, overview_all_pages = summarize_dashboard_by_page(extracted_report, target_platform=config.DEFAULT_PLATFORM, language=language, model_name=model_name)
-        print("Step2")
-        summary_dashboard, overview_all_pages = summarize_dashboard_by_page_png_json(extracted_report,report_images, target_platform=config.DEFAULT_PLATFORM, language=language, model_name=model_name, openai_client = openai_client)
-        arguments_str = prepare_arguments_add_read_me(overview_all_pages, self.function_descriptions, language=language, model_name=model_name, openai_client = openai_client)
-        # Parse the JSON string into a dictionary
-        arguments = json.loads(arguments_str)
-        updated_report = add_read_me(arguments['dashboard_summary'], arguments['pages'], language=language)
-        report_json_content['sections'].insert(0, updated_report["sections"][0])
-        return json.dumps(report_json_content, indent=4), None, config.MODIFICATION_SUCCESS
-
-    def _handle_documentation_generation(self, output: Optional[Dict[str, Any]], report_json_content: dict, model_bim_content: dict, language_override, model_name, openai_client) -> Tuple[None, bytes, str]:
-        """Handle the generation of documentation."""
-        language = language_override
-        target_platform = config.DEFAULT_PLATFORM
-
-        if output and getattr(output, "function_call", None):
-            try:
-                args = json.loads(output.function_call.arguments)
-            except (TypeError, json.JSONDecodeError):
-                args = {}
-            language = args.get("language") or language_override
-            target_platform = args.get("platform", config.DEFAULT_PLATFORM)
-
-        extracted_report = extract_dashboard_by_page(report_json_content)
-        extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
-        extracted_measures = extract_measures_name_and_expression(extracted_dataset['measures'])
-        summary_dashboard, overview_all_pages = summarize_dashboard_by_page(
-            extracted_report, target_platform=target_platform, language=language, model_name=model_name, openai_client=openai_client
-        )
-        overall_summary = global_summary_dashboard(
-            overview_all_pages, target_platform=target_platform, language=language, model_name=model_name, openai_client=openai_client
-        )
-
-        summary_table = summarize_table_source(
-            extracted_dataset['tables'], target_platform=target_platform, language=language, model_name=model_name, openai_client=openai_client
-        )
-
-        summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform, language=language, model_name=model_name, openai_client=openai_client)
-        summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform, language=language, model_name=model_name, openai_client=openai_client)
-
-        text_list = [
-            f"{t(language, 'overview')}",
-            f"{overall_summary}\n\n",
-            f"{t(language, 'detail_info')}",
-            f"{summary_dashboard}\n\n",
-            f"{t(language, 'dataset_info')}",
-            f"{t(language, 'table_source')}",
-            f"{summary_table}\n\n",
-            f"{t(language, 'measure_suma')}",
-            f"{summary_measure_overview}\n\n",
-            f"{t(language, 'detail_measure')}",
-            f"{summary_measure_detailed}\n\n"
-        ]
-
-        file_content = "\n\n".join(text_list).encode('utf-8')
-        return None, file_content, config.MODIFICATION_SUCCESS
-
-    def _handle_slicer_uniformisation(self, text: str, report_json_content: dict) -> Tuple[str, None, str]:
-        """Handle the uniformisation of slicers."""
-        df = build_df(report_json_content)
-        result = process_dashboard_request(text, df)
-        dict_slicers = json.dumps(result, indent=2, ensure_ascii=False)
-        dict_slicers = json.loads(dict_slicers)
-        updated_json = modify_json(report_json_content, dict_slicers, df)
-        return json.dumps(updated_json, ensure_ascii=False, indent=4), None, config.MODIFICATION_SUCCESS 
