@@ -1,67 +1,33 @@
 import json
-from typing import Optional, Tuple, Dict, Any, Callable
+from typing import Optional, Tuple, Dict, Any
 from src.json_operator.json_extraction import *
 from src.openai_connecter.general_openai_connecter import *
 from src.openai_connecter.summarize_dashboard import *
 import config.config as config
-from config.translation import t
 from src.openai_connecter.handlers.readme_function_handler import ReadmeFunctionHandler
 from src.openai_connecter.handlers.documentation_function_handler import (
     DocumentationFunctionHandler,
 )
+from src.openai_connecter.handlers.base_handler import FunctionHandler, HandlerRequest, HandlerResponse
 
 
 class FunctionCoordinator:
     """
     Coordinates higher-level operations by routing to function-specific handlers.
 
-    Open/Closed Principle:
-    - New capabilities should be added by registering a new handler,
-      without modifying the core coordination logic.
+    Dependency Inversion Principle (DIP):
+    - Depends on the FunctionHandler abstraction, not concrete handler implementations
+    - New capabilities can be added by implementing FunctionHandler and registering it,
+      without modifying the core coordination logic (Open/Closed Principle)
     """
 
     def __init__(self, function_descriptions: list):
         self.function_descriptions = function_descriptions
-        self._readme_handler = ReadmeFunctionHandler(function_descriptions)
-        self._documentation_handler = DocumentationFunctionHandler()
-        # Registry of function name -> handler callable
-        # Handlers share a common signature via small adapter lambdas.
-        self._handlers: Dict[
-            str,
-            Callable[
-                [
-                    Optional[Dict[str, Any]],
-                    str,
-                    dict,
-                    dict,
-                    list,
-                    str,
-                    str,
-                    Any,
-                ],
-                Tuple[Optional[str], Optional[bytes], str],
-            ],
-        ] = {
-            "add_read_me": lambda output, text, report_json, model_bim, images, lang, model, client: self._readme_handler.process(  # noqa: E501
-                text,
-                report_json,
-                model_bim,
-                images,
-                lang,
-                model,
-                client,
-                output,
-            ),
-            "summary_in_target_platform": lambda output, text, report_json, model_bim, images, lang, model, client: self._documentation_handler.process(  # noqa: E501
-                text,
-                report_json,
-                model_bim,
-                images,
-                lang,
-                model,
-                client,
-                output,
-            ),
+        # Registry of function name -> FunctionHandler instance
+        # All handlers implement the FunctionHandler interface
+        self._handlers: Dict[str, FunctionHandler] = {
+            "add_read_me": ReadmeFunctionHandler(function_descriptions),
+            "summary_in_target_platform": DocumentationFunctionHandler(),
         }
 
     def process_request(
@@ -101,7 +67,10 @@ class FunctionCoordinator:
             if not handler:
                 return None, None, config.UNSUPPORTED_REQUEST_ERROR
 
-            return handler(
+            # Convert parameters to HandlerRequest and call handler
+            # Then convert HandlerResponse back to tuple for backward compatibility
+            return self._handle_with_new_interface(
+                handler,
                 output,
                 text,
                 report_json_content,
@@ -114,4 +83,36 @@ class FunctionCoordinator:
 
         except Exception as e:
             return None, None, f"An error occurred: {str(e)}"
+    
+    def _handle_with_new_interface(
+        self,
+        handler: FunctionHandler,
+        output: Optional[Dict[str, Any]],
+        text: str,
+        report_json_content: dict,
+        model_bim_content: dict,
+        report_images: list,
+        language: str,
+        model_name: str,
+        openai_client: Any,
+    ) -> Tuple[Optional[str], Optional[bytes], str]:
+        """
+        Adapter method to convert old-style parameters to HandlerRequest
+        and convert HandlerResponse back to tuple format.
+        
+        This allows handlers using the new interface to work with the coordinator
+        while maintaining backward compatibility.
+        """
+        request = HandlerRequest(
+            text=text,
+            report_json_content=report_json_content,
+            model_bim_content=model_bim_content,
+            report_images=report_images,
+            language=language,
+            model_name=model_name,
+            openai_client=openai_client,
+            output=output,
+        )
+        response = handler.process(request)
+        return response.modified_json, response.file_content, response.message
 
