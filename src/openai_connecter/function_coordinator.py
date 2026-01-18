@@ -3,17 +3,44 @@ from typing import Optional, Tuple, Dict, Any
 from src.json_operator.json_extraction import *
 from src.openai_connecter.general_openai_connecter import *
 from src.openai_connecter.summarize_dashboard import *
-from src.openai_connecter.modify_dashboard import *
-from src.json_operator.json_update import *
 import config.config as config
+from src.openai_connecter.handlers.readme_function_handler import ReadmeFunctionHandler
+from src.openai_connecter.handlers.documentation_function_handler import (
+    DocumentationFunctionHandler,
+)
+from src.openai_connecter.handlers.base_handler import FunctionHandler, HandlerRequest, HandlerResponse
+
 
 class FunctionCoordinator:
-    """Coordinates different functions and handles the business logic of the application."""
-    
+    """
+    Coordinates higher-level operations by routing to function-specific handlers.
+
+    Dependency Inversion Principle (DIP):
+    - Depends on the FunctionHandler abstraction, not concrete handler implementations
+    - New capabilities can be added by implementing FunctionHandler and registering it,
+      without modifying the core coordination logic (Open/Closed Principle)
+    """
+
     def __init__(self, function_descriptions: list):
         self.function_descriptions = function_descriptions
+        # Registry of function name -> FunctionHandler instance
+        # All handlers implement the FunctionHandler interface
+        self._handlers: Dict[str, FunctionHandler] = {
+            "add_read_me": ReadmeFunctionHandler(function_descriptions),
+            "summary_in_target_platform": DocumentationFunctionHandler(),
+        }
 
-    def process_request(self, text: str, report_json_content: dict, model_bim_content: dict) -> Tuple[Optional[str], Optional[bytes], str]:
+    def process_request(
+        self,
+        text: str,
+        report_json_content: dict,
+        model_bim_content: dict,
+        report_images: list,
+        language: str = config.DEFAULT_LANGUAGE,
+        model_name: str = config.DEFAULT_MODEL,
+        openai_client = None,
+        requested_function: Optional[str] = None,
+    ) -> Tuple[Optional[str], Optional[bytes], str]:
         """
         Process the user's request and coordinate the appropriate services.
         
@@ -23,79 +50,69 @@ class FunctionCoordinator:
         - message: Status or error message
         """
         try:
-            output = generate_completion(text, self.function_descriptions)
-            function_name = output.get("function_call", {}).get("name")
+            output = None
+            function_name = requested_function
 
-            if function_name == "add_read_me":
-                return self._handle_readme_generation(output, report_json_content)
-            elif function_name == "summary_in_target_platform":
-                return self._handle_documentation_generation(output, report_json_content, model_bim_content)
-            elif function_name == "slicer_uniformisation_in_report":
-                return self._handle_slicer_uniformisation(text, report_json_content)
+            if not function_name:
+                text_with_language = f"{text}\n\nPreferred output language: {language}\nPreferred model: {model_name}"
+                output = generate_completion(text_with_language, self.function_descriptions, model_name, openai_client)
+                function_call = getattr(output, "function_call", None)
+                if not function_call:
+                    return None, None, config.UNSUPPORTED_REQUEST_ERROR
+                function_name = function_call.name
             else:
+                output = None
+
+            handler = self._handlers.get(function_name)
+            if not handler:
                 return None, None, config.UNSUPPORTED_REQUEST_ERROR
+
+            # Convert parameters to HandlerRequest and call handler
+            # Then convert HandlerResponse back to tuple for backward compatibility
+            return self._handle_with_new_interface(
+                handler,
+                output,
+                text,
+                report_json_content,
+                model_bim_content,
+                report_images,
+                language,
+                model_name,
+                openai_client,
+            )
 
         except Exception as e:
             return None, None, f"An error occurred: {str(e)}"
-
-    def _handle_readme_generation(self, output: Dict[str, Any], report_json_content: dict) -> Tuple[str, None, str]:
-        """Handle the generation of a README page."""
-        extracted_report = extract_dashboard_by_page(report_json_content)
-        summary_dashboard, overview_all_pages = summarize_dashboard_by_page(extracted_report)
-        arguments_str = prepare_arguments_add_read_me(overview_all_pages, self.function_descriptions)
-        # Parse the JSON string into a dictionary
-        arguments = json.loads(arguments_str)
-        updated_report = add_read_me(arguments['dashboard_summary'], arguments['pages'])
-        report_json_content['sections'].insert(0, updated_report["sections"][0])
-        return json.dumps(report_json_content, indent=4), None, config.MODIFICATION_SUCCESS
-
-    def _handle_documentation_generation(self, output: Dict[str, Any], report_json_content: dict, model_bim_content: dict) -> Tuple[None, bytes, str]:
-        """Handle the generation of documentation."""
-        args = json.loads(output.function_call.arguments)
-        language = args.get("language", config.DEFAULT_LANGUAGE)
-        target_platform = args.get("platform", config.DEFAULT_PLATFORM)
-
-        extracted_report = extract_dashboard_by_page(report_json_content)
-        extracted_dataset = extract_relevant_parts_dataset(model_bim_content)
-        extracted_measures = extract_measures_name_and_expression(extracted_dataset['measures'])
-
-        summary_dashboard, overview_all_pages = summarize_dashboard_by_page(
-            extracted_report, target_platform=target_platform, language=language
-        )
+    
+    def _handle_with_new_interface(
+        self,
+        handler: FunctionHandler,
+        output: Optional[Dict[str, Any]],
+        text: str,
+        report_json_content: dict,
+        model_bim_content: dict,
+        report_images: list,
+        language: str,
+        model_name: str,
+        openai_client: Any,
+    ) -> Tuple[Optional[str], Optional[bytes], str]:
+        """
+        Adapter method to convert old-style parameters to HandlerRequest
+        and convert HandlerResponse back to tuple format.
         
-        overall_summary = global_summary_dashboard(
-            overview_all_pages, target_platform=target_platform, language=language
+        This allows handlers using the new interface to work with the coordinator
+        while maintaining backward compatibility.
+        """
+        request = HandlerRequest(
+            text=text,
+            report_json_content=report_json_content,
+            model_bim_content=model_bim_content,
+            report_images=report_images,
+            language=language,
+            model_name=model_name,
+            openai_client=openai_client,
+            output=output,
         )
+        response = handler.process(request)
+        return response.modified_json, response.file_content, response.message
 
-        summary_table = summarize_table_source(
-            extracted_dataset['tables'], target_platform=target_platform, language=language
-        )
-
-        summary_measure_overview = create_measures_overview_table(extracted_measures, target_platform)
-        summary_measure_detailed = create_measures_by_column_table(extracted_measures, target_platform)
-
-        text_list = [
-            config.DOC_DASHBOARD_OVERVIEW,
-            f"{overall_summary}\n\n",
-            config.DOC_DETAILED_INFO,
-            f"{summary_dashboard}\n\n",
-            config.DOC_DATASET_INFO,
-            config.DOC_TABLE_SOURCE,
-            f"{summary_table}\n\n",
-            config.DOC_MEASURES_SUMMARY,
-            f"{summary_measure_overview}\n\n",
-            config.DOC_DETAILED_MEASURES,
-            f"{summary_measure_detailed}\n\n"
-        ]
-
-        file_content = "\n\n".join(text_list).encode('utf-8')
-        return None, file_content, config.MODIFICATION_SUCCESS
-
-    def _handle_slicer_uniformisation(self, text: str, report_json_content: dict) -> Tuple[str, None, str]:
-        """Handle the uniformisation of slicers."""
-        df = build_df(report_json_content)
-        result = process_dashboard_request(text, df)
-        dict_slicers = json.dumps(result, indent=2, ensure_ascii=False)
-        dict_slicers = json.loads(dict_slicers)
-        updated_json = modify_json(report_json_content, dict_slicers, df)
-        return json.dumps(updated_json, ensure_ascii=False, indent=4), None, config.MODIFICATION_SUCCESS 

@@ -4,6 +4,26 @@ import shutil
 import json
 import io
 import tempfile
+import sys
+from pathlib import Path
+import fitz  # PyMuPDF
+
+def convert_pdf_to_images(pdf_file):
+    # Create output directory relative to the project
+    output_dir = os.path.join(os.getcwd(), "Images")
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Open the PDF
+    doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
+    images = []
+
+    for i, page in enumerate(doc):
+        pix = page.get_pixmap()
+        out_path = os.path.join(output_dir, f"page_{i+1}.png")
+        pix.save(out_path)
+        images.append(out_path)
+
+    return images
 
 def extract_report_and_model(zip_file):
     """Extract report.json and model.bim from the uploaded PBIP folder"""
