@@ -1,4 +1,10 @@
 # DotEnv configuration
 .env
-# openai key
-openaiapikey.txt
+# Personal Claude Code overrides
+.claude/settings.local.json
+# Python
+__pycache__/
+*.pyc
+*.pyo
+# Generated images workspace
+Images/

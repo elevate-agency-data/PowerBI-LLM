@@ -1,4 +1,5 @@
 streamlit
-openai==0.28
-langchain
-langchain_community
+anthropic>=0.40
+mcp>=1.0
+python-dotenv
+PyMuPDF
