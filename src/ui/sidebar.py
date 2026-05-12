@@ -1,32 +1,87 @@
-"""Sidebar components for collecting API key, language, and model."""
+"""Sidebar widgets: API key, language, file uploads, and chat connection."""
+
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from typing import Optional
 
 import streamlit as st
+from dotenv import load_dotenv
+
 import config.config as config
 
 
-def render_sidebar():
-    """Render sidebar inputs and return collected values."""
-    openai_api_key = st.sidebar.text_input(config.API_KEY_LABEL, type="password")
+load_dotenv()
+
+
+@dataclass
+class SidebarValues:
+    anthropic_api_key: str
+    language: str
+    zip_file: object
+    pdf_file: object
+    xmla_endpoint: str
+    auth_mode: str  # "interactive" | "username+password"
+    username: str
+    password: str
+    mcp_exe_override: str
+
+
+def render_sidebar() -> SidebarValues:
+    """Render sidebar widgets and return collected values."""
+    st.sidebar.title("PowerBI Assistant")
+
+    api_key = st.sidebar.text_input(config.API_KEY_LABEL, type="password")
 
     language_options = ["English", "French", "Chinese"]
-    default_lang_index = (
+    default_idx = (
         language_options.index(config.DEFAULT_LANGUAGE)
         if config.DEFAULT_LANGUAGE in language_options
         else 0
     )
-    selected_language = st.sidebar.selectbox(
-        "Output language", language_options, index=default_lang_index
-    )
+    language = st.sidebar.selectbox("Output language", language_options, index=default_idx)
 
-    model_options = config.SUPPORTED_MODELS
-    default_model_index = (
-        model_options.index(config.DEFAULT_MODEL)
-        if config.DEFAULT_MODEL in model_options
-        else 0
-    )
-    selected_model = st.sidebar.selectbox(
-        "OpenAI model", model_options, index=default_model_index
-    )
+    st.sidebar.markdown("### Files")
+    zip_file = st.sidebar.file_uploader(config.FILE_UPLOAD_LABEL, type=["zip"])
+    pdf_file = st.sidebar.file_uploader(config.FILE_UPLOAD_LABEL_PDF, type=["pdf"])
 
-    return openai_api_key, selected_language, selected_model
+    with st.sidebar.expander("Chat connection", expanded=False):
+        st.caption(
+            "Used only by the Chat tab. Requires a Fabric capacity workspace "
+            "with XMLA read enabled."
+        )
+        xmla_endpoint = st.text_input(
+            "Fabric XMLA endpoint",
+            placeholder="powerbi://api.fabric.microsoft.com/v1.0/myorg/{workspace}",
+        )
+        auth_mode = st.radio(
+            "Auth mode",
+            options=["interactive", "username+password"],
+            index=0,
+            horizontal=True,
+        )
+        if auth_mode == "username+password":
+            username = st.text_input("Username (UPN)")
+            password = st.text_input("Password", type="password")
+        else:
+            username = ""
+            password = ""
+        mcp_exe_override = st.text_input(
+            "MCP server executable (override)",
+            value="",
+            placeholder=os.getenv("MCP_SERVER_EXE", "(reads MCP_SERVER_EXE from .env)"),
+            help="Leave blank to use MCP_SERVER_EXE from .env.",
+        )
 
+    return SidebarValues(
+        anthropic_api_key=api_key,
+        language=language,
+        zip_file=zip_file,
+        pdf_file=pdf_file,
+        xmla_endpoint=xmla_endpoint.strip(),
+        auth_mode=auth_mode,
+        username=username,
+        password=password,
+        mcp_exe_override=mcp_exe_override.strip(),
+    )
