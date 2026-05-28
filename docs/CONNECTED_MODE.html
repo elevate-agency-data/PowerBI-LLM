@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PowerBI-LLM · Connected Mode</title>
+<meta name="description" content="新架构下用户的输入方式，以及 Power BI Service 两个协议如何服务三个 use case。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:        #FBF8F1;
+  --bg-card:   #FFFFFF;
+  --bg-sunk:   #F4EFE2;
+  --bg-code:   #0E1116;
+  --text:      #1A1611;
+  --text-mute: #6B5D4F;
+  --text-dim:  #9C8E7E;
+  --border:    rgba(26, 22, 17, 0.10);
+  --border-strong: rgba(26, 22, 17, 0.18);
+  --amber:     #E89B2C;
+  --amber-deep:#B8761D;
+  --amber-wash:#FDF3DC;
+  --rest:      #2A6BB0;   /* REST blue */
+  --rest-wash: #E2EBF5;
+  --xmla:      #6E3F66;   /* XMLA plum */
+  --xmla-wash: #EAE0E8;
+
+  --serif: 'Instrument Serif', 'Noto Serif SC', Georgia, serif;
+  --sans:  'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', ui-sans-serif, system-ui, sans-serif;
+  --mono:  'Geist Mono', 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nav ─────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(251, 248, 241, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.brand-mark {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+}
+.brand small { color: var(--text-mute); font-weight: 400; margin-left: 8px; }
+.nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav-links a {
+  font-size: 13.5px;
+  color: var(--text-mute);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+.nav-links a:hover { color: var(--text); background: var(--bg-sunk); }
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+}
+
+/* ── Page ────────────────────────── */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 28px 120px;
+}
+section {
+  padding: 72px 0 32px;
+  scroll-margin-top: 72px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber-deep);
+  margin-bottom: 14px;
+}
+.eyebrow::before { content: ""; width: 18px; height: 1px; background: var(--amber); }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--text); margin: 0; }
+h1 {
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-bottom: 18px;
+}
+h1 .accent { color: var(--amber-deep); }
+h2 {
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+h2 .accent { color: var(--amber-deep); }
+h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  margin: 32px 0 12px;
+}
+
+.lede {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-mute);
+  max-width: 60ch;
+  margin: 0 0 32px;
+}
+p { margin: 0 0 16px; max-width: 64ch; line-height: 1.8; }
+p strong { color: var(--text); font-weight: 600; }
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+}
+p code, li code, td code, .step-desc code, .uc-card code {
+  background: var(--bg-sunk);
+  padding: 1.5px 6px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Hero ────────────────────────── */
+.hero {
+  padding-top: 64px;
+}
+.hero .tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--amber-wash);
+  color: var(--amber-deep);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+/* ── Sidebar mockup ──────────────── */
+.mock {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 28px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre;
+  overflow-x: auto;
+  margin: 24px 0;
+  box-shadow: 0 1px 2px rgba(26, 22, 17, 0.04);
+}
+.mock .label { color: var(--text-mute); }
+.mock .input {
+  display: inline-block;
+  background: var(--bg-sunk);
+  border-radius: 4px;
+  padding: 0 8px;
+  color: var(--text-dim);
+}
+.mock .btn {
+  display: inline-block;
+  background: var(--amber);
+  color: #1A1611;
+  padding: 2px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.mock .arrow { color: var(--text-dim); }
+.mock .dot { color: #4CAF50; }
+.mock hr { border: none; border-top: 1px dashed var(--border); margin: 8px 0; }
+
+/* ── Steps table ─────────────────── */
+.steps {
+  margin: 24px 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-card);
+}
+.step {
+  display: grid;
+  grid-template-columns: 64px 1fr 100px;
+  gap: 18px;
+  padding: 16px 22px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--amber);
+  line-height: 1;
+}
+.step-text { font-size: 15px; line-height: 1.5; }
+.step-text strong { font-weight: 600; }
+.step-time {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+/* ── Two-channel cards ───────────── */
+.channels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 32px 0;
+}
+@media (max-width: 720px) { .channels { grid-template-columns: 1fr; } }
+
+.channel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 24px 20px;
+  position: relative;
+  border-top-width: 3px;
+}
+.channel-rest { border-top-color: var(--rest); }
+.channel-xmla { border-top-color: var(--xmla); }
+
+.channel-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.channel-rest .channel-name { color: var(--rest); }
+.channel-xmla .channel-name { color: var(--xmla); }
+
+.channel h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+.channel-proto {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+}
+.channel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.channel li {
+  padding: 6px 0;
+  font-size: 14.5px;
+  border-bottom: 1px dashed var(--border);
+  color: var(--text);
+  line-height: 1.55;
+}
+.channel li:last-child { border-bottom: none; }
+.channel li::before {
+  content: "·";
+  color: var(--amber);
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* OAuth diagram */
+.oauth-diagram {
+  margin: 32px 0;
+  padding: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 13px;
+  overflow-x: auto;
+}
+.oauth-node {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-width: 200px;
+  text-align: center;
+}
+.oauth-node-tag {
+  display: block;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.oauth-node-entra { background: var(--amber-wash); border-color: rgba(232, 155, 44, 0.4); }
+.oauth-arrow {
+  position: relative;
+  width: 1px;
+  height: 18px;
+  background: var(--border-strong);
+}
+.oauth-arrow::after {
+  content: "";
+  position: absolute;
+  left: 50%; bottom: -1px;
+  width: 5px; height: 5px;
+  border-right: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  transform: translate(-50%, 50%) rotate(45deg);
+}
+.oauth-arrow-label {
+  position: absolute;
+  left: 16px; top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--text-mute);
+}
+.oauth-fork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  width: 100%;
+  max-width: 540px;
+  position: relative;
+  margin-top: 4px;
+}
+.oauth-fork::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 25%; right: 25%;
+  height: 1px;
+  background: var(--border-strong);
+}
+.oauth-fork-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.oauth-fork-col::before {
+  content: "";
+  position: absolute;
+  top: -12px; left: 50%;
+  width: 1px; height: 12px;
+  background: var(--border-strong);
+}
+.oauth-node-rest { background: var(--rest-wash); border-color: var(--rest); }
+.oauth-node-xmla { background: var(--xmla-wash); border-color: var(--xmla); }
+
+/* ── Use case mapping table ──────── */
+.map-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.map-table th, .map-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.map-table th {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  background: var(--bg-sunk);
+  font-weight: 500;
+}
+.map-table tr:last-child td { border-bottom: none; }
+.map-table .uc-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--text);
+  font-weight: 400;
+}
+.tag-rest, .tag-xmla, .tag-none {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  white-space: nowrap;
+  margin: 1px 0;
+}
+.tag-rest { background: var(--rest-wash); color: var(--rest); }
+.tag-xmla { background: var(--xmla-wash); color: var(--xmla); }
+.tag-none { background: var(--bg-sunk); color: var(--text-dim); }
+
+/* ── Use case detail cards ───────── */
+.uc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  margin: 20px 0;
+  border-left: 3px solid var(--amber);
+}
+.uc-card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.uc-card-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--amber);
+  line-height: 1;
+}
+.uc-card h3 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
+}
+.uc-card-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.uc-card p {
+  margin: 0 0 16px;
+  color: var(--text-mute);
+  font-size: 15px;
+}
+.uc-flow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+@media (max-width: 720px) { .uc-flow { grid-template-columns: 1fr; } }
+.uc-channel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+.uc-channel-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.uc-channel-rest .uc-channel-name { color: var(--rest); }
+.uc-channel-xmla .uc-channel-name { color: var(--xmla); }
+.uc-channel-none .uc-channel-name { color: var(--text-dim); }
+.uc-channel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.uc-channel li { padding: 4px 0; }
+.uc-channel li::before {
+  content: "→ ";
+  color: var(--amber-deep);
+  font-family: var(--mono);
+}
+
+/* ── Footer ───────────────────────── */
+footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  color: var(--text-mute);
+  font-size: 13.5px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      PowerBI-LLM<small>Connected Mode</small>
+    </div>
+    <nav class="nav-links">
+      <a href="#input">用户输入</a>
+      <a href="#protocols">两个协议</a>
+      <a href="#use-cases">三个 Use Cases</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- ────────────── HERO ────────────── -->
+  <section class="hero">
+    <span class="tag">Refactor · Phase 4</span>
+    <h1>登录一次，<span class="accent">三个 tab 都能用</span>。</h1>
+    <p class="lede">
+      重构后，用户不再需要上传 PBIP zip、PDF，也不再需要填 XMLA URL。一次 Microsoft 登录 + 两个下拉选择，三个 use case 共享同一个 connection context。本文说明<strong>用户输入方式</strong>和 <strong>Power BI Service 两个协议</strong>如何分别服务这三个 use case。
+    </p>
+  </section>
+
+  <!-- ────────────── §1 用户输入 ────────────── -->
+  <section id="input">
+    <div class="eyebrow">01 · 用户输入</div>
+    <h2>用户要做的事，<span class="accent">就这 5 步</span>。</h2>
+    <p class="lede">
+      之前的"上传 zip + 上传 PDF + 填 URL + 配 exe + 选认证方式"全部消失。重构后的输入流程一共不到 30 秒，而且大部分时间在等 Microsoft 登录确认。
+    </p>
+
+    <h3>重构后的 Sidebar 长这样</h3>
+
+    <div class="mock"><span class="label">PowerBI Assistant</span>
+─────────────────────────────────
+<span class="label">Anthropic API Key</span>   <span class="input">sk-ant-...........</span>
+<span class="label">Output language</span>     <span class="input">English ▾</span>
+
+<span class="label">─ Power BI Connection ───────────</span>
+  <span class="btn">Sign in with Microsoft</span>           <span class="label">← 未登录时显示</span>
+  Signed in as alice@contoso.com    <span class="label">← 登录后显示</span>
+
+<span class="label">Workspace:</span>  <span class="input">Sales Analytics       ▾</span>
+<span class="label">Report:</span>     <span class="input">Q3 Revenue Dashboard  ▾</span>
+<span class="label">Dataset:</span>    Q3 Revenue <span class="label">(auto)</span>
+<span class="label">Status:</span>     <span class="dot">●</span> Connected · Fabric</div>
+
+    <h3>5 步输入流程</h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>粘贴 Anthropic API key</strong><br><span style="color:var(--text-mute); font-size:13.5px;">仍然保留 —— 这是调 Claude 必须的</span></div>
+        <div class="step-time">~5s</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>点击 "Sign in with Microsoft"</strong><br><span style="color:var(--text-mute); font-size:13.5px;">弹出一串 device code，复制到 <code>microsoft.com/devicelogin</code> 完成登录</span></div>
+        <div class="step-time">~15–30s<br>（一次性）</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>下拉选 Workspace</strong><br><span style="color:var(--text-mute); font-size:13.5px;">登录后通过 REST API 自动列出你有权限的所有 workspace</span></div>
+        <div class="step-time">~2s</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>下拉选 Report</strong><br><span style="color:var(--text-mute); font-size:13.5px;">这个 workspace 下的 report 列表，dataset 由 report 自动推断</span></div>
+        <div class="step-time">~2s</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>切到目标 tab，点按钮</strong><br><span style="color:var(--text-mute); font-size:13.5px;">Documentation / README / Chat 三个 tab 都用上面这套 connection context</span></div>
+        <div class="step-time">—</div>
+      </div>
+    </div>
+
+    <h3>认证机制</h3>
+
+    <p>
+      登录走的是 <strong>MSAL Device Code Flow</strong>：用户点击登录后，应用显示一串验证码，用户在浏览器里输入这串码并用 Microsoft 账号登录。<strong>不需要在 Azure AD 里注册 redirect URI</strong>，也不需要 client secret，所以部署到任何环境都一样使用。Token 自动缓存在 session 里，刷新页面不会丢失登录状态；token 过期了 MSAL 自动 refresh。
+    </p>
+  </section>
+
+  <!-- ────────────── §2 两个协议 ────────────── -->
+  <section id="protocols">
+    <div class="eyebrow">02 · 两个协议</div>
+    <h2>Power BI Service 暴露<span class="accent">两扇门</span>。</h2>
+    <p class="lede">
+      用户登录后拿到的那一个 OAuth access token，同时打开 Power BI Service 的两个通道：REST API 和 XMLA Endpoint。它们是互补的 —— 一个负责 metadata 和文件级操作，一个负责语义模型和实时查询。
+    </p>
+
+    <div class="oauth-diagram">
+      <div class="oauth-node oauth-node-entra">Microsoft Entra ID<span class="oauth-node-tag">OAuth 2.0 · MSAL Device Code Flow</span></div>
+      <div class="oauth-arrow"><span class="oauth-arrow-label">access_token</span></div>
+      <div class="oauth-fork">
+        <div class="oauth-fork-col">
+          <div class="oauth-node oauth-node-rest">Power BI REST API<span class="oauth-node-tag">HTTPS · JSON</span></div>
+        </div>
+        <div class="oauth-fork-col">
+          <div class="oauth-node oauth-node-xmla">XMLA Endpoint<span class="oauth-node-tag">TDS / SOAP · via MCP</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="channels">
+
+      <article class="channel channel-rest">
+        <div class="channel-name">Channel A</div>
+        <h3>Power BI REST API</h3>
+        <div class="channel-proto">HTTPS · JSON · <code>api.powerbi.com/v1.0/myorg</code></div>
+        <ul>
+          <li>列出用户有权限的 <strong>workspaces</strong></li>
+          <li>列出 workspace 里的 <strong>reports</strong> 和 <strong>datasets</strong></li>
+          <li>拿一个 report 的 <strong>定义</strong>（page / visual 结构，相当于 report.json）</li>
+          <li>把一个 report <strong>导出成 PDF / PPTX / PNG</strong>（async job + 轮询）</li>
+          <li>下载 <strong>PBIP 整包</strong>（用于 README 写回路径）</li>
+        </ul>
+      </article>
+
+      <article class="channel channel-xmla">
+        <div class="channel-name">Channel B</div>
+        <h3>XMLA Endpoint</h3>
+        <div class="channel-proto">TDS / SOAP · <code>powerbi://api.fabric.microsoft.com/...</code></div>
+        <ul>
+          <li>完整的 <strong>语义模型</strong>（tables / columns / relationships）</li>
+          <li>所有 <strong>measures</strong> 和它们的 <strong>DAX 表达式</strong></li>
+          <li><strong>Partitions</strong>（M 代码 / DirectQuery SQL / 数据源）</li>
+          <li>执行<strong>任意 DAX 查询</strong>（包括 DMV 元数据查询）</li>
+          <li>安全角色 / KPI / Hierarchies</li>
+        </ul>
+      </article>
+
+    </div>
+
+    <h3>关键点：同一个 token 打开两扇门</h3>
+
+    <p>
+      用户只登录一次。OAuth scope 用 <code>https://analysis.windows.net/powerbi/api/.default</code>，这个 scope 既覆盖 REST API 也覆盖 XMLA。**XMLA 通过既有的 Power BI Modeling MCP Server 调用**（Chat tab 现在用的就是它），重构后只是把它从"只给 Chat 用"扩展到"三个 tab 共享"。
+    </p>
+
+    <h3>注意：XMLA 有 license 门槛</h3>
+
+    <p>
+      XMLA endpoint 只对以下三种 license 开放：<strong>Premium Per User (PPU)</strong>、<strong>workspace 在 Premium capacity (P SKU) 上</strong>、<strong>workspace 在 Fabric capacity (F SKU) 上</strong>。普通 Pro 用户的 workspace 没有 XMLA。这是重构后明确接受的约束 —— 不满足条件的用户无法使用本应用。
+    </p>
+  </section>
+
+  <!-- ────────────── §3 三个 Use Cases ────────────── -->
+  <section id="use-cases">
+    <div class="eyebrow">03 · 三个 Use Cases × 两个协议</div>
+    <h2>每个 use case 用<span class="accent">哪扇门拿什么</span>。</h2>
+    <p class="lede">
+      下面这张映射表先给一个总览，下面三张卡再分别细化每个 use case 的协议组合。
+    </p>
+
+    <h3>总览映射表</h3>
+
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th style="width: 140px;">Use case</th>
+          <th>REST API 负责</th>
+          <th>XMLA 负责</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="uc-name">Documentation</td>
+          <td>
+            <span class="tag-rest">GET /reports/{id}/definition</span><br>
+            <span style="font-size:13px; color:var(--text-mute);">拿 report 结构（pages / visual containers）</span>
+          </td>
+          <td>
+            <span class="tag-xmla">model_operations</span>
+            <span class="tag-xmla">table_operations</span>
+            <span class="tag-xmla">measure_operations</span>
+            <span class="tag-xmla">relationship_operations</span><br>
+            <span style="font-size:13px; color:var(--text-mute);">拿 model schema、measure DAX、表关系、数据源</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="uc-name">README</td>
+          <td>
+            <span class="tag-rest">GET /reports/{id}/definition</span>
+            <span class="tag-rest">POST /reports/{id}/ExportTo</span>
+            <span class="tag-rest">GET /reports/{id}/Export</span><br>
+            <span style="font-size:13px; color:var(--text-mute);">report 结构 + 自动渲染 PDF + 下载 PBIP 用于写回</span>
+          </td>
+          <td>
+            <span class="tag-none">不直接使用</span><br>
+            <span style="font-size:13px; color:var(--text-mute);">README 不需要 model 元数据，只关注视觉层</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="uc-name">Chat</td>
+          <td>
+            <span class="tag-rest">列 workspaces + reports</span>
+            <span class="tag-rest">派生 XMLA endpoint URL</span><br>
+            <span style="font-size:13px; color:var(--text-mute);">只在初始化时用，不参与对话逻辑</span>
+          </td>
+          <td>
+            <span class="tag-xmla">全部 7 个 MCP tool</span>
+            <span class="tag-xmla">dax_query_operations</span><br>
+            <span style="font-size:13px; color:var(--text-mute);">对话期间 Claude 反复调用，跑 DAX、查 measure</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>每个 use case 的协议组合</h3>
+
+    <!-- USE CASE 1 -->
+    <article class="uc-card">
+      <div class="uc-card-head">
+        <div class="uc-card-num">01</div>
+        <h3>Documentation</h3>
+        <span class="uc-card-tag">Sonnet 4.6 · 输出 Markdown</span>
+      </div>
+      <p>
+        生成完整的报表文档。需要同时拿到<strong>报表结构</strong>（每页有哪些 visual、绑了什么字段）和<strong>语义模型</strong>（有哪些 table、measure 是怎么算的、数据源是什么）。两扇门都要用。
+      </p>
+      <div class="uc-flow">
+        <div class="uc-channel uc-channel-rest">
+          <div class="uc-channel-name">REST API 拿什么</div>
+          <ul>
+            <li>报表的 page / section 列表</li>
+            <li>每个 page 下的 visual 定义（type、projection、绑定字段）</li>
+            <li>page 级别和 visual 级别的 filter</li>
+          </ul>
+        </div>
+        <div class="uc-channel uc-channel-xmla">
+          <div class="uc-channel-name">XMLA 拿什么</div>
+          <ul>
+            <li>所有 table 的名字和 columns</li>
+            <li>所有 measure 的名字 + DAX 表达式 + 描述</li>
+            <li>所有 partition 的 M 代码（数据源）</li>
+            <li>表之间的 relationships</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- USE CASE 2 -->
+    <article class="uc-card">
+      <div class="uc-card-head">
+        <div class="uc-card-num">02</div>
+        <h3>README</h3>
+        <span class="uc-card-tag">Sonnet 4.6 多模态 · 注入 README 页面</span>
+      </div>
+      <p>
+        给报表内部加一页 README。Claude 需要看<strong>每页长什么样</strong>（视觉印象）+ <strong>每页的 visual 结构定义</strong>（精确字段名）—— 两者结合才能写出又准确又有视觉印象的 README。这是个纯 REST API 的 use case，XMLA 不参与。
+      </p>
+      <div class="uc-flow">
+        <div class="uc-channel uc-channel-rest">
+          <div class="uc-channel-name">REST API 拿什么</div>
+          <ul>
+            <li><code>Get Report Definition</code>: report 的 page / visual 结构</li>
+            <li><code>ExportTo</code>: 把整个报表导成 PDF（async 任务 + 轮询拿结果）</li>
+            <li>PDF 在内存里被 PyMuPDF 转成每页 PNG，喂给多模态 Claude</li>
+            <li><code>Export</code>: 下载原始 PBIP zip，用于本地注入 README 节点后给用户下载</li>
+          </ul>
+        </div>
+        <div class="uc-channel uc-channel-none">
+          <div class="uc-channel-name">XMLA</div>
+          <ul style="list-style:none;">
+            <li style="padding-left:0;">不使用。README 只关心视觉层的展示，不需要 dataset 层的信息。</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- USE CASE 3 -->
+    <article class="uc-card">
+      <div class="uc-card-head">
+        <div class="uc-card-num">03</div>
+        <h3>Chat</h3>
+        <span class="uc-card-tag">Haiku 4.5 · tool-use loop</span>
+      </div>
+      <p>
+        用户用自然语言对着实时模型问问题。Claude Haiku 4.5 通过既有的 Power BI Modeling MCP Server 反复 call tool，每次都是直接打到 XMLA endpoint。这是个几乎全 XMLA 的 use case ——  REST 只在最开始用了一下，用来列 workspaces / reports 和派生 XMLA URL。
+      </p>
+      <div class="uc-flow">
+        <div class="uc-channel uc-channel-rest">
+          <div class="uc-channel-name">REST API 拿什么</div>
+          <ul>
+            <li>列出 workspace / report，给用户选</li>
+            <li>根据 workspace 名拼出 <code>powerbi://...</code> 的 XMLA URL</li>
+            <li>对话开始后，不再被调用</li>
+          </ul>
+        </div>
+        <div class="uc-channel uc-channel-xmla">
+          <div class="uc-channel-name">XMLA 拿什么</div>
+          <ul>
+            <li>通过 MCP 暴露的 7 个只读 tool 给 Claude 用</li>
+            <li>Claude 决定调用哪个 tool（比如 <code>measure_operations</code>）</li>
+            <li>实时跑 DAX 查询（<code>dax_query_operations</code>）拿真实数据</li>
+            <li>整个 tool-use loop 在 MCP session 里跑，最多 6 轮迭代</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <h3>一句话总结</h3>
+
+    <p>
+      <strong>REST API 管"文件和结构"，XMLA 管"模型和查询"</strong>。Documentation 两个都要、README 只要 REST、Chat 几乎全是 XMLA。但所有的协议调用都由同一个 OAuth token 授权 —— 用户只登录一次。
+    </p>
+
+  </section>
+
+  <footer>
+    <div>PowerBI-LLM · Connected Mode</div>
+    <div>详细 refactor 计划见 <code>docs/REFACTOR_PLAN.md</code></div>
+  </footer>
+
+</main>
+
+</body>
+</html>

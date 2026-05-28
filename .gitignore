@@ -1,7 +1,8 @@
 # DotEnv configuration
 .env
-# Personal Claude Code overrides
-.claude/settings.local.json
+# Claude Code tooling (local-only)
+.claude/
+CLAUDE.md
 # Python
 __pycache__/
 *.pyc
