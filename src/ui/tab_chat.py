@@ -8,14 +8,18 @@ from config.translation import t
 from src.mcp_connecter import claude_agent
 from src.mcp_connecter.fabric_connection import FabricCredentials
 from src.mcp_connecter.prompts import chat_system_prompt
+from src.ui.components import empty_state, section_header
 from src.validators.input_validator import validate_chat_inputs
 
 
 def render(sidebar_values) -> None:
-    st.subheader("Chat with your Power BI model")
-    st.caption(
-        "Ask anything about the dataset — Claude queries the live model via MCP "
-        "instead of guessing."
+    section_header(
+        eyebrow="Live dataset chat",
+        title="Chat with your Power BI model",
+        subtitle=(
+            "Ask anything about the dataset — Claude queries the live Fabric "
+            "semantic model via MCP instead of guessing."
+        ),
     )
 
     is_valid, message = validate_chat_inputs(
@@ -36,6 +40,14 @@ def render(sidebar_values) -> None:
             st.session_state.chat_history = []
             st.session_state.chat_tool_calls = {}
             st.rerun()
+    else:
+        empty_state(
+            title="Ready to chat",
+            body=(
+                "Try asking <em>“List the tables in the model”</em> or "
+                "<em>“What measures are defined?”</em>"
+            ),
+        )
 
     _render_history()
 

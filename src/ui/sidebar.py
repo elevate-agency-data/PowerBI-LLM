@@ -10,6 +10,7 @@ import streamlit as st
 from dotenv import load_dotenv
 
 import config.config as config
+from src.ui.components import sidebar_brand, sidebar_section
 
 
 load_dotenv()
@@ -30,10 +31,17 @@ class SidebarValues:
 
 def render_sidebar() -> SidebarValues:
     """Render sidebar widgets and return collected values."""
-    st.sidebar.title("PowerBI Assistant")
+    sidebar_brand()
 
-    api_key = st.sidebar.text_input(config.API_KEY_LABEL, type="password")
+    sidebar_section("Credentials", icon="🔑")
+    api_key = st.sidebar.text_input(
+        config.API_KEY_LABEL,
+        type="password",
+        placeholder="sk-ant-…",
+        help="Your key never leaves this browser session.",
+    )
 
+    sidebar_section("Preferences", icon="🌐")
     language_options = ["English", "French", "Chinese"]
     default_idx = (
         language_options.index(config.DEFAULT_LANGUAGE)
@@ -42,11 +50,20 @@ def render_sidebar() -> SidebarValues:
     )
     language = st.sidebar.selectbox("Output language", language_options, index=default_idx)
 
-    st.sidebar.markdown("### Files")
-    zip_file = st.sidebar.file_uploader(config.FILE_UPLOAD_LABEL, type=["zip"])
-    pdf_file = st.sidebar.file_uploader(config.FILE_UPLOAD_LABEL_PDF, type=["pdf"])
+    sidebar_section("Files", icon="📁")
+    zip_file = st.sidebar.file_uploader(
+        config.FILE_UPLOAD_LABEL,
+        type=["zip"],
+        help="Required for Documentation and README tabs.",
+    )
+    pdf_file = st.sidebar.file_uploader(
+        config.FILE_UPLOAD_LABEL_PDF,
+        type=["pdf"],
+        help="Required only for the README tab.",
+    )
 
-    with st.sidebar.expander("Chat connection", expanded=False):
+    sidebar_section("Chat connection", icon="🔌")
+    with st.sidebar.expander("Fabric XMLA settings", expanded=False):
         st.caption(
             "Used only by the Chat tab. Requires a Fabric capacity workspace "
             "with XMLA read enabled."
